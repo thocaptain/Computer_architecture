@@ -1,0 +1,20 @@
+[*]
+[*] GTKWave Analyzer save file
+[*]
+[dumpfile] "wave_all_suit.fst"
+[savefile] "wave.gtkw"
+[timestart] 844700
+[size] 1280 800
+[pos] -1 -1
+*-6.000000 844700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 250
+[signals_width] 250
+[sst_expanded] 1
+[treeopen] TOP.
+@28
+TOP.io_ledr_o[31:0]
+TOP.io_ledg_o[31:0]
+TOP.pc_debug_o[31:0]
+@22
+TOP.clk_i
+TOP.rst_ni

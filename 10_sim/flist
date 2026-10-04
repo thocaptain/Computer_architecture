@@ -1,0 +1,49 @@
+# +define+AHAI
++define+DV
+
+-I./../00_src/
+-I./../01_bench/
+./../00_src/rv32i_pkg.sv
+./../00_src/tournament.sv
+./../00_src/evaluation.sv
+./../00_src/hazard_ctrl.sv
+./../00_src/cache.sv
+./../00_src/sram_ctrl.sv
+./../00_src/data_mem.sv
+./../00_src/alu.sv
+./../00_src/branch_comp.sv
+./../00_src/control.sv
+./../00_src/inst_mem.sv
+./../00_src/lsu.sv
+./../00_src/lsu_dat_handler.sv
+./../00_src/regfile.sv
+./../00_src/btn_debounce.sv
+./../00_src/lcd_ctrl.sv
+./../00_src/rv32i.sv
+./../00_src/rv32i_single_cycle.sv
+./../00_src/TOP_SYNTH.sv
+./../00_src/TOP_SINGLE_CYCLE.sv
+
+# scoreboard
+./../01_bench/scoreboard/scoreboard_alu.sv
+./../01_bench/scoreboard/scoreboard_br_pred.sv
+# ./../01_bench/scoreboard/scoreboard_pc.sv
+./../01_bench/scoreboard/scoreboard_branch_comp.sv
+./../01_bench/scoreboard/scoreboard_lsu_dat_handler.sv
+./../01_bench/scoreboard/scoreboard_regfile.sv
+./../01_bench/scoreboard/scoreboard_lsu.sv
+# driver
+ ./../01_bench/driver/driver_alu.sv
+./../01_bench/driver/driver_branch_comp.sv
+
+# Select exactly one testbench below. Every module testbench is named tbench.
+# ./../01_bench/alu/tbench.sv
+#./../01_bench/branch_comp/tbench.sv
+# ./../01_bench/regfile/tbench.sv
+#./../01_bench/inst_mem/tbench.sv
+#./../01_bench/lsu/tbench.sv
+#./../01_bench/rv32i/tbench.sv
+./../01_bench/TOP/tbench.sv
+
+./conf.vlt
+-top tbench

@@ -1,0 +1,11 @@
+.DS_Store
+*.vcd
+*.fst
+*.log
+*obj_dir*
+*.qws
+
+20_syn/altera/**/db/
+20_syn/altera/**/incremental_db/
+20_syn/altera/**/output_files/
+20_syn/altera/**/builds/

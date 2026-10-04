@@ -1,0 +1,3 @@
+QUARTUS_VERSION = "13.0"
+DATE = "10:00:00 October 04, 2026"
+PROJECT_REVISION = "DE2_115_single_cycle"

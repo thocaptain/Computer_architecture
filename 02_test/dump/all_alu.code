@@ -1,0 +1,70 @@
+addi x1, x0, 0x0789
+xori x1, x1, 0x0123
+ori  x1, x1, 0x0321
+andi x1, x1, 0x0567
+slli x1, x1, 0x0005
+
+addi x2, x0, 0x00FF
+slli x2, x2, 0x001C
+srai x2, x2, 0x0004
+srli x2, x2, 0x0002
+
+slti  x2, x2, 0x0777
+sltiu x3, x2, 0x0000
+
+add  x1, x1, x3
+addi x2, x0, 0x0531
+addi x3, x0, 0x0014
+addi x4, x0, 0x0002
+addi x5, x0, 0x0001
+sub x1, x1, x2
+xor x1, x1, x2
+or  x1, x1, x2
+and x1, x1, x2
+sll x1, x1, x3
+sra x1, x1, x4
+srl x1, x1, x5
+slt x6, x1, x2
+sltu x7, x6, x0
+
+beq x7, x0, B1
+addi x2, x0, 0x0378
+B1:
+addi x2, x0, 0x0123
+bne x7, x0, B2
+addi x3, x0, 0x0453
+B2:
+addi x3, x0, 0x0294
+blt x2, x3, B3
+addi x4, x0, 0x0512
+B3:
+addi x4, x0, 0x0290
+bge x4, x3, B4
+addi x5, x0, 0x0612
+B4:
+addi x5, x0, 0x0100
+bltu x5, x4, B5
+addi x6, x0, 0x0200
+B5:
+addi x6, x0, 0x0761
+bgeu x5, x6, B6
+addi x7, x0, 0x0103
+B6:
+addi x7, x0, 0x0391
+add x1, x1, x2
+add x1, x1, x3
+add x1, x1, x4
+add x1, x1, x5
+add x1, x1, x6
+add x1, x1, x7
+lui x2, 0xCAF
+add x1, x1, x2
+auipc x1, 0x612
+
+sw x1, 0(x0)
+sh x2, 2(x0)
+sb x3, 1(x0)
+
+lw x1, 0(x0)
+lh x2, 3(x0)
+lb x3, 1(x0)

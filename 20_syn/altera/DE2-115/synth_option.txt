@@ -1,0 +1,13 @@
+Compilation Process Settings:
+	Physical Synthesis Optimizations:
+		Perform physical synthesis for combinational logic: yes *
+		Perform register retiming: yes * 
+		Effort level: Normal ***
+		Perform automatic asynchronous signal pipelining: No =
+		Perform register duplication: No =
+Analysis & Synthesis Settings:
+	Optimization Technique: Speed ***
+	PowerPlay power optimization: Normal =
+Filter Settings:
+	Fitter effort: Auto ***
+	Router timing optimization level: Maximum (little worse than Normal if met timing. If not met timing, **)
