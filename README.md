@@ -201,5 +201,10 @@ The directory:
 ```
 
 is reserved for Xilinx FPGA projects.
+### Assembly and Binary Conversion
+
+[RISC-V Venus](https://venus.cs61c.org/) can be used to assemble and inspect RISC-V assembly programs and generate the corresponding machine-code representation.
+
+Use Venus when you need to verify the generated instructions before converting them into the ROM format used by this project.
 
 # Computer Architecture
