@@ -7,7 +7,9 @@
 #
 # TB: adder | comparator | shifter | alu | regfile | dmem_async | dmem_sync
 
-TB      ?= adder
+# Accept TD as an alias for compatibility with the milestone command format.
+# An explicit TB still takes precedence when both variables are provided.
+TB      ?= $(if $(TD),$(TD),adder)
 TB_LIST  = adder comparator shifter alu regfile dmem_async dmem_sync
 
 SRC_DIR  = ../00_src
@@ -28,7 +30,7 @@ VFLAGS = --sv --timing --assert --trace -Wall -Wno-fatal -Wno-DECLFILENAME
 
 build:
 	verilator --binary $(VFLAGS) --top-module tbench $(SRC) $(BENCH)/$(TB)/tbench.sv \
-	  -Mdir obj_dir_$(TB) --quiet
+	  -Mdir obj_dir_$(TB)
 
 run: build
 	./obj_dir_$(TB)/Vtbench

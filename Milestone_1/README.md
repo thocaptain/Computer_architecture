@@ -27,8 +27,10 @@ RTL for the seven exercises in `milestone-1.pdf`. Layout follows the sample proj
 ```
 cd 10_sim
 make run TB=adder      # adder | comparator | shifter | alu | regfile | dmem_async | dmem_sync
+# TD is also accepted as an alias for TB:
+make run TD=adder
 make all               # run every testbench
 make lint
 ```
 
-Each testbench is self-checking (reference model, directed + random vectors) and prints `[PASS]` or fails with `$fatal`. Waveforms are written to `wave_<tb>.vcd`.
+Each testbench is self-checking (reference model, directed + random vectors) and prints `[PASS]` or fails with `$fatal`. Waveforms are written to `10_sim/wave_<tb>.vcd` when the commands above are run from `Milestone_1`.
