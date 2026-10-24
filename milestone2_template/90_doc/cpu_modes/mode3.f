@@ -1,0 +1,15 @@
++incdir+../00_src_mode3_full_pipeline
+../00_src_mode3_full_pipeline/rv32i_pkg.sv
+../00_src_mode3_full_pipeline/alu.sv
+../00_src_mode3_full_pipeline/branch_comp.sv
+../00_src_mode3_full_pipeline/control.sv
+../00_src_mode3_full_pipeline/regfile.sv
+../00_src_mode3_full_pipeline/lsu_dat_handler.sv
+../00_src_mode3_full_pipeline/hazard_ctrl.sv
+../00_src_mode3_full_pipeline/tournament.sv
+../00_src_mode3_full_pipeline/evaluation.sv
+../00_src_mode3_full_pipeline/rv32i.sv
+../00_src_mode3_full_pipeline/rv32i_full_pipeline.sv
+../00_src_mode3_full_pipeline/singlecycle.sv
+../00_src_mode3_full_pipeline/imem.sv
+../00_src_mode3_full_pipeline/dmem.sv

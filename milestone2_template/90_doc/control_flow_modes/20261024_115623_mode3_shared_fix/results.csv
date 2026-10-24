@@ -1,0 +1,15 @@
+test,status,cases,result
+jalr_redirect_vs_stall,PASS,1,RESULT PASS cases=1 cycles=22
+beq_redirect_vs_stall,PASS,1,RESULT PASS cases=1 cycles=26
+bne_redirect_vs_stall,PASS,1,RESULT PASS cases=1 cycles=26
+blt_redirect_vs_stall,PASS,1,RESULT PASS cases=1 cycles=26
+bge_redirect_vs_stall,PASS,1,RESULT PASS cases=1 cycles=26
+bltu_redirect_vs_stall,PASS,1,RESULT PASS cases=1 cycles=26
+bgeu_redirect_vs_stall,PASS,1,RESULT PASS cases=1 cycles=26
+JALR_TARGET,PASS,4096,RESULT PASS cases=4096 cycles=98049
+BEQ_COMPARE,PASS,7094,RESULT PASS cases=7094 cycles=136228
+BNE_COMPARE,PASS,7094,RESULT PASS cases=7094 cycles=136228
+BLT_COMPARE,PASS,7094,RESULT PASS cases=7094 cycles=136228
+BGE_COMPARE,PASS,7094,RESULT PASS cases=7094 cycles=136228
+BLTU_COMPARE,PASS,7094,RESULT PASS cases=7094 cycles=136228
+BGEU_COMPARE,PASS,7094,RESULT PASS cases=7094 cycles=136228

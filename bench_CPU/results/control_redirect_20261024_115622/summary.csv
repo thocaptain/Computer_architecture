@@ -1,0 +1,11 @@
+mode,suite,passed,failed,cycles
+1,riscv_card,84,0,12438
+1,all_suit,14,0,56915
+2,riscv_card,84,0,8079
+2,all_suit,14,0,37193
+3,riscv_card,84,0,8079
+3,all_suit,14,0,34317
+4,riscv_card,84,0,8079
+4,all_suit,14,0,37193
+5,riscv_card,84,0,8091
+5,all_suit,14,0,36307

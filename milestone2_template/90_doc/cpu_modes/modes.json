@@ -1,0 +1,122 @@
+[
+  {
+    "mode": 1,
+    "folder": "00_src_mode1_pipeline_stall",
+    "top": "rv32i_pipeline_stall",
+    "files": [
+      "rv32i_pkg.sv",
+      "alu.sv",
+      "branch_comp.sv",
+      "control.sv",
+      "regfile.sv",
+      "lsu_dat_handler.sv",
+      "hazard_ctrl.sv",
+      "tournament.sv",
+      "evaluation.sv",
+      "rv32i.sv",
+      "rv32i_pipeline_stall.sv",
+      "singlecycle.sv",
+      "imem.sv",
+      "dmem.sv"
+    ],
+    "forwarding": 0,
+    "prediction": 0,
+    "strategy": "PRED_BOTH"
+  },
+  {
+    "mode": 2,
+    "folder": "00_src_mode2_pipeline_hazard",
+    "top": "rv32i_pipeline_hazard",
+    "files": [
+      "rv32i_pkg.sv",
+      "alu.sv",
+      "branch_comp.sv",
+      "control.sv",
+      "regfile.sv",
+      "lsu_dat_handler.sv",
+      "hazard_ctrl.sv",
+      "tournament.sv",
+      "evaluation.sv",
+      "rv32i.sv",
+      "rv32i_pipeline_hazard.sv",
+      "singlecycle.sv",
+      "imem.sv",
+      "dmem.sv"
+    ],
+    "forwarding": 1,
+    "prediction": 0,
+    "strategy": "PRED_BOTH"
+  },
+  {
+    "mode": 3,
+    "folder": "00_src_mode3_full_pipeline",
+    "top": "rv32i_full_pipeline",
+    "files": [
+      "rv32i_pkg.sv",
+      "alu.sv",
+      "branch_comp.sv",
+      "control.sv",
+      "regfile.sv",
+      "lsu_dat_handler.sv",
+      "hazard_ctrl.sv",
+      "tournament.sv",
+      "evaluation.sv",
+      "rv32i.sv",
+      "rv32i_full_pipeline.sv",
+      "singlecycle.sv",
+      "imem.sv",
+      "dmem.sv"
+    ],
+    "forwarding": 1,
+    "prediction": 1,
+    "strategy": "PRED_BOTH"
+  },
+  {
+    "mode": 4,
+    "folder": "00_src_mode4_not_always_jump",
+    "top": "rv32i_not_always_jump",
+    "files": [
+      "rv32i_pkg.sv",
+      "alu.sv",
+      "branch_comp.sv",
+      "control.sv",
+      "regfile.sv",
+      "lsu_dat_handler.sv",
+      "hazard_ctrl.sv",
+      "tournament.sv",
+      "evaluation.sv",
+      "rv32i.sv",
+      "rv32i_not_always_jump.sv",
+      "singlecycle.sv",
+      "imem.sv",
+      "dmem.sv"
+    ],
+    "forwarding": 1,
+    "prediction": 0,
+    "strategy": "PRED_BOTH"
+  },
+  {
+    "mode": 5,
+    "folder": "00_src_mode5_always_jump",
+    "top": "rv32i_always_jump",
+    "files": [
+      "rv32i_pkg.sv",
+      "alu.sv",
+      "branch_comp.sv",
+      "control.sv",
+      "regfile.sv",
+      "lsu_dat_handler.sv",
+      "hazard_ctrl.sv",
+      "tournament.sv",
+      "evaluation.sv",
+      "rv32i.sv",
+      "rv32i_always_jump.sv",
+      "singlecycle.sv",
+      "imem.sv",
+      "dmem.sv"
+    ],
+    "forwarding": 1,
+    "prediction": 1,
+    "strategy": "PRED_NONE"
+  }
+]

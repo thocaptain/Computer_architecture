@@ -1,0 +1,6 @@
+PASS cycles=34697 retired=24263 total_cycles=34699
+- /tmp/codex_m2_modes_xojj5lnx/mode5/tb_cpu_modes.sv:65: Verilog $finish
+[346990000] %Fatal: tb_cpu_modes.sv:69: Assertion failed in tb_cpu_modes: Timeout PC=80000314
+- S i m u l a t i o n   R e p o r t: Verilator 5.053 devel
+- Verilator: $finish at 347us; walltime 0.039 s; speed 8.835 ms/s
+- Verilator: cpu 0.039 s on 1 threads; allocated 4 MB

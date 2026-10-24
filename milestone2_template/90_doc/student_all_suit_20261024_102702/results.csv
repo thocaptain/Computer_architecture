@@ -1,0 +1,4 @@
+variant,status,checks,cycles,instructions,reset_cycles,total_cycles,IPC,LEDR,LEDG,memory_accesses,stores
+original_rom,PASS,14/14,24263,24263,2,24265,1.000000,0x00003fff,0x0000600d,6692,3378
+ta_c_map,PASS,14/14,24263,24263,2,24265,1.000000,0x00003fff,0x0000600d,6692,3378
+ta_isa_map,PASS,14/14,24263,24263,2,24265,1.000000,0x00003fff,0x0000600d,6692,3378

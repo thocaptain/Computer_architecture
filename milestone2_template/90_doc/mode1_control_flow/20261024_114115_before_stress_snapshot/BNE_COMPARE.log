@@ -1,0 +1,8 @@
+REDIRECT_AND_ID_STALL cycle=43 pc=8000008c EX_pc=80000084 EX_inst=00009663 ID_pc=80000088 ID_inst=000e8e13 pc_en=0
+RESULT FAIL first_case=2 status=00000bad cycles=64
+- /tmp/codex_mode1_control_7usm_vuz/tb_mode1_control_flow.sv:41: Verilog $finish
+RESULT TIMEOUT first_case=2 pc=800000b0
+- /tmp/codex_mode1_control_7usm_vuz/tb_mode1_control_flow.sv:51: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.053 devel
+- Verilator: $finish at 660ns; walltime 0.043 s; speed 15.416 us/s
+- Verilator: cpu 0.043 s on 1 threads; allocated 68 MB

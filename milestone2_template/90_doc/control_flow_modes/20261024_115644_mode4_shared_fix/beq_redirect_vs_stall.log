@@ -1,0 +1,7 @@
+RESULT PASS cases=1 cycles=26
+- /tmp/codex_mode1_control_zreah_rf/tb_mode1_control_flow.sv:45: Verilog $finish
+RESULT TIMEOUT first_case=1 pc=8000007c
+- /tmp/codex_mode1_control_zreah_rf/tb_mode1_control_flow.sv:51: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.053 devel
+- Verilator: $finish at 280ns; walltime 0.000 s; speed 1.441 ms/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 68 MB

@@ -55,6 +55,7 @@ help:
 	@echo -e "\t        CORE_MODE=4 not-always-jump, 5 always-jump"
 	@echo -e "\twave    run $(TEST) and open its waveform"
 	@echo -e "\ttest-static-branch  check both static policies and branch recovery on all_suit"
+	@echo -e "\ttest-control-redirect  check EX redirects, ID stalls, and older memory waits"
 	@echo -e "\t        TEST=riscv_card runs the reference-card instruction tests"
 	@echo -e "\tclean   clean the working folder"
 	@echo -e "\thelp    print this help"
@@ -89,6 +90,13 @@ obj_dir_static_taken/Vtbench: $(FILES) $(STATIC_BRANCH_TB) ./filelist
 	@MAKEFLAGS='CXX=$(SIM_CXX)' $(VERILATOR) $(STATIC_BRANCH_FLAGS) $(filter-out +define+DV,$(FILELIST_ARGS)) $(FILES) $(STATIC_BRANCH_TB) +define+TEST_ALWAYS_JUMP -Mdir obj_dir_static_taken > build_static_taken.log 2>&1
 
 .PHONY: wave
+.PHONY: test-control-redirect
+test-control-redirect: obj_dir_control_redirect/Vtbench
+	@./obj_dir_control_redirect/Vtbench
+
+obj_dir_control_redirect/Vtbench: ../01_bench/control_redirect/tbench.sv ../00_src/hazard_ctrl.sv ../00_src/rv32i_pkg.sv ./makefile
+	@MAKEFLAGS='CXX=$(SIM_CXX)' $(VERILATOR) $(STATIC_BRANCH_FLAGS) ../00_src/rv32i_pkg.sv ../00_src/hazard_ctrl.sv ../01_bench/control_redirect/tbench.sv -Mdir obj_dir_control_redirect > build_control_redirect.log 2>&1
+
 wave: test
 	@gtkwave wave_$(TEST).fst wave.gtkw
 

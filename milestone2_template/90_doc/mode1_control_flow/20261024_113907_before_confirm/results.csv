@@ -1,0 +1,8 @@
+test,status,cases,result
+jalr_redirect_vs_stall,FAIL,1,RESULT FAIL first_case=1 status=00000bad cycles=35
+beq_redirect_vs_stall,FAIL,1,RESULT FAIL first_case=1 status=00000bad cycles=32
+bne_redirect_vs_stall,FAIL,1,RESULT FAIL first_case=1 status=00000bad cycles=32
+blt_redirect_vs_stall,FAIL,1,RESULT FAIL first_case=1 status=00000bad cycles=32
+bge_redirect_vs_stall,FAIL,1,RESULT FAIL first_case=1 status=00000bad cycles=32
+bltu_redirect_vs_stall,FAIL,1,RESULT FAIL first_case=1 status=00000bad cycles=32
+bgeu_redirect_vs_stall,FAIL,1,RESULT FAIL first_case=1 status=00000bad cycles=32

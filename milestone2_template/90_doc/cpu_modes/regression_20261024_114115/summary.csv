@@ -1,0 +1,3 @@
+mode,folder,instruction_cases,passed,failed,all_suit,all_suit_cycles,all_suit_retired,retirement_trace
+0,00_src,84,84,0,PASS,24263,24263,MATCH
+1,00_src_mode1_pipeline_stall,84,84,0,PASS,55305,24263,MATCH

@@ -2,6 +2,11 @@
 
 A workspace for RV32I CPU implementations, testbenches, assembly programs, simulation, and FPGA projects.
 
+The [Milestone 2 source variants](milestone2_template/README.md) include the
+single-cycle core and five pipeline configurations with external IMEM/DMEM.
+The [hazard-fix regression](bench_CPU/results/control_redirect_20261024_115622/summary.md)
+records checks of the original workspace configurations after the shared fix.
+
 ## Workspace Structure
 
 | Directory       | Contents                                                                                                       |
@@ -16,6 +21,7 @@ A workspace for RV32I CPU implementations, testbenches, assembly programs, simul
 | `30_demo/`      | Hardware demonstration projects.                                                                               |
 | `99_doc/`       | Design documentation and diagrams.                                                                             |
 | `bench_CPU/`    | Regression runner for CPU ROM tests; the core is selected using `CORE_MODE`.                                   |
+| `milestone2_template/` | CPU source variants adapted to the TA external IMEM/DMEM interface, with student regressions and reports. |
 
 ## Regression in `bench_CPU`
 
@@ -135,6 +141,17 @@ make test-static-branch VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator
 
 This check uses `CACHE=0` to exercise memory waits directly and requires
 `g++-10` by default (`SIM_CXX` can select another C++20 compiler).
+
+To check hazard priority when an EX branch/JALR redirect coincides with an ID
+dependency, including an older memory wait and WB forwarding, run:
+
+```sh
+make test-control-redirect VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator
+```
+
+The 14 scenarios check that EX redirects flush younger instructions while
+pending older memory accesses still hold the pipeline. Ordinary RAW stalls
+continue to insert bubbles. This hazard-control rule is shared by modes 1-5.
 
 ### Builds and Waveforms
 

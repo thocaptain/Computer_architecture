@@ -166,7 +166,14 @@ assign combine_FLUSH = raw_combine_FLUSH;
 assign hold_all = (~raw_combine_EN[2] & raw_combine_EN[0])
                 & (i_is_fwd_from_WB_to_EX);
 always_comb begin
-  if(hold_all) begin
+  // An EX redirect discards the instruction currently in ID. Its RAW hazard
+  // must not hold PC or IF/ID, otherwise the jump/branch leaves EX without
+  // updating PC and the wrong-path instruction survives the flush.
+  // An older pending MEM access still has priority until it is ready.
+  if ((i_is_pred_wrong | i_is_jalr_inst) & (~i_lsu_VALID | i_lsu_READY)) begin
+    combine_EN = '1;
+  end
+  else if(hold_all) begin
     //            PC   ,IF/ID ,ID/EX ,EX/ME ,ME/WB
     combine_EN = {1'b0 ,1'b0  ,1'b0  ,1'b0  ,1'b0}; 
   end

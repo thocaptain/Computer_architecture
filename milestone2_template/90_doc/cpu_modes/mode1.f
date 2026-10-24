@@ -1,0 +1,15 @@
++incdir+../00_src_mode1_pipeline_stall
+../00_src_mode1_pipeline_stall/rv32i_pkg.sv
+../00_src_mode1_pipeline_stall/alu.sv
+../00_src_mode1_pipeline_stall/branch_comp.sv
+../00_src_mode1_pipeline_stall/control.sv
+../00_src_mode1_pipeline_stall/regfile.sv
+../00_src_mode1_pipeline_stall/lsu_dat_handler.sv
+../00_src_mode1_pipeline_stall/hazard_ctrl.sv
+../00_src_mode1_pipeline_stall/tournament.sv
+../00_src_mode1_pipeline_stall/evaluation.sv
+../00_src_mode1_pipeline_stall/rv32i.sv
+../00_src_mode1_pipeline_stall/rv32i_pipeline_stall.sv
+../00_src_mode1_pipeline_stall/singlecycle.sv
+../00_src_mode1_pipeline_stall/imem.sv
+../00_src_mode1_pipeline_stall/dmem.sv

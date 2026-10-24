@@ -1,0 +1,7 @@
+RESULT PASS cases=4096 cycles=98049
+- /tmp/codex_mode1_control_hrl7sn03/tb_mode1_control_flow.sv:45: Verilog $finish
+RESULT TIMEOUT first_case=4096 pc=800928cc
+- /tmp/codex_mode1_control_hrl7sn03/tb_mode1_control_flow.sv:51: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.053 devel
+- Verilator: $finish at 981us; walltime 0.099 s; speed 9.862 ms/s
+- Verilator: cpu 0.099 s on 1 threads; allocated 68 MB

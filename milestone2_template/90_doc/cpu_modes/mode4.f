@@ -1,0 +1,15 @@
++incdir+../00_src_mode4_not_always_jump
+../00_src_mode4_not_always_jump/rv32i_pkg.sv
+../00_src_mode4_not_always_jump/alu.sv
+../00_src_mode4_not_always_jump/branch_comp.sv
+../00_src_mode4_not_always_jump/control.sv
+../00_src_mode4_not_always_jump/regfile.sv
+../00_src_mode4_not_always_jump/lsu_dat_handler.sv
+../00_src_mode4_not_always_jump/hazard_ctrl.sv
+../00_src_mode4_not_always_jump/tournament.sv
+../00_src_mode4_not_always_jump/evaluation.sv
+../00_src_mode4_not_always_jump/rv32i.sv
+../00_src_mode4_not_always_jump/rv32i_not_always_jump.sv
+../00_src_mode4_not_always_jump/singlecycle.sv
+../00_src_mode4_not_always_jump/imem.sv
+../00_src_mode4_not_always_jump/dmem.sv
