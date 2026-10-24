@@ -28,10 +28,18 @@ Select `CORE_MODE=0..5` for any current CPU configuration. To run all modes and
 continue collecting results even when a mode fails:
 
 ```sh
+failed=0
 for mode in 0 1 2 3 4 5; do
-    make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE="$mode" TEST=riscv_card
+    if ! make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE="$mode" TEST=riscv_card; then
+        failed=1
+    fi
 done
+test "$failed" -eq 0
 ```
+
+The final status is nonzero if any mode fails. Each mode should report
+**84 PASS, 0 FAIL, 87 UNSUPPORTED**. Per-mode CSV files are overwritten on each
+run; the published `summary.md` and `summary.csv` tables are not regenerated.
 
 Requirements: Python 3, GNU `riscv64-unknown-elf-{as,ld,objcopy,objdump}`,
 Verilator and a C++ compiler. PDF extraction is not needed to run the tests.

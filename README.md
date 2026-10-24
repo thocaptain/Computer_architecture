@@ -72,22 +72,59 @@ make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=5 TE
 
 The default value of `TEST` is `all_suit`.
 
-An additional instruction test based on `99_doc/RISCV_CARD.pdf` is available:
+### Running All Supported Instruction Tests
+
+`TEST=riscv_card` selects `bench_CPU/bin/tb_riscv_card.cpp`, based on
+`99_doc/RISCV_CARD.pdf`. Run these commands in WSL/Bash from `bench_CPU`.
+Requirements: Python 3, GNU `riscv64-unknown-elf-as`, `ld`, `objcopy`, and
+`objdump` (all with the `riscv64-unknown-elf-` prefix), Verilator 5.x, Make,
+and a C++ compiler. Adjust the Verilator path for your installation.
+
+Run all instruction cases on the single-cycle CPU (mode 0):
 
 ```sh
 make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=0 TEST=riscv_card
 ```
 
-It runs 84 cases covering all 37 implemented RV32I integer instructions,
-RV32I-compatible pseudoinstructions, boundary values, and hazards. The card's
-87 unsupported extension/system/pseudo entries are reported separately.
-Select any `CORE_MODE=0..5`; CSV results are saved under
-`bench_CPU/results/riscv_card/modeN/`. See
+Run the same complete suite on **all six CPU modes**, including single-cycle
+and every pipeline configuration:
+
+```sh
+failed=0
+for mode in 0 1 2 3 4 5; do
+    if ! make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE="$mode" TEST=riscv_card; then
+        failed=1
+    fi
+done
+test "$failed" -eq 0
+```
+
+The loop runs every mode even if an earlier mode fails. The final command
+returns a nonzero status if any mode fails. To test one other CPU, use its
+`CORE_MODE` value from the table above.
+
+Each mode runs **84 cases**, covering all **37 implemented RV32I integer
+instructions**, 33 compatible pseudoinstruction forms, boundary values, and
+hazards. JALR checks include odd targets, positive/negative offsets, return
+addresses, register aliasing, and a target supplied by a preceding load.
+The card's **87 unsupported entries**, including extension instructions,
+`ecall`, `ebreak`, and `fence`, are reported as `UNSUPPORTED`.
+The expected per-mode result is **84 PASS, 0 FAIL, 87 UNSUPPORTED**.
+
+`make test` generates the ROMs automatically. Per-case status and cycle counts
+are written to `bench_CPU/results/riscv_card/mode0/results.csv` through
+`mode5/results.csv`; rerunning a mode overwrites its CSV. The generated
+`bench_CPU/tests/riscv_card/generated/instruction_coverage.csv` maps card
+instructions to cases. See
 [the instruction-test documentation](bench_CPU/tests/riscv_card/README.md)
-for dependencies, coverage, and the JALR odd-target regression.
+for detailed coverage and the JALR regression.
 
 Recorded results: [RV32I instruction checks for all six modes](bench_CPU/results/riscv_card/summary.md)
 and [cycle comparison on `all_suit`](bench_CPU/results/all_suit_modes_2026-10-23/comparison.md).
+These summary tables record the published run; the commands above update the
+per-mode CSV files without regenerating the summary tables.
+
+### Static Branch Prediction Checks
 
 To check both static prediction policies, branch-target selection, and recovery
 from both taken and not-taken mispredictions using `all_suit`, run:
@@ -99,7 +136,10 @@ make test-static-branch VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator
 This check uses `CACHE=0` to exercise memory waits directly and requires
 `g++-10` by default (`SIM_CXX` can select another C++20 compiler).
 
-`make test` builds the simulation if necessary, runs the test, and generates a waveform file named `wave_<test>.fst`.
+### Builds and Waveforms
+
+`make test` builds the simulation if necessary and runs the selected test.
+For the ROM tests such as `all_suit`, it also generates `wave_<test>.fst`.
 
 Each core mode uses a separate build directory:
 
@@ -111,6 +151,16 @@ obj_dir_mode3
 obj_dir_mode4
 obj_dir_mode5
 ```
+
+The instruction suite uses separate `obj_dir_modeN_riscv_card` directories.
+Tracing is off by default for that suite. To capture a waveform for each case
+after building mode 0:
+
+```sh
+./obj_dir_mode0_riscv_card/Vtop riscv_card +MODE=0 +trace
+```
+
+Use the same mode number in the executable path and `+MODE` argument.
 
 Open the waveform with:
 
