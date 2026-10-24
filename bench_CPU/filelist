@@ -21,6 +21,8 @@
 ../00_src/rv32i.sv
 ../00_src/rv32i_pipeline_stall.sv
 ../00_src/rv32i_pipeline_hazard.sv
+../00_src/rv32i_not_always_jump.sv
+../00_src/rv32i_always_jump.sv
 ../00_src/rv32i_single_cycle.sv
 ../00_src/TOP_SINGLE_CYCLE.sv
 ../00_src/TOP_SYNTH.sv

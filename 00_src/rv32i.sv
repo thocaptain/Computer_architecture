@@ -7,7 +7,8 @@ module rv32i
     parameter MEM_TYPE = MEM_FLOP, // 0: flop-based, 1: sram-based
     parameter CACHE = 1,
     parameter ENABLE_FORWARDING = 1,
-    parameter ENABLE_BRANCH_PREDICTION = 1
+    parameter ENABLE_BRANCH_PREDICTION = 1,
+    parameter BRANCH_PRED_STRATEGY = PRED_BOTH
 )
 (
     // Global clock, acitve on the rising edge
@@ -193,7 +194,10 @@ always_ff @( posedge i_clk ) begin
             case (pc_sel)
                 PC_IF_PRED: pc <= next_pred_pc;        // br, predict branch, if not a br inst -> no hit -> PC+4
                 PC_ID_JAL : pc <= ID_pc_imm;           // jal, jump address
-                PC_EX_ALU : pc <= EX_alu_res;          // jalr, actual branch
+                PC_EX_ALU : begin
+                    // JALR clears bit 0 after adding rs1 and the immediate.
+                    pc <= EX_is_jalr_inst ? {EX_alu_res[31:1], 1'b0} : EX_alu_res;
+                end
                 PC_EX_4   : pc <= ID_EX_dreg_q.pc + 4; // jalr, actual branch
                 default   : pc <= pc;
             endcase
@@ -234,7 +238,7 @@ assign upd_pht_vld  = ID_EX_creg_q.is_br_inst  & EX_MEM_creg_en & ~EX_MEM_flush;
 tournament #(
     .PC_WIDTH    (32), 
     .INST_WIDTH  (32), 
-    .PRED_STRATEGY(PRED_BOTH),
+    .PRED_STRATEGY(BRANCH_PRED_STRATEGY),
     .BTB_ADDR_W  (8 ), // BTB: branch table buffer. Increase this will increase hit rate
     .EVAL_N_BIT_SCHEME(3), // N-bit saturated counter. Increase this will increase hesitation when changing from global to local or vice versa
     .GLB_PHT_ADDR_W  (7 ), // PHT: pattern history table. Increase this will increase accuracy 

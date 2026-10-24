@@ -1,0 +1,7 @@
+﻿"mode","core","passed","failed","unsupported","cycles","failing_cases"
+"0","TOP_SINGLE_CYCLE","84","0","87","4468",""
+"1","rv32i_pipeline_stall","84","0","87","12438",""
+"2","rv32i_pipeline_hazard","84","0","87","8079",""
+"3","TOP_SYNTH","84","0","87","8079",""
+"4","rv32i_not_always_jump","84","0","87","8079",""
+"5","rv32i_always_jump","84","0","87","8091",""

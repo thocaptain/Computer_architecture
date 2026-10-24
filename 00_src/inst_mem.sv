@@ -17,6 +17,18 @@ module inst_mem #(
 
     // Init mem
     initial begin
+`ifdef DV
+        string program_path;
+        integer program_file;
+        if (!$value$plusargs("PROG=%s", program_path))
+            program_path = `INST_MEM_PATH;
+        program_file = $fopen(program_path, "r");
+        if (program_file == 0)
+            $fatal(1, "Cannot open instruction ROM: %s", program_path);
+        $fclose(program_file);
+        $readmemh(program_path, mem);
+`else
         $readmemh(`INST_MEM_PATH, mem);
+`endif
     end
 endmodule

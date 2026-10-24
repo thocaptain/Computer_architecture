@@ -20,6 +20,8 @@
 ./../00_src/btn_debounce.sv
 ./../00_src/lcd_ctrl.sv
 ./../00_src/rv32i.sv
+./../00_src/rv32i_not_always_jump.sv
+./../00_src/rv32i_always_jump.sv
 ./../00_src/rv32i_single_cycle.sv
 ./../00_src/TOP_SYNTH.sv
 ./../00_src/TOP_SINGLE_CYCLE.sv

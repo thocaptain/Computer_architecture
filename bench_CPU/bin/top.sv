@@ -104,6 +104,39 @@ module top #(
         .SRAM_CE_N(), .SRAM_WE_N(), .SRAM_LB_N(), .SRAM_UB_N(), .SRAM_OE_N()
       );
       assign switches = {14'd0, io_sw_i, rst_ni};
+    end else if (CORE_MODE == 4 || CORE_MODE == 5) begin : g_static_branch
+      logic [31:0] switches;
+      logic [3:0] buttons;
+      assign switches = {14'd0, io_sw_i, rst_ni};
+      assign buttons = 4'b0;
+
+      if (CORE_MODE == 4) begin : g_not_always_jump
+        rv32i_not_always_jump cpu (
+          .i_clk(clk_i), .i_rst_n(rst_ni),
+          .o_pc_debug(core_pc), .o_insn_vld(core_insn_valid),
+          .o_io_ledr(core_ledr), .o_io_ledg(core_ledg),
+          .o_io_hex0(core_hex0), .o_io_hex1(core_hex1),
+          .o_io_hex2(core_hex2), .o_io_hex3(core_hex3),
+          .o_io_hex4(core_hex4), .o_io_hex5(core_hex5),
+          .o_io_hex6(core_hex6), .o_io_hex7(core_hex7),
+          .o_io_lcd(core_lcd), .i_io_sw(switches), .i_io_btn(buttons),
+          .o_lcd_vld(), .SRAM_ADDR(), .SRAM_DQ(),
+          .SRAM_CE_N(), .SRAM_WE_N(), .SRAM_LB_N(), .SRAM_UB_N(), .SRAM_OE_N()
+        );
+      end else begin : g_always_jump
+        rv32i_always_jump cpu (
+          .i_clk(clk_i), .i_rst_n(rst_ni),
+          .o_pc_debug(core_pc), .o_insn_vld(core_insn_valid),
+          .o_io_ledr(core_ledr), .o_io_ledg(core_ledg),
+          .o_io_hex0(core_hex0), .o_io_hex1(core_hex1),
+          .o_io_hex2(core_hex2), .o_io_hex3(core_hex3),
+          .o_io_hex4(core_hex4), .o_io_hex5(core_hex5),
+          .o_io_hex6(core_hex6), .o_io_hex7(core_hex7),
+          .o_io_lcd(core_lcd), .i_io_sw(switches), .i_io_btn(buttons),
+          .o_lcd_vld(), .SRAM_ADDR(), .SRAM_DQ(),
+          .SRAM_CE_N(), .SRAM_WE_N(), .SRAM_LB_N(), .SRAM_UB_N(), .SRAM_OE_N()
+        );
+      end
     end else if (CORE_MODE == 3) begin : g_top_synth
       logic [17:0] board_sw;
       logic [17:0] board_ledr;

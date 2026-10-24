@@ -2,6 +2,9 @@
 *.vcd
 *.fst
 *.log
+/token
+/bench_CPU/results/archived_ta_memory_*/
+/bench_CPU/tests/riscv_card/generated/
 *obj_dir*
 *.qws
 

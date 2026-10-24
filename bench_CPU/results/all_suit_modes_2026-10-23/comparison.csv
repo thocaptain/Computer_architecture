@@ -1,0 +1,7 @@
+﻿"mode","core","cache","status","cycles","speedup_vs_mode0","ledr","ledg"
+"0","TOP_SINGLE_CYCLE","0","PASS","84475","1","0x00003FFF","0x600D"
+"1","rv32i_pipeline_stall","1","PASS","56915","1.4842","0x00003FFF","0x600D"
+"2","rv32i_pipeline_hazard","1","PASS","37193","2.2713","0x00003FFF","0x600D"
+"3","TOP_SYNTH","1","PASS","34317","2.4616","0x00003FFF","0xD"
+"4","rv32i_not_always_jump","1","PASS","37193","2.2713","0x00003FFF","0x600D"
+"5","rv32i_always_jump","1","PASS","36307","2.3267","0x00003FFF","0x600D"

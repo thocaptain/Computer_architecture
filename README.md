@@ -37,6 +37,22 @@ make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=0 TE
 | `1`  | `rv32i_pipeline_stall`  | Pipeline CPU with stalls for RAW hazards; no forwarding or branch prediction.  |
 | `2`  | `rv32i_pipeline_hazard` | Pipeline CPU with forwarding and load-use hazard stalls; no branch prediction. |
 | `3`  | `TOP_SYNTH`             | Full pipeline implementation with tournament branch prediction.                |
+| `4`  | `rv32i_not_always_jump` | Pipeline with forwarding and static not-taken branch prediction.               |
+| `5`  | `rv32i_always_jump`     | Pipeline with forwarding and static taken prediction on BTB hits.              |
+
+The two static-prediction tops expose the same CPU, MMIO, and SRAM ports as
+`TOP_SINGLE_CYCLE`, with `INST_MEM_ADDR_W`, `MEM_TYPE`, and `CACHE` parameters.
+Both enable forwarding and load-use stalls; cache is enabled by default.
+
+`rv32i_not_always_jump` predicts `PC + 4` for every conditional branch. It uses the
+same core configuration as `rv32i_pipeline_hazard`, with an explicit top name
+for branch-prediction comparisons.
+
+`rv32i_always_jump` uses the existing `PRED_NONE` strategy: every BTB hit predicts
+taken to the saved target, without consulting the local/global direction
+predictors. A cold BTB miss follows `PC + 4`; decode learns the branch target for
+later fetches. An incorrect prediction is recovered in EX. These policies apply
+to conditional branches; JAL/JALR retain their existing jump behavior.
 
 ### Running Different Pipeline Stages
 
@@ -48,9 +64,40 @@ make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=1 TE
 make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=2 TEST=all_suit
 
 make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=3 TEST=all_suit
+
+make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=4 TEST=all_suit
+
+make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=5 TEST=all_suit
 ```
 
 The default value of `TEST` is `all_suit`.
+
+An additional instruction test based on `99_doc/RISCV_CARD.pdf` is available:
+
+```sh
+make test VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator CORE_MODE=0 TEST=riscv_card
+```
+
+It runs 84 cases covering all 37 implemented RV32I integer instructions,
+RV32I-compatible pseudoinstructions, boundary values, and hazards. The card's
+87 unsupported extension/system/pseudo entries are reported separately.
+Select any `CORE_MODE=0..5`; CSV results are saved under
+`bench_CPU/results/riscv_card/modeN/`. See
+[the instruction-test documentation](bench_CPU/tests/riscv_card/README.md)
+for dependencies, coverage, and the JALR odd-target regression.
+
+Recorded results: [RV32I instruction checks for all six modes](bench_CPU/results/riscv_card/summary.md)
+and [cycle comparison on `all_suit`](bench_CPU/results/all_suit_modes_2026-10-23/comparison.md).
+
+To check both static prediction policies, branch-target selection, and recovery
+from both taken and not-taken mispredictions using `all_suit`, run:
+
+```sh
+make test-static-branch VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator
+```
+
+This check uses `CACHE=0` to exercise memory waits directly and requires
+`g++-10` by default (`SIM_CXX` can select another C++20 compiler).
 
 `make test` builds the simulation if necessary, runs the test, and generates a waveform file named `wave_<test>.fst`.
 
@@ -61,6 +108,8 @@ obj_dir_mode0
 obj_dir_mode1
 obj_dir_mode2
 obj_dir_mode3
+obj_dir_mode4
+obj_dir_mode5
 ```
 
 Open the waveform with:
