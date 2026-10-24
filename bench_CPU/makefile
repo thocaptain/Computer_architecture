@@ -56,6 +56,7 @@ help:
 	@echo -e "\twave    run $(TEST) and open its waveform"
 	@echo -e "\ttest-static-branch  check both static policies and branch recovery on all_suit"
 	@echo -e "\ttest-control-redirect  check EX redirects, ID stalls, and older memory waits"
+	@echo -e "\ttest-cache-dirty  check clean/dirty eviction, byte stores, and write allocation"
 	@echo -e "\t        TEST=riscv_card runs the reference-card instruction tests"
 	@echo -e "\tclean   clean the working folder"
 	@echo -e "\thelp    print this help"
@@ -88,6 +89,13 @@ obj_dir_static_not_taken/Vtbench: $(FILES) $(STATIC_BRANCH_TB) ./filelist
 
 obj_dir_static_taken/Vtbench: $(FILES) $(STATIC_BRANCH_TB) ./filelist
 	@MAKEFLAGS='CXX=$(SIM_CXX)' $(VERILATOR) $(STATIC_BRANCH_FLAGS) $(filter-out +define+DV,$(FILELIST_ARGS)) $(FILES) $(STATIC_BRANCH_TB) +define+TEST_ALWAYS_JUMP -Mdir obj_dir_static_taken > build_static_taken.log 2>&1
+
+.PHONY: test-cache-dirty
+test-cache-dirty: obj_dir_cache_dirty/Vtbench
+	@./obj_dir_cache_dirty/Vtbench
+
+obj_dir_cache_dirty/Vtbench: ../01_bench/cache_dirty/tbench.sv ../00_src/cache.sv ../00_src/rv32i.svh ./makefile
+	@MAKEFLAGS='CXX=$(SIM_CXX)' $(VERILATOR) $(STATIC_BRANCH_FLAGS) --timescale 1ns/1ps -I../00_src ../00_src/cache.sv ../01_bench/cache_dirty/tbench.sv -Mdir obj_dir_cache_dirty > build_cache_dirty.log 2>&1
 
 .PHONY: wave
 .PHONY: test-control-redirect

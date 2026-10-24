@@ -6,6 +6,10 @@ The [Milestone 2 source variants](milestone2_template/README.md) include the
 single-cycle core and five pipeline configurations with external IMEM/DMEM.
 The [hazard-fix regression](bench_CPU/results/control_redirect_20261024_115622/summary.md)
 records checks of the original workspace configurations after the shared fix.
+The latest [cache dirty-bit regression](bench_CPU/results/cache_dirty_20261024_225010/summary.md)
+records all six modes after operand-aware RAW/forwarding and dirty-bit changes.
+The [RAW regression](bench_CPU/results/operand_hazards_20261024_220944/summary.md)
+also records the intermediate cycle counts before the cache change.
 
 ## Workspace Structure
 
@@ -125,7 +129,8 @@ instructions to cases. See
 [the instruction-test documentation](bench_CPU/tests/riscv_card/README.md)
 for detailed coverage and the JALR regression.
 
-Recorded results: [RV32I instruction checks for all six modes](bench_CPU/results/riscv_card/summary.md)
+Latest results: [all six modes after RAW and dirty-bit updates](bench_CPU/results/cache_dirty_20261024_225010/summary.md).
+Earlier results: [RV32I instruction checks for all six modes](bench_CPU/results/riscv_card/summary.md)
 and [cycle comparison on `all_suit`](bench_CPU/results/all_suit_modes_2026-10-23/comparison.md).
 These summary tables record the published run; the commands above update the
 per-mode CSV files without regenerating the summary tables.
@@ -152,6 +157,17 @@ make test-control-redirect VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilat
 The 14 scenarios check that EX redirects flush younger instructions while
 pending older memory accesses still hold the pipeline. Ordinary RAW stalls
 continue to insert bubbles. This hazard-control rule is shared by modes 1-5.
+
+### Cache Dirty-Bit Checks
+
+To check clean/dirty eviction, masked stores, store-miss allocation, and data
+preservation with a delayed memory model, run from `bench_CPU`:
+
+```sh
+make test-cache-dirty VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator
+```
+
+See [the cache test documentation](01_bench/cache_dirty/README.md) for coverage.
 
 ### Builds and Waveforms
 

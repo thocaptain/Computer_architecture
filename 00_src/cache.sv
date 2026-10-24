@@ -48,6 +48,7 @@ module cache #(
     } CacheState_e;
     typedef struct packed {
         logic             vld;
+        logic             dirty;
         logic [TAG_W-1:0] tag;
     } CacheEntry_s;
     
@@ -55,6 +56,7 @@ module cache #(
     CacheState_e cache_state, cache_state_next;
     CacheEntry_s [N_LINE_PER_CACHE-1:0] cache_entry; 
     logic is_vld;
+    logic is_dirty;
     logic is_hit;
     logic is_tag_match;
     logic mem_done;
@@ -85,12 +87,18 @@ module cache #(
             if(mem_done) begin
                 if(cache_state==CACHE_FETCH) begin
                     cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].vld <= 1'b1; 
+                    cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].dirty <= 1'b0;
                     cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].tag <= i_ADDR[TAG_START +: TAG_W]; 
                 end
                 else if(cache_state==CACHE_WRITE_BACK) begin
                     cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].vld <= 1'b0; 
+                    cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].dirty <= 1'b0;
                     cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].tag <= '0; 
                 end
+            end
+            else if((i_VALID & o_READY) & i_WREN & (|i_BMASK)) begin
+                // A store changes the cached copy; memory is updated on eviction.
+                cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].dirty <= 1'b1;
             end
         end
     end
@@ -112,9 +120,9 @@ module cache #(
                 if(i_VALID) begin
                     if(is_hit)
                         cache_state_next = CACHE_IDLE;
-                    else if(is_vld) // no hit
+                    else if(is_vld & is_dirty) // only modified victims need write-back
                         cache_state_next = CACHE_WRITE_BACK;
-                    else // invalid
+                    else // invalid or clean victim
                         cache_state_next = CACHE_FETCH;
                 end
                 else begin
@@ -159,6 +167,7 @@ module cache #(
     // separate to another always_comb to prevent circular loop, STUPID Verilator
     always_comb begin
         is_vld       = cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].vld;
+        is_dirty     = cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].dirty;
         is_tag_match = cache_entry[i_ADDR[IDX_START +: IDX_ADDR_W]].tag == i_ADDR[TAG_START +: TAG_W];
         is_hit       = is_vld & is_tag_match;
 

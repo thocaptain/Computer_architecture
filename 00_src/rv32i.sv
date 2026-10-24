@@ -59,6 +59,8 @@ module rv32i
     logic IF_ID_dreg_en, IF_ID_creg_en, IF_ID_flush;
     logic [REGIDX_WIDTH-1:0] ID_rs1_addr;
     logic [REGIDX_WIDTH-1:0] ID_rs2_addr;
+    logic ID_uses_rs1, ID_uses_rs2;
+    logic EX_uses_rs1, EX_uses_rs2;
 
     // Instruction Decode
     ID_EX_DReg_s ID_EX_dreg_d, ID_EX_dreg_q;
@@ -128,34 +130,38 @@ hazard_ctrl hazard_ctrl(
 
 always_comb begin
     if (ENABLE_FORWARDING) begin
-        if     (EX_MEM_creg_q.reg_wen & (|EX_MEM_dreg_q.rd_addr) & (ID_EX_dreg_q.rs1_addr == EX_MEM_dreg_q.rd_addr))
+        if     (EX_uses_rs1 & EX_MEM_creg_q.reg_wen & (|EX_MEM_dreg_q.rd_addr) & (ID_EX_dreg_q.rs1_addr == EX_MEM_dreg_q.rd_addr))
             EX_fwd_rs1_sel = EX_FWD_EX_MEM;
-        else if(MEM_WB_creg_q.reg_wen & (|MEM_WB_dreg_q.rd_addr) & (ID_EX_dreg_q.rs1_addr == MEM_WB_dreg_q.rd_addr))
+        else if(EX_uses_rs1 & MEM_WB_creg_q.reg_wen & (|MEM_WB_dreg_q.rd_addr) & (ID_EX_dreg_q.rs1_addr == MEM_WB_dreg_q.rd_addr))
             EX_fwd_rs1_sel = EX_FWD_MEM_WB;
         else
             EX_fwd_rs1_sel = EX_FWD_NA;
 
-        if     (EX_MEM_creg_q.reg_wen & (|EX_MEM_dreg_q.rd_addr) & (ID_EX_dreg_q.rs2_addr == EX_MEM_dreg_q.rd_addr))
+        if     (EX_uses_rs2 & EX_MEM_creg_q.reg_wen & (|EX_MEM_dreg_q.rd_addr) & (ID_EX_dreg_q.rs2_addr == EX_MEM_dreg_q.rd_addr))
             EX_fwd_rs2_sel = EX_FWD_EX_MEM;
-        else if(MEM_WB_creg_q.reg_wen & (|MEM_WB_dreg_q.rd_addr) & (ID_EX_dreg_q.rs2_addr == MEM_WB_dreg_q.rd_addr))
+        else if(EX_uses_rs2 & MEM_WB_creg_q.reg_wen & (|MEM_WB_dreg_q.rd_addr) & (ID_EX_dreg_q.rs2_addr == MEM_WB_dreg_q.rd_addr))
             EX_fwd_rs2_sel = EX_FWD_MEM_WB;
         else
             EX_fwd_rs2_sel = EX_FWD_NA;
 
         is_fwd_from_WB_to_EX = (EX_fwd_rs2_sel == EX_FWD_MEM_WB) | (EX_fwd_rs1_sel == EX_FWD_MEM_WB);
         EX_is_depend_load = ID_EX_creg_q.lsu_VALID & ~ID_EX_creg_q.st_mem & (|ID_EX_dreg_q.rd_addr)
-                          & ((ID_EX_dreg_q.rd_addr == ID_rs1_addr) | (ID_EX_dreg_q.rd_addr == ID_rs2_addr));
+                          & ((ID_uses_rs1 & (ID_EX_dreg_q.rd_addr == ID_rs1_addr))
+                           | (ID_uses_rs2 & (ID_EX_dreg_q.rd_addr == ID_rs2_addr)));
     end else begin
         EX_fwd_rs1_sel = EX_FWD_NA;
         EX_fwd_rs2_sel = EX_FWD_NA;
         is_fwd_from_WB_to_EX = 1'b0;
         EX_is_depend_load =
             (ID_EX_creg_q.reg_wen & (|ID_EX_dreg_q.rd_addr)
-             & ((ID_EX_dreg_q.rd_addr == ID_rs1_addr) | (ID_EX_dreg_q.rd_addr == ID_rs2_addr))) |
+             & ((ID_uses_rs1 & (ID_EX_dreg_q.rd_addr == ID_rs1_addr))
+              | (ID_uses_rs2 & (ID_EX_dreg_q.rd_addr == ID_rs2_addr)))) |
             (EX_MEM_creg_q.reg_wen & (|EX_MEM_dreg_q.rd_addr)
-             & ((EX_MEM_dreg_q.rd_addr == ID_rs1_addr) | (EX_MEM_dreg_q.rd_addr == ID_rs2_addr))) |
+             & ((ID_uses_rs1 & (EX_MEM_dreg_q.rd_addr == ID_rs1_addr))
+              | (ID_uses_rs2 & (EX_MEM_dreg_q.rd_addr == ID_rs2_addr)))) |
             (MEM_WB_creg_q.reg_wen & (|MEM_WB_dreg_q.rd_addr)
-             & ((MEM_WB_dreg_q.rd_addr == ID_rs1_addr) | (MEM_WB_dreg_q.rd_addr == ID_rs2_addr)));
+             & ((ID_uses_rs1 & (MEM_WB_dreg_q.rd_addr == ID_rs1_addr))
+              | (ID_uses_rs2 & (MEM_WB_dreg_q.rd_addr == ID_rs2_addr))));
     end
 
     // if     (MEM_WB_creg_q.reg_wen & (|MEM_WB_dreg_q.rd_addr) & (EX_MEM_dreg_q.rs2_addr == MEM_WB_dreg_q.rd_addr))
@@ -338,6 +344,15 @@ assign rs1_addr = IF_ID_dreg_q.inst[19:15];
 assign rs2_addr = IF_ID_dreg_q.inst[24:20];
 assign ID_rs1_addr = rs1_addr;
 assign ID_rs2_addr = rs2_addr;
+
+// Immediate bits are not register operands. Branches still read both registers,
+// and stores read rs2 for write data even though the ALU selects an immediate.
+assign ID_uses_rs1 = o_insn_vld & ((a_sel == A_REG) | is_br_inst);
+assign ID_uses_rs2 = o_insn_vld & ((b_sel == B_REG) | is_br_inst | st_mem);
+assign EX_uses_rs1 = ID_EX_creg_q.is_inst_vld
+                  & ((ID_EX_creg_q.a_sel == A_REG) | ID_EX_creg_q.is_br_inst);
+assign EX_uses_rs2 = ID_EX_creg_q.is_inst_vld
+                  & ((ID_EX_creg_q.b_sel == B_REG) | ID_EX_creg_q.is_br_inst | ID_EX_creg_q.st_mem);
 
 regfile regfile(
     .i_clk     (i_clk                 ),   

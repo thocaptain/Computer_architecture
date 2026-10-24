@@ -1,0 +1,8 @@
+Command (from bench_CPU):
+make test-cache-dirty VERILATOR=/home/lqhau/tools/oss-cad-suite/bin/verilator
+
+Result: exit status 0
+PASS cache dirty: cold/clean/dirty eviction, dirty hit, byte masks, store miss, refill clean; reads=128 writes=32
+
+Test source: 01_bench/cache_dirty/tbench.sv
+The delayed memory model checks clean-eviction traffic and correctness of dirty write-back independently of the cache's internal state.
