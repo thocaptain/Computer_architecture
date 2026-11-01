@@ -1,0 +1,508 @@
+{
+  "viewer_version": "GTKWave Analyzer v3.3.116 (w)1999-2023 BSI\n\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "vcd_sha256": "a106892b8cef6f07479414fef499fe3282b4549b349c2f1a58c890fa452fcc3d",
+  "capture_method": "Unmodified GTKWave X11 window screenshots on dedicated virtual display",
+  "captures": [
+    {
+      "id": "WF01",
+      "panel": 1,
+      "image": "images/WF01.png",
+      "window_ns": [
+        148,
+        152
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "28c5f0c83c527db70de0e4f1e06d74e2a35b9973031168f1e92812bdd7016a90",
+      "actual_view_ns": [
+        148.0,
+        152.008
+      ]
+    },
+    {
+      "id": "WF01",
+      "panel": 2,
+      "image": "images/WF01_p2.png",
+      "window_ns": [
+        296,
+        300
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "67b1618f0591e9917b67a5961b5a78e8029a60c41b96de392cdc10285e041a9d",
+      "actual_view_ns": [
+        296.0,
+        300.008
+      ]
+    },
+    {
+      "id": "WF02",
+      "panel": 1,
+      "image": "images/WF02.png",
+      "window_ns": [
+        148,
+        152
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "28c5f0c83c527db70de0e4f1e06d74e2a35b9973031168f1e92812bdd7016a90",
+      "actual_view_ns": [
+        148.0,
+        152.008
+      ]
+    },
+    {
+      "id": "WF02",
+      "panel": 2,
+      "image": "images/WF02_p2.png",
+      "window_ns": [
+        444,
+        448
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "90736484c17b8810055a9e866f7d18f5479068a2a85621c77c8b277bd3e18e0a",
+      "actual_view_ns": [
+        444.0,
+        448.008
+      ]
+    },
+    {
+      "id": "WF03",
+      "panel": 1,
+      "image": "images/WF03.png",
+      "window_ns": [
+        740,
+        744
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "20cb6abac4399ee74d9d234252320c96f0a862753b8d28e07de4f77d37db1ecb",
+      "actual_view_ns": [
+        740.0,
+        744.008
+      ]
+    },
+    {
+      "id": "WF03",
+      "panel": 2,
+      "image": "images/WF03_p2.png",
+      "window_ns": [
+        888,
+        892
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "14aa4c1b47970bbcb841cb4cd9eaae6b59f249e8b81ada8dce79e9e05edbae48",
+      "actual_view_ns": [
+        888.0,
+        892.008
+      ]
+    },
+    {
+      "id": "WF04",
+      "panel": 1,
+      "image": "images/WF04.png",
+      "window_ns": [
+        1184,
+        1188
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "b5d8d5af8de4fa6ccc64ac5ed05c84ca89bd6607da494d030999f53673390cba",
+      "actual_view_ns": [
+        1184.0,
+        1188.008
+      ]
+    },
+    {
+      "id": "WF04",
+      "panel": 2,
+      "image": "images/WF04_p2.png",
+      "window_ns": [
+        1480,
+        1484
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "707f36b5ec0a27b1e9276a9a47b70d1bdb8119f2dd1a778536daa17a4e20c7fd",
+      "actual_view_ns": [
+        1480.0,
+        1484.008
+      ]
+    },
+    {
+      "id": "WF05",
+      "panel": 1,
+      "image": "images/WF05.png",
+      "window_ns": [
+        1796,
+        1800
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "39a6de501809fc4e6dfb5897bdc448d28dfd66ae572bb84d6acd733c21cb42d8",
+      "actual_view_ns": [
+        1796.0,
+        1800.007
+      ]
+    },
+    {
+      "id": "WF05",
+      "panel": 2,
+      "image": "images/WF05_p2.png",
+      "window_ns": [
+        1828,
+        1832
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "9132e8c6bdb5fbea676f7fd20ae7921c81b5cdc9d61154103d3ea7f8aea71819",
+      "actual_view_ns": [
+        1828.0,
+        1832.007
+      ]
+    },
+    {
+      "id": "WF05",
+      "panel": 3,
+      "image": "images/WF05_p3.png",
+      "window_ns": [
+        1856,
+        1860
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "f7ad667f98c99aa1ba4b1afe75a402903fc8cff59e83feac6a368fd8eb1e0676",
+      "actual_view_ns": [
+        1856.0,
+        1860.007
+      ]
+    },
+    {
+      "id": "WF06",
+      "panel": 1,
+      "image": "images/WF06.png",
+      "window_ns": [
+        1944,
+        1948
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "b62d52137f8c0158fa4292066ee5f2c59e257111c519ae4effa97a6342ed33b5",
+      "actual_view_ns": [
+        1944.0,
+        1948.007
+      ]
+    },
+    {
+      "id": "WF06",
+      "panel": 2,
+      "image": "images/WF06_p2.png",
+      "window_ns": [
+        2008,
+        2012
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "362c1afa3f5cb0d01b2b85aa77d9b5808f7e010fe1654dac259af6ff7cd58b0c",
+      "actual_view_ns": [
+        2008.0,
+        2012.007
+      ]
+    },
+    {
+      "id": "WF06",
+      "panel": 3,
+      "image": "images/WF06_p3.png",
+      "window_ns": [
+        2038,
+        2043
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "35fc4ee377db68ac89d4eaa1d51f0a2fc60902fe432a6733382a1fa629979995",
+      "actual_view_ns": [
+        2038.0,
+        2043.009
+      ]
+    },
+    {
+      "id": "WF07",
+      "panel": 1,
+      "image": "images/WF07.png",
+      "window_ns": [
+        1632,
+        1642
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "b8fa2b041137603e706909eb515c6e2e55722fd2e649b00e4f416793236b664c",
+      "actual_view_ns": [
+        1632.0,
+        1642.029
+      ]
+    },
+    {
+      "id": "WF07",
+      "panel": 2,
+      "image": "images/WF07_p2.png",
+      "window_ns": [
+        1642,
+        1648
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "65cc454efaf5d8d3d794f275c9fbbee0e7513f4b34a381848df41e4619fbe749",
+      "actual_view_ns": [
+        1642.0,
+        1648.017
+      ]
+    },
+    {
+      "id": "WF08",
+      "panel": 1,
+      "image": "images/WF08.png",
+      "window_ns": [
+        1195,
+        1199
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "a6e2ee681adc7027484645e14638a7ec960c31dc81c8abb73ebcb10f5f56c0d5",
+      "actual_view_ns": [
+        1195.0,
+        1199.011
+      ]
+    },
+    {
+      "id": "WF08",
+      "panel": 2,
+      "image": "images/WF08_p2.png",
+      "window_ns": [
+        1932,
+        1936
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "0ae690f02899c2b0940b9a629438bfcc691a588d6e44648e3286a1a69bc023f1",
+      "actual_view_ns": [
+        1932.0,
+        1936.011
+      ]
+    },
+    {
+      "id": "WF08",
+      "panel": 3,
+      "image": "images/WF08_p3.png",
+      "window_ns": [
+        2080,
+        2084
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "153787790e3ae17ad82417a9097cada3eebd978c8eb44d6d34cf5b4978996524",
+      "actual_view_ns": [
+        2080.0,
+        2084.011
+      ]
+    },
+    {
+      "id": "WF09",
+      "panel": 1,
+      "image": "images/WF09.png",
+      "window_ns": [
+        22849,
+        22857
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "0bbdb60a6b027ce04ce93f17b42694f591345ff0a05df03fbf2298fa0c4711de",
+      "actual_view_ns": [
+        22849.0,
+        22857.023
+      ]
+    },
+    {
+      "id": "WF09",
+      "panel": 2,
+      "image": "images/WF09_p2.png",
+      "window_ns": [
+        23249,
+        23257
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "d7aa1563dc903aea8c03053e0174d4545d917f1a71c9a504e20dfdfdac1dca2c",
+      "actual_view_ns": [
+        23249.0,
+        23257.023
+      ]
+    },
+    {
+      "id": "WF10",
+      "panel": 1,
+      "image": "images/WF10.png",
+      "window_ns": [
+        22890,
+        22910
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "48efd0519f826cf10d3c7fea513080fd0b263ad60af6fba8f1a61a27eab5e1ef",
+      "actual_view_ns": [
+        22890.0,
+        22910.052
+      ]
+    },
+    {
+      "id": "WF10",
+      "panel": 2,
+      "image": "images/WF10_p2.png",
+      "window_ns": [
+        23216,
+        23225
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "05dda9fc9e3248d81ebb407d0a9eb7f28b8d4dfd05d9e5215f6e533d2c25914d",
+      "actual_view_ns": [
+        23216.0,
+        23225.026
+      ]
+    },
+    {
+      "id": "WF11",
+      "panel": 1,
+      "image": "images/WF11.png",
+      "window_ns": [
+        23500,
+        23520
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "ddd35d002ebbf0027c842268969cbb3dddc3540983a81cb49f545dd6646956cf",
+      "actual_view_ns": [
+        23500.0,
+        23520.057
+      ]
+    },
+    {
+      "id": "WF11",
+      "panel": 2,
+      "image": "images/WF11_p2.png",
+      "window_ns": [
+        23540,
+        23560
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "0921684407b3da773ae7a3c53fa2de4feb512fd2a8a1fd9ebd06f326c123e00c",
+      "actual_view_ns": [
+        23540.0,
+        23560.057
+      ]
+    },
+    {
+      "id": "WF11",
+      "panel": 3,
+      "image": "images/WF11_p3.png",
+      "window_ns": [
+        24095,
+        24110
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "4162dfdb878d34891f2545b28ae1901585d47fba63bf482a1e6295e4bd74b314",
+      "actual_view_ns": [
+        24095.0,
+        24110.039
+      ]
+    },
+    {
+      "id": "WF12",
+      "panel": 1,
+      "image": "images/WF12.png",
+      "window_ns": [
+        24100,
+        24140
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "5da5d9e8a6f37b5a83f862d768ff0fa9dcfca7be1f08103463272c4ff4900633",
+      "actual_view_ns": [
+        24100.0,
+        24140.115
+      ]
+    },
+    {
+      "id": "WF12",
+      "panel": 2,
+      "image": "images/WF12_p2.png",
+      "window_ns": [
+        24140,
+        24170
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "58c24b1b5f690abb6502c74961a840382d31b071b057cbb778d7a16b712664e5",
+      "actual_view_ns": [
+        24140.0,
+        24170.086
+      ]
+    },
+    {
+      "id": "WF13",
+      "panel": 1,
+      "image": "images/WF13.png",
+      "window_ns": [
+        24120,
+        24150
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "640dd98a5956fd701bf24affb4978e3794316fd001b36665a2a28e40f07a1a3d",
+      "actual_view_ns": [
+        24120.0,
+        24150.086
+      ]
+    },
+    {
+      "id": "WF13",
+      "panel": 2,
+      "image": "images/WF13_p2.png",
+      "window_ns": [
+        24320,
+        24360
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "2e52855d5f211debac0f8bf8e313d537f480eaf5daf7372590d108c24cec3c3f",
+      "actual_view_ns": [
+        24320.0,
+        24360.115
+      ]
+    },
+    {
+      "id": "WF14",
+      "panel": 1,
+      "image": "images/WF14.png",
+      "window_ns": [
+        23500,
+        23520
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "35ac3045a1a9fffa51ad93efe65e09b05cd09145910ab4f666a7c8dcb16cd403",
+      "actual_view_ns": [
+        23500.0,
+        23520.057
+      ]
+    },
+    {
+      "id": "WF15",
+      "panel": 1,
+      "image": "images/WF15.png",
+      "window_ns": [
+        29600,
+        29620
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "8f5c26e9934159b0109b575759adf096e416fb9ffc251506f04606bd5decba3a",
+      "actual_view_ns": [
+        29600.0,
+        29620.057
+      ]
+    },
+    {
+      "id": "WF15",
+      "panel": 2,
+      "image": "images/WF15_p2.png",
+      "window_ns": [
+        29620,
+        29640
+      ],
+      "source": "GTKWave GUI screenshot (scrot), no drawing/compositing",
+      "sha256": "b965855f011a66426858a86deaa02d750eaa6d93d7aa9602d684e387fa45fa1f",
+      "actual_view_ns": [
+        29620.0,
+        29636.047
+      ]
+    },
+    {
+      "id": "LOG01",
+      "image": "images/LOG01.png",
+      "source": "Unmodified xterm screenshot of actual Verilator runner execution",
+      "sha256": "51c218d31475733286586431ad1d29b3a5cc110acb892800491326884b1b1116"
+    }
+  ]
+}

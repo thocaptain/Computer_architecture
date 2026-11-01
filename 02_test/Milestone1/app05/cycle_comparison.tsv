@@ -1,0 +1,13 @@
+configuration	core	app	status	cycles	cycle_delta	ledr	expected_ledr	ledg	matches_baseline
+baseline	0	app05_instruction	PASS	774100	0	63724	63724	24589	True
+async	0	app05_instruction	PASS	774100	0	63724	63724	24589	True
+sync	0	app05_instruction	PASS	774100	0	63724	63724	24589	True
+baseline	1	app05_instruction	PASS	1389414	0	63724	63724	24589	True
+async	1	app05_instruction	PASS	1389414	0	63724	63724	24589	True
+sync	1	app05_instruction	PASS	1389414	0	63724	63724	24589	True
+baseline	2	app05_instruction	PASS	659113	0	63724	63724	24589	True
+async	2	app05_instruction	PASS	659113	0	63724	63724	24589	True
+sync	2	app05_instruction	PASS	659113	0	63724	63724	24589	True
+baseline	3	app05_instruction	PASS	659113	0	63724	63724	13	True
+async	3	app05_instruction	PASS	659113	0	63724	63724	13	True
+sync	3	app05_instruction	PASS	659113	0	63724	63724	13	True

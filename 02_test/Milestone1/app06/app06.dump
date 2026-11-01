@@ -1,0 +1,1324 @@
+
+/mnt/c/Users/ADMIN/Desktop/CTMT/Projects/Computer_architecture/02_test/Milestone1/app06/app06.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+       0:	00004137          	lui	sp,0x4
+       4:	00007437          	lui	s0,0x7
+       8:	000042b7          	lui	t0,0x4
+       c:	f1028293          	addi	t0,t0,-240 # 3f10 <__global_pointer$+0x1444>
+      10:	0002a023          	sw	zero,0(t0)
+      14:	fff00493          	addi	s1,zero,-1
+      18:	00000c13          	addi	s8,zero,0
+      1c:	424000ef          	jal	ra,440 <lcd_init>
+
+00000020 <main>:
+      20:	000082b7          	lui	t0,0x8
+      24:	80028293          	addi	t0,t0,-2048 # 7800 <__global_pointer$+0x4d34>
+      28:	0002a283          	lw	t0,0(t0)
+      2c:	00f2d313          	srli	t1,t0,0xf
+      30:	00737313          	andi	t1,t1,7
+      34:	0a931c63          	bne	t1,s1,ec <enter>
+      38:	000082b7          	lui	t0,0x8
+      3c:	81028293          	addi	t0,t0,-2032 # 7810 <__global_pointer$+0x4d44>
+      40:	0002a283          	lw	t0,0(t0)
+      44:	fff94313          	xori	t1,s2,-1
+      48:	0062f933          	and	s2,t0,t1
+      4c:	00028313          	addi	t1,t0,0
+      50:	00090793          	addi	a5,s2,0
+      54:	00030913          	addi	s2,t1,0
+      58:	00200293          	addi	t0,zero,2
+      5c:	12548063          	beq	s1,t0,17c <key_test>
+      60:	0017f293          	andi	t0,a5,1
+      64:	06029263          	bne	t0,zero,c8 <restart>
+      68:	0047f293          	andi	t0,a5,4
+      6c:	02028463          	beq	t0,zero,94 <dispatch>
+      70:	00048e63          	beq	s1,zero,8c <manual_pass>
+      74:	00300293          	addi	t0,zero,3
+      78:	00548a63          	beq	s1,t0,8c <manual_pass>
+      7c:	00400293          	addi	t0,zero,4
+      80:	00548663          	beq	s1,t0,8c <manual_pass>
+      84:	00600293          	addi	t0,zero,6
+      88:	00549663          	bne	s1,t0,94 <dispatch>
+
+0000008c <manual_pass>:
+      8c:	00100993          	addi	s3,zero,1
+      90:	2fc000ef          	jal	ra,38c <record_pass>
+
+00000094 <dispatch>:
+      94:	00100293          	addi	t0,zero,1
+      98:	0a548063          	beq	s1,t0,138 <switch_test>
+      9c:	2c4000ef          	jal	ra,360 <tick>
+      a0:	24050a63          	beq	a0,zero,2f4 <show>
+      a4:	001a8a93          	addi	s5,s5,1
+      a8:	16048a63          	beq	s1,zero,21c <led_test>
+      ac:	00300293          	addi	t0,zero,3
+      b0:	1c548863          	beq	s1,t0,280 <hex_test>
+      b4:	00400293          	addi	t0,zero,4
+      b8:	1e548a63          	beq	s1,t0,2ac <timer_test>
+      bc:	00600293          	addi	t0,zero,6
+      c0:	20548c63          	beq	s1,t0,2d8 <lcd_test>
+      c4:	2300006f          	jal	zero,2f4 <show>
+
+000000c8 <restart>:
+      c8:	00048313          	addi	t1,s1,0
+      cc:	000042b7          	lui	t0,0x4
+      d0:	f1028293          	addi	t0,t0,-240 # 3f10 <__global_pointer$+0x1444>
+      d4:	0002a383          	lw	t2,0(t0)
+      d8:	00100e13          	addi	t3,zero,1
+      dc:	009e1e33          	sll	t3,t3,s1
+      e0:	fffe4e13          	xori	t3,t3,-1
+      e4:	01c3f3b3          	and	t2,t2,t3
+      e8:	0072a023          	sw	t2,0(t0)
+
+000000ec <enter>:
+      ec:	00030493          	addi	s1,t1,0
+      f0:	00700913          	addi	s2,zero,7
+      f4:	00000993          	addi	s3,zero,0
+      f8:	00000a93          	addi	s5,zero,0
+      fc:	00000b13          	addi	s6,zero,0
+     100:	00000b93          	addi	s7,zero,0
+     104:	00000c93          	addi	s9,zero,0
+     108:	00000d13          	addi	s10,zero,0
+     10c:	00042023          	sw	zero,0(s0) # 7000 <__global_pointer$+0x4534>
+     110:	00042823          	sw	zero,16(s0)
+     114:	3bc000ef          	jal	ra,4d0 <lcd_page>
+     118:	000042b7          	lui	t0,0x4
+     11c:	0002aa03          	lw	s4,0(t0) # 4000 <__global_pointer$+0x1534>
+     120:	000a0d93          	addi	s11,s4,0
+     124:	00500293          	addi	t0,zero,5
+     128:	00549463          	bne	s1,t0,130 <enter+0x44>
+     12c:	0740106f          	jal	zero,11a0 <ram_test>
+     130:	0e048663          	beq	s1,zero,21c <led_test>
+     134:	1c00006f          	jal	zero,2f4 <show>
+
+00000138 <switch_test>:
+     138:	000082b7          	lui	t0,0x8
+     13c:	80028293          	addi	t0,t0,-2048 # 7800 <__global_pointer$+0x4d34>
+     140:	0002a283          	lw	t0,0(t0)
+     144:	00542023          	sw	t0,0(s0)
+     148:	fff2fd13          	andi	s10,t0,-1
+     14c:	005b6b33          	or	s6,s6,t0
+     150:	fff2c293          	xori	t0,t0,-1
+     154:	005bebb3          	or	s7,s7,t0
+     158:	017b72b3          	and	t0,s6,s7
+     15c:	00008337          	lui	t1,0x8
+     160:	fff30313          	addi	t1,t1,-1 # 7fff <__global_pointer$+0x5533>
+     164:	0062f2b3          	and	t0,t0,t1
+     168:	00629663          	bne	t0,t1,174 <switch_tick>
+     16c:	00200993          	addi	s3,zero,2
+     170:	21c000ef          	jal	ra,38c <record_pass>
+
+00000174 <switch_tick>:
+     174:	1ec000ef          	jal	ra,360 <tick>
+     178:	17c0006f          	jal	zero,2f4 <show>
+
+0000017c <key_test>:
+     17c:	0017f293          	andi	t0,a5,1
+     180:	00028e63          	beq	t0,zero,19c <key1>
+     184:	0ffcf293          	andi	t0,s9,255
+     188:	00128293          	addi	t0,t0,1
+     18c:	0ff2f293          	andi	t0,t0,255
+     190:	f0000313          	addi	t1,zero,-256
+     194:	006cfcb3          	and	s9,s9,t1
+     198:	005cecb3          	or	s9,s9,t0
+
+0000019c <key1>:
+     19c:	0027f293          	andi	t0,a5,2
+     1a0:	02028263          	beq	t0,zero,1c4 <key2>
+     1a4:	008cd293          	srli	t0,s9,0x8
+     1a8:	00128293          	addi	t0,t0,1
+     1ac:	0ff2f293          	andi	t0,t0,255
+     1b0:	00829293          	slli	t0,t0,0x8
+     1b4:	ffff0337          	lui	t1,0xffff0
+     1b8:	0ff30313          	addi	t1,t1,255 # ffff00ff <APP_CPU_HZ+0xffb2b5bf>
+     1bc:	006cfcb3          	and	s9,s9,t1
+     1c0:	005cecb3          	or	s9,s9,t0
+
+000001c4 <key2>:
+     1c4:	0047f293          	andi	t0,a5,4
+     1c8:	02028263          	beq	t0,zero,1ec <key_done>
+     1cc:	010cd293          	srli	t0,s9,0x10
+     1d0:	00128293          	addi	t0,t0,1
+     1d4:	0ff2f293          	andi	t0,t0,255
+     1d8:	01029293          	slli	t0,t0,0x10
+     1dc:	ff010337          	lui	t1,0xff010
+     1e0:	fff30313          	addi	t1,t1,-1 # ff00ffff <APP_CPU_HZ+0xfeb4b4bf>
+     1e4:	006cfcb3          	and	s9,s9,t1
+     1e8:	005cecb3          	or	s9,s9,t0
+
+000001ec <key_done>:
+     1ec:	000c8d13          	addi	s10,s9,0
+     1f0:	0ffcf293          	andi	t0,s9,255
+     1f4:	02028063          	beq	t0,zero,214 <key_tick>
+     1f8:	008cd293          	srli	t0,s9,0x8
+     1fc:	0ff2f293          	andi	t0,t0,255
+     200:	00028a63          	beq	t0,zero,214 <key_tick>
+     204:	010cd293          	srli	t0,s9,0x10
+     208:	00028663          	beq	t0,zero,214 <key_tick>
+     20c:	00200993          	addi	s3,zero,2
+     210:	17c000ef          	jal	ra,38c <record_pass>
+
+00000214 <key_tick>:
+     214:	14c000ef          	jal	ra,360 <tick>
+     218:	0dc0006f          	jal	zero,2f4 <show>
+
+0000021c <led_test>:
+     21c:	01d00293          	addi	t0,zero,29
+     220:	005ae463          	bltu	s5,t0,228 <led_phase>
+     224:	00000a93          	addi	s5,zero,0
+
+00000228 <led_phase>:
+     228:	000a8d13          	addi	s10,s5,0
+     22c:	00000293          	addi	t0,zero,0
+     230:	00000313          	addi	t1,zero,0
+     234:	040a8063          	beq	s5,zero,274 <led_write>
+     238:	00100393          	addi	t2,zero,1
+     23c:	027a8663          	beq	s5,t2,268 <led_all>
+     240:	ffea8393          	addi	t2,s5,-2
+     244:	01200e13          	addi	t3,zero,18
+     248:	01c3f863          	bgeu	t2,t3,258 <led_green>
+     24c:	00100293          	addi	t0,zero,1
+     250:	007292b3          	sll	t0,t0,t2
+     254:	0200006f          	jal	zero,274 <led_write>
+
+00000258 <led_green>:
+     258:	fee38393          	addi	t2,t2,-18
+     25c:	00100313          	addi	t1,zero,1
+     260:	00731333          	sll	t1,t1,t2
+     264:	0100006f          	jal	zero,274 <led_write>
+
+00000268 <led_all>:
+     268:	000402b7          	lui	t0,0x40
+     26c:	fff28293          	addi	t0,t0,-1 # 3ffff <__global_pointer$+0x3d533>
+     270:	1ff00313          	addi	t1,zero,511
+
+00000274 <led_write>:
+     274:	00542023          	sw	t0,0(s0)
+     278:	00642823          	sw	t1,16(s0)
+     27c:	0780006f          	jal	zero,2f4 <show>
+
+00000280 <hex_test>:
+     280:	00faf293          	andi	t0,s5,15
+     284:	11111337          	lui	t1,0x11111
+     288:	11130313          	addi	t1,t1,273 # 11111111 <APP_CPU_HZ+0x10c4c5d1>
+     28c:	00000513          	addi	a0,zero,0
+     290:	00800393          	addi	t2,zero,8
+
+00000294 <hex_repeat>:
+     294:	00451513          	slli	a0,a0,0x4
+     298:	00556533          	or	a0,a0,t0
+     29c:	fff38393          	addi	t2,t2,-1
+     2a0:	fe039ae3          	bne	t2,zero,294 <hex_repeat>
+     2a4:	00050d13          	addi	s10,a0,0
+     2a8:	04c0006f          	jal	zero,2f4 <show>
+
+000002ac <timer_test>:
+     2ac:	000042b7          	lui	t0,0x4
+     2b0:	0002a303          	lw	t1,0(t0) # 4000 <__global_pointer$+0x1534>
+     2b4:	41b303b3          	sub	t2,t1,s11
+     2b8:	004c5e37          	lui	t3,0x4c5
+     2bc:	b40e0e13          	addi	t3,t3,-1216 # 4c4b40 <APP_CPU_HZ>
+     2c0:	03c3ea63          	bltu	t2,t3,2f4 <show>
+
+000002c4 <timer_catchup>:
+     2c4:	001d0d13          	addi	s10,s10,1
+     2c8:	01cd8db3          	add	s11,s11,t3
+     2cc:	41b303b3          	sub	t2,t1,s11
+     2d0:	ffc3fae3          	bgeu	t2,t3,2c4 <timer_catchup>
+     2d4:	0200006f          	jal	zero,2f4 <show>
+
+000002d8 <lcd_test>:
+     2d8:	000a8d13          	addi	s10,s5,0
+     2dc:	80000537          	lui	a0,0x80000
+     2e0:	0c650513          	addi	a0,a0,198 # 800000c6 <APP_CPU_HZ+0x7fb3b586>
+     2e4:	0f0000ef          	jal	ra,3d4 <lcd_write>
+     2e8:	000a8593          	addi	a1,s5,0
+     2ec:	10c000ef          	jal	ra,3f8 <lcd_hex4>
+     2f0:	0040006f          	jal	zero,2f4 <show>
+
+000002f4 <show>:
+     2f4:	00700293          	addi	t0,zero,7
+     2f8:	00549863          	bne	s1,t0,308 <show_status>
+     2fc:	000042b7          	lui	t0,0x4
+     300:	f1028293          	addi	t0,t0,-240 # 3f10 <__global_pointer$+0x1444>
+     304:	0002ad03          	lw	s10,0(t0)
+
+00000308 <show_status>:
+     308:	02048463          	beq	s1,zero,330 <show_hex>
+     30c:	020c6293          	ori	t0,s8,32
+     310:	0092e2b3          	or	t0,t0,s1
+     314:	00300313          	addi	t1,zero,3
+     318:	00698863          	beq	s3,t1,328 <status_fail>
+     31c:	00098863          	beq	s3,zero,32c <status_write>
+     320:	0402e293          	ori	t0,t0,64
+     324:	0080006f          	jal	zero,32c <status_write>
+
+00000328 <status_fail>:
+     328:	0802e293          	ori	t0,t0,128
+
+0000032c <status_write>:
+     32c:	00542823          	sw	t0,16(s0)
+
+00000330 <show_hex>:
+     330:	000d0513          	addi	a0,s10,0
+     334:	00300293          	addi	t0,zero,3
+     338:	02548063          	beq	s1,t0,358 <show_hex_write>
+     33c:	010002b7          	lui	t0,0x1000
+     340:	fff28293          	addi	t0,t0,-1 # ffffff <APP_CPU_HZ+0xb3b4bf>
+     344:	00557533          	and	a0,a0,t0
+     348:	01c49293          	slli	t0,s1,0x1c
+     34c:	00556533          	or	a0,a0,t0
+     350:	01899293          	slli	t0,s3,0x18
+     354:	00556533          	or	a0,a0,t0
+
+00000358 <show_hex_write>:
+     358:	054000ef          	jal	ra,3ac <hex_write>
+     35c:	cc5ff06f          	jal	zero,20 <main>
+
+00000360 <tick>:
+     360:	000042b7          	lui	t0,0x4
+     364:	0002a303          	lw	t1,0(t0) # 4000 <__global_pointer$+0x1534>
+     368:	414303b3          	sub	t2,t1,s4
+     36c:	00131e37          	lui	t3,0x131
+     370:	2d0e0e13          	addi	t3,t3,720 # 1312d0 <TICK>
+     374:	00000513          	addi	a0,zero,0
+     378:	01c3e863          	bltu	t2,t3,388 <tick_done>
+     37c:	00030a13          	addi	s4,t1,0
+     380:	100c4c13          	xori	s8,s8,256
+     384:	00100513          	addi	a0,zero,1
+
+00000388 <tick_done>:
+     388:	00008067          	jalr	zero,0(ra)
+
+0000038c <record_pass>:
+     38c:	000042b7          	lui	t0,0x4
+     390:	f1028293          	addi	t0,t0,-240 # 3f10 <__global_pointer$+0x1444>
+     394:	0002a303          	lw	t1,0(t0)
+     398:	00100393          	addi	t2,zero,1
+     39c:	009393b3          	sll	t2,t2,s1
+     3a0:	00736333          	or	t1,t1,t2
+     3a4:	0062a023          	sw	t1,0(t0)
+     3a8:	00008067          	jalr	zero,0(ra)
+
+000003ac <hex_write>:
+     3ac:	000072b7          	lui	t0,0x7
+     3b0:	02028293          	addi	t0,t0,32 # 7020 <__global_pointer$+0x4554>
+     3b4:	00800313          	addi	t1,zero,8
+
+000003b8 <hex_loop>:
+     3b8:	00f57393          	andi	t2,a0,15
+     3bc:	00728023          	sb	t2,0(t0)
+     3c0:	00455513          	srli	a0,a0,0x4
+     3c4:	00128293          	addi	t0,t0,1
+     3c8:	fff30313          	addi	t1,t1,-1
+     3cc:	fe0316e3          	bne	t1,zero,3b8 <hex_loop>
+     3d0:	00008067          	jalr	zero,0(ra)
+
+000003d4 <lcd_write>:
+     3d4:	02a42823          	sw	a0,48(s0)
+     3d8:	000042b7          	lui	t0,0x4
+     3dc:	0002a303          	lw	t1,0(t0) # 4000 <__global_pointer$+0x1534>
+     3e0:	00006e37          	lui	t3,0x6
+     3e4:	1a9e0e13          	addi	t3,t3,425 # 61a9 <__global_pointer$+0x36dd>
+
+000003e8 <lcd_wait>:
+     3e8:	0002a383          	lw	t2,0(t0)
+     3ec:	406383b3          	sub	t2,t2,t1
+     3f0:	ffc3ece3          	bltu	t2,t3,3e8 <lcd_wait>
+     3f4:	00008067          	jalr	zero,0(ra)
+
+000003f8 <lcd_hex4>:
+     3f8:	ff010113          	addi	sp,sp,-16 # 3ff0 <__global_pointer$+0x1524>
+     3fc:	00112023          	sw	ra,0(sp)
+     400:	00c00e93          	addi	t4,zero,12
+
+00000404 <lcd_hex_loop>:
+     404:	01d5df33          	srl	t5,a1,t4
+     408:	00ff7f13          	andi	t5,t5,15
+     40c:	00a00f93          	addi	t6,zero,10
+     410:	01ff6463          	bltu	t5,t6,418 <lcd_decimal>
+     414:	007f0f13          	addi	t5,t5,7
+
+00000418 <lcd_decimal>:
+     418:	030f0f13          	addi	t5,t5,48
+     41c:	80000537          	lui	a0,0x80000
+     420:	20050513          	addi	a0,a0,512 # 80000200 <APP_CPU_HZ+0x7fb3b6c0>
+     424:	01e56533          	or	a0,a0,t5
+     428:	fadff0ef          	jal	ra,3d4 <lcd_write>
+     42c:	ffce8e93          	addi	t4,t4,-4
+     430:	fc0edae3          	bge	t4,zero,404 <lcd_hex_loop>
+     434:	00012083          	lw	ra,0(sp)
+     438:	01010113          	addi	sp,sp,16
+     43c:	00008067          	jalr	zero,0(ra)
+
+00000440 <lcd_init>:
+     440:	ff010113          	addi	sp,sp,-16
+     444:	00112023          	sw	ra,0(sp)
+     448:	000042b7          	lui	t0,0x4
+     44c:	0002a303          	lw	t1,0(t0) # 4000 <__global_pointer$+0x1534>
+     450:	0003de37          	lui	t3,0x3d
+     454:	091e0e13          	addi	t3,t3,145 # 3d091 <__global_pointer$+0x3a5c5>
+
+00000458 <lcd_power_wait>:
+     458:	0002a383          	lw	t2,0(t0)
+     45c:	406383b3          	sub	t2,t2,t1
+     460:	ffc3ece3          	bltu	t2,t3,458 <lcd_power_wait>
+     464:	80000537          	lui	a0,0x80000
+     468:	03050513          	addi	a0,a0,48 # 80000030 <APP_CPU_HZ+0x7fb3b4f0>
+     46c:	f69ff0ef          	jal	ra,3d4 <lcd_write>
+     470:	80000537          	lui	a0,0x80000
+     474:	03050513          	addi	a0,a0,48 # 80000030 <APP_CPU_HZ+0x7fb3b4f0>
+     478:	f5dff0ef          	jal	ra,3d4 <lcd_write>
+     47c:	80000537          	lui	a0,0x80000
+     480:	03050513          	addi	a0,a0,48 # 80000030 <APP_CPU_HZ+0x7fb3b4f0>
+     484:	f51ff0ef          	jal	ra,3d4 <lcd_write>
+     488:	80000537          	lui	a0,0x80000
+     48c:	03850513          	addi	a0,a0,56 # 80000038 <APP_CPU_HZ+0x7fb3b4f8>
+     490:	f45ff0ef          	jal	ra,3d4 <lcd_write>
+     494:	80000537          	lui	a0,0x80000
+     498:	00850513          	addi	a0,a0,8 # 80000008 <APP_CPU_HZ+0x7fb3b4c8>
+     49c:	f39ff0ef          	jal	ra,3d4 <lcd_write>
+     4a0:	80000537          	lui	a0,0x80000
+     4a4:	00150513          	addi	a0,a0,1 # 80000001 <APP_CPU_HZ+0x7fb3b4c1>
+     4a8:	f2dff0ef          	jal	ra,3d4 <lcd_write>
+     4ac:	80000537          	lui	a0,0x80000
+     4b0:	00650513          	addi	a0,a0,6 # 80000006 <APP_CPU_HZ+0x7fb3b4c6>
+     4b4:	f21ff0ef          	jal	ra,3d4 <lcd_write>
+     4b8:	80000537          	lui	a0,0x80000
+     4bc:	00c50513          	addi	a0,a0,12 # 8000000c <APP_CPU_HZ+0x7fb3b4cc>
+     4c0:	f15ff0ef          	jal	ra,3d4 <lcd_write>
+     4c4:	00012083          	lw	ra,0(sp)
+     4c8:	01010113          	addi	sp,sp,16
+     4cc:	00008067          	jalr	zero,0(ra)
+
+000004d0 <lcd_page>:
+     4d0:	ff010113          	addi	sp,sp,-16
+     4d4:	00112023          	sw	ra,0(sp)
+     4d8:	80000537          	lui	a0,0x80000
+     4dc:	08050513          	addi	a0,a0,128 # 80000080 <APP_CPU_HZ+0x7fb3b540>
+     4e0:	ef5ff0ef          	jal	ra,3d4 <lcd_write>
+     4e4:	1c048263          	beq	s1,zero,6a8 <page0>
+     4e8:	00100293          	addi	t0,zero,1
+     4ec:	34548663          	beq	s1,t0,838 <page1>
+     4f0:	00200293          	addi	t0,zero,2
+     4f4:	4c548a63          	beq	s1,t0,9c8 <page2>
+     4f8:	00300293          	addi	t0,zero,3
+     4fc:	64548e63          	beq	s1,t0,b58 <page3>
+     500:	00400293          	addi	t0,zero,4
+     504:	7e548263          	beq	s1,t0,ce8 <page4>
+     508:	00500293          	addi	t0,zero,5
+     50c:	165486e3          	beq	s1,t0,e78 <page5>
+     510:	00600293          	addi	t0,zero,6
+     514:	2e548ae3          	beq	s1,t0,1008 <page6>
+     518:	80000537          	lui	a0,0x80000
+     51c:	23750513          	addi	a0,a0,567 # 80000237 <APP_CPU_HZ+0x7fb3b6f7>
+     520:	eb5ff0ef          	jal	ra,3d4 <lcd_write>
+     524:	80000537          	lui	a0,0x80000
+     528:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     52c:	ea9ff0ef          	jal	ra,3d4 <lcd_write>
+     530:	80000537          	lui	a0,0x80000
+     534:	25050513          	addi	a0,a0,592 # 80000250 <APP_CPU_HZ+0x7fb3b710>
+     538:	e9dff0ef          	jal	ra,3d4 <lcd_write>
+     53c:	80000537          	lui	a0,0x80000
+     540:	24150513          	addi	a0,a0,577 # 80000241 <APP_CPU_HZ+0x7fb3b701>
+     544:	e91ff0ef          	jal	ra,3d4 <lcd_write>
+     548:	80000537          	lui	a0,0x80000
+     54c:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     550:	e85ff0ef          	jal	ra,3d4 <lcd_write>
+     554:	80000537          	lui	a0,0x80000
+     558:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     55c:	e79ff0ef          	jal	ra,3d4 <lcd_write>
+     560:	80000537          	lui	a0,0x80000
+     564:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     568:	e6dff0ef          	jal	ra,3d4 <lcd_write>
+     56c:	80000537          	lui	a0,0x80000
+     570:	24d50513          	addi	a0,a0,589 # 8000024d <APP_CPU_HZ+0x7fb3b70d>
+     574:	e61ff0ef          	jal	ra,3d4 <lcd_write>
+     578:	80000537          	lui	a0,0x80000
+     57c:	24150513          	addi	a0,a0,577 # 80000241 <APP_CPU_HZ+0x7fb3b701>
+     580:	e55ff0ef          	jal	ra,3d4 <lcd_write>
+     584:	80000537          	lui	a0,0x80000
+     588:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     58c:	e49ff0ef          	jal	ra,3d4 <lcd_write>
+     590:	80000537          	lui	a0,0x80000
+     594:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     598:	e3dff0ef          	jal	ra,3d4 <lcd_write>
+     59c:	80000537          	lui	a0,0x80000
+     5a0:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     5a4:	e31ff0ef          	jal	ra,3d4 <lcd_write>
+     5a8:	80000537          	lui	a0,0x80000
+     5ac:	24850513          	addi	a0,a0,584 # 80000248 <APP_CPU_HZ+0x7fb3b708>
+     5b0:	e25ff0ef          	jal	ra,3d4 <lcd_write>
+     5b4:	80000537          	lui	a0,0x80000
+     5b8:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     5bc:	e19ff0ef          	jal	ra,3d4 <lcd_write>
+     5c0:	80000537          	lui	a0,0x80000
+     5c4:	25850513          	addi	a0,a0,600 # 80000258 <APP_CPU_HZ+0x7fb3b718>
+     5c8:	e0dff0ef          	jal	ra,3d4 <lcd_write>
+     5cc:	80000537          	lui	a0,0x80000
+     5d0:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     5d4:	e01ff0ef          	jal	ra,3d4 <lcd_write>
+     5d8:	80000537          	lui	a0,0x80000
+     5dc:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+     5e0:	df5ff0ef          	jal	ra,3d4 <lcd_write>
+     5e4:	80000537          	lui	a0,0x80000
+     5e8:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     5ec:	de9ff0ef          	jal	ra,3d4 <lcd_write>
+     5f0:	80000537          	lui	a0,0x80000
+     5f4:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+     5f8:	dddff0ef          	jal	ra,3d4 <lcd_write>
+     5fc:	80000537          	lui	a0,0x80000
+     600:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     604:	dd1ff0ef          	jal	ra,3d4 <lcd_write>
+     608:	80000537          	lui	a0,0x80000
+     60c:	25250513          	addi	a0,a0,594 # 80000252 <APP_CPU_HZ+0x7fb3b712>
+     610:	dc5ff0ef          	jal	ra,3d4 <lcd_write>
+     614:	80000537          	lui	a0,0x80000
+     618:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     61c:	db9ff0ef          	jal	ra,3d4 <lcd_write>
+     620:	80000537          	lui	a0,0x80000
+     624:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     628:	dadff0ef          	jal	ra,3d4 <lcd_write>
+     62c:	80000537          	lui	a0,0x80000
+     630:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     634:	da1ff0ef          	jal	ra,3d4 <lcd_write>
+     638:	80000537          	lui	a0,0x80000
+     63c:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     640:	d95ff0ef          	jal	ra,3d4 <lcd_write>
+     644:	80000537          	lui	a0,0x80000
+     648:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     64c:	d89ff0ef          	jal	ra,3d4 <lcd_write>
+     650:	80000537          	lui	a0,0x80000
+     654:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     658:	d7dff0ef          	jal	ra,3d4 <lcd_write>
+     65c:	80000537          	lui	a0,0x80000
+     660:	24d50513          	addi	a0,a0,589 # 8000024d <APP_CPU_HZ+0x7fb3b70d>
+     664:	d71ff0ef          	jal	ra,3d4 <lcd_write>
+     668:	80000537          	lui	a0,0x80000
+     66c:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     670:	d65ff0ef          	jal	ra,3d4 <lcd_write>
+     674:	80000537          	lui	a0,0x80000
+     678:	24450513          	addi	a0,a0,580 # 80000244 <APP_CPU_HZ+0x7fb3b704>
+     67c:	d59ff0ef          	jal	ra,3d4 <lcd_write>
+     680:	80000537          	lui	a0,0x80000
+     684:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     688:	d4dff0ef          	jal	ra,3d4 <lcd_write>
+     68c:	80000537          	lui	a0,0x80000
+     690:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     694:	d41ff0ef          	jal	ra,3d4 <lcd_write>
+     698:	80000537          	lui	a0,0x80000
+     69c:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     6a0:	d35ff0ef          	jal	ra,3d4 <lcd_write>
+     6a4:	2f10006f          	jal	zero,1194 <page_done>
+
+000006a8 <page0>:
+     6a8:	80000537          	lui	a0,0x80000
+     6ac:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+     6b0:	d25ff0ef          	jal	ra,3d4 <lcd_write>
+     6b4:	80000537          	lui	a0,0x80000
+     6b8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     6bc:	d19ff0ef          	jal	ra,3d4 <lcd_write>
+     6c0:	80000537          	lui	a0,0x80000
+     6c4:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     6c8:	d0dff0ef          	jal	ra,3d4 <lcd_write>
+     6cc:	80000537          	lui	a0,0x80000
+     6d0:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     6d4:	d01ff0ef          	jal	ra,3d4 <lcd_write>
+     6d8:	80000537          	lui	a0,0x80000
+     6dc:	24450513          	addi	a0,a0,580 # 80000244 <APP_CPU_HZ+0x7fb3b704>
+     6e0:	cf5ff0ef          	jal	ra,3d4 <lcd_write>
+     6e4:	80000537          	lui	a0,0x80000
+     6e8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     6ec:	ce9ff0ef          	jal	ra,3d4 <lcd_write>
+     6f0:	80000537          	lui	a0,0x80000
+     6f4:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     6f8:	cddff0ef          	jal	ra,3d4 <lcd_write>
+     6fc:	80000537          	lui	a0,0x80000
+     700:	24650513          	addi	a0,a0,582 # 80000246 <APP_CPU_HZ+0x7fb3b706>
+     704:	cd1ff0ef          	jal	ra,3d4 <lcd_write>
+     708:	80000537          	lui	a0,0x80000
+     70c:	24650513          	addi	a0,a0,582 # 80000246 <APP_CPU_HZ+0x7fb3b706>
+     710:	cc5ff0ef          	jal	ra,3d4 <lcd_write>
+     714:	80000537          	lui	a0,0x80000
+     718:	22f50513          	addi	a0,a0,559 # 8000022f <APP_CPU_HZ+0x7fb3b6ef>
+     71c:	cb9ff0ef          	jal	ra,3d4 <lcd_write>
+     720:	80000537          	lui	a0,0x80000
+     724:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     728:	cadff0ef          	jal	ra,3d4 <lcd_write>
+     72c:	80000537          	lui	a0,0x80000
+     730:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+     734:	ca1ff0ef          	jal	ra,3d4 <lcd_write>
+     738:	80000537          	lui	a0,0x80000
+     73c:	22f50513          	addi	a0,a0,559 # 8000022f <APP_CPU_HZ+0x7fb3b6ef>
+     740:	c95ff0ef          	jal	ra,3d4 <lcd_write>
+     744:	80000537          	lui	a0,0x80000
+     748:	25250513          	addi	a0,a0,594 # 80000252 <APP_CPU_HZ+0x7fb3b712>
+     74c:	c89ff0ef          	jal	ra,3d4 <lcd_write>
+     750:	80000537          	lui	a0,0x80000
+     754:	25550513          	addi	a0,a0,597 # 80000255 <APP_CPU_HZ+0x7fb3b715>
+     758:	c7dff0ef          	jal	ra,3d4 <lcd_write>
+     75c:	80000537          	lui	a0,0x80000
+     760:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+     764:	c71ff0ef          	jal	ra,3d4 <lcd_write>
+     768:	80000537          	lui	a0,0x80000
+     76c:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+     770:	c65ff0ef          	jal	ra,3d4 <lcd_write>
+     774:	80000537          	lui	a0,0x80000
+     778:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     77c:	c59ff0ef          	jal	ra,3d4 <lcd_write>
+     780:	80000537          	lui	a0,0x80000
+     784:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     788:	c4dff0ef          	jal	ra,3d4 <lcd_write>
+     78c:	80000537          	lui	a0,0x80000
+     790:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     794:	c41ff0ef          	jal	ra,3d4 <lcd_write>
+     798:	80000537          	lui	a0,0x80000
+     79c:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     7a0:	c35ff0ef          	jal	ra,3d4 <lcd_write>
+     7a4:	80000537          	lui	a0,0x80000
+     7a8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     7ac:	c29ff0ef          	jal	ra,3d4 <lcd_write>
+     7b0:	80000537          	lui	a0,0x80000
+     7b4:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     7b8:	c1dff0ef          	jal	ra,3d4 <lcd_write>
+     7bc:	80000537          	lui	a0,0x80000
+     7c0:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     7c4:	c11ff0ef          	jal	ra,3d4 <lcd_write>
+     7c8:	80000537          	lui	a0,0x80000
+     7cc:	23f50513          	addi	a0,a0,575 # 8000023f <APP_CPU_HZ+0x7fb3b6ff>
+     7d0:	c05ff0ef          	jal	ra,3d4 <lcd_write>
+     7d4:	80000537          	lui	a0,0x80000
+     7d8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     7dc:	bf9ff0ef          	jal	ra,3d4 <lcd_write>
+     7e0:	80000537          	lui	a0,0x80000
+     7e4:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     7e8:	bedff0ef          	jal	ra,3d4 <lcd_write>
+     7ec:	80000537          	lui	a0,0x80000
+     7f0:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     7f4:	be1ff0ef          	jal	ra,3d4 <lcd_write>
+     7f8:	80000537          	lui	a0,0x80000
+     7fc:	25950513          	addi	a0,a0,601 # 80000259 <APP_CPU_HZ+0x7fb3b719>
+     800:	bd5ff0ef          	jal	ra,3d4 <lcd_write>
+     804:	80000537          	lui	a0,0x80000
+     808:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+     80c:	bc9ff0ef          	jal	ra,3d4 <lcd_write>
+     810:	80000537          	lui	a0,0x80000
+     814:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     818:	bbdff0ef          	jal	ra,3d4 <lcd_write>
+     81c:	80000537          	lui	a0,0x80000
+     820:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     824:	bb1ff0ef          	jal	ra,3d4 <lcd_write>
+     828:	80000537          	lui	a0,0x80000
+     82c:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     830:	ba5ff0ef          	jal	ra,3d4 <lcd_write>
+     834:	1610006f          	jal	zero,1194 <page_done>
+
+00000838 <page1>:
+     838:	80000537          	lui	a0,0x80000
+     83c:	23150513          	addi	a0,a0,561 # 80000231 <APP_CPU_HZ+0x7fb3b6f1>
+     840:	b95ff0ef          	jal	ra,3d4 <lcd_write>
+     844:	80000537          	lui	a0,0x80000
+     848:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     84c:	b89ff0ef          	jal	ra,3d4 <lcd_write>
+     850:	80000537          	lui	a0,0x80000
+     854:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     858:	b7dff0ef          	jal	ra,3d4 <lcd_write>
+     85c:	80000537          	lui	a0,0x80000
+     860:	25750513          	addi	a0,a0,599 # 80000257 <APP_CPU_HZ+0x7fb3b717>
+     864:	b71ff0ef          	jal	ra,3d4 <lcd_write>
+     868:	80000537          	lui	a0,0x80000
+     86c:	23150513          	addi	a0,a0,561 # 80000231 <APP_CPU_HZ+0x7fb3b6f1>
+     870:	b65ff0ef          	jal	ra,3d4 <lcd_write>
+     874:	80000537          	lui	a0,0x80000
+     878:	23450513          	addi	a0,a0,564 # 80000234 <APP_CPU_HZ+0x7fb3b6f4>
+     87c:	b59ff0ef          	jal	ra,3d4 <lcd_write>
+     880:	80000537          	lui	a0,0x80000
+     884:	22e50513          	addi	a0,a0,558 # 8000022e <APP_CPU_HZ+0x7fb3b6ee>
+     888:	b4dff0ef          	jal	ra,3d4 <lcd_write>
+     88c:	80000537          	lui	a0,0x80000
+     890:	22e50513          	addi	a0,a0,558 # 8000022e <APP_CPU_HZ+0x7fb3b6ee>
+     894:	b41ff0ef          	jal	ra,3d4 <lcd_write>
+     898:	80000537          	lui	a0,0x80000
+     89c:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+     8a0:	b35ff0ef          	jal	ra,3d4 <lcd_write>
+     8a4:	80000537          	lui	a0,0x80000
+     8a8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     8ac:	b29ff0ef          	jal	ra,3d4 <lcd_write>
+     8b0:	80000537          	lui	a0,0x80000
+     8b4:	22d50513          	addi	a0,a0,557 # 8000022d <APP_CPU_HZ+0x7fb3b6ed>
+     8b8:	b1dff0ef          	jal	ra,3d4 <lcd_write>
+     8bc:	80000537          	lui	a0,0x80000
+     8c0:	23e50513          	addi	a0,a0,574 # 8000023e <APP_CPU_HZ+0x7fb3b6fe>
+     8c4:	b11ff0ef          	jal	ra,3d4 <lcd_write>
+     8c8:	80000537          	lui	a0,0x80000
+     8cc:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     8d0:	b05ff0ef          	jal	ra,3d4 <lcd_write>
+     8d4:	80000537          	lui	a0,0x80000
+     8d8:	25250513          	addi	a0,a0,594 # 80000252 <APP_CPU_HZ+0x7fb3b712>
+     8dc:	af9ff0ef          	jal	ra,3d4 <lcd_write>
+     8e0:	80000537          	lui	a0,0x80000
+     8e4:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     8e8:	aedff0ef          	jal	ra,3d4 <lcd_write>
+     8ec:	80000537          	lui	a0,0x80000
+     8f0:	24450513          	addi	a0,a0,580 # 80000244 <APP_CPU_HZ+0x7fb3b704>
+     8f4:	ae1ff0ef          	jal	ra,3d4 <lcd_write>
+     8f8:	80000537          	lui	a0,0x80000
+     8fc:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+     900:	ad5ff0ef          	jal	ra,3d4 <lcd_write>
+     904:	80000537          	lui	a0,0x80000
+     908:	24150513          	addi	a0,a0,577 # 80000241 <APP_CPU_HZ+0x7fb3b701>
+     90c:	ac9ff0ef          	jal	ra,3d4 <lcd_write>
+     910:	80000537          	lui	a0,0x80000
+     914:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     918:	abdff0ef          	jal	ra,3d4 <lcd_write>
+     91c:	80000537          	lui	a0,0x80000
+     920:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     924:	ab1ff0ef          	jal	ra,3d4 <lcd_write>
+     928:	80000537          	lui	a0,0x80000
+     92c:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     930:	aa5ff0ef          	jal	ra,3d4 <lcd_write>
+     934:	80000537          	lui	a0,0x80000
+     938:	24450513          	addi	a0,a0,580 # 80000244 <APP_CPU_HZ+0x7fb3b704>
+     93c:	a99ff0ef          	jal	ra,3d4 <lcd_write>
+     940:	80000537          	lui	a0,0x80000
+     944:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     948:	a8dff0ef          	jal	ra,3d4 <lcd_write>
+     94c:	80000537          	lui	a0,0x80000
+     950:	25750513          	addi	a0,a0,599 # 80000257 <APP_CPU_HZ+0x7fb3b717>
+     954:	a81ff0ef          	jal	ra,3d4 <lcd_write>
+     958:	80000537          	lui	a0,0x80000
+     95c:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+     960:	a75ff0ef          	jal	ra,3d4 <lcd_write>
+     964:	80000537          	lui	a0,0x80000
+     968:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     96c:	a69ff0ef          	jal	ra,3d4 <lcd_write>
+     970:	80000537          	lui	a0,0x80000
+     974:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     978:	a5dff0ef          	jal	ra,3d4 <lcd_write>
+     97c:	80000537          	lui	a0,0x80000
+     980:	24850513          	addi	a0,a0,584 # 80000248 <APP_CPU_HZ+0x7fb3b708>
+     984:	a51ff0ef          	jal	ra,3d4 <lcd_write>
+     988:	80000537          	lui	a0,0x80000
+     98c:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     990:	a45ff0ef          	jal	ra,3d4 <lcd_write>
+     994:	80000537          	lui	a0,0x80000
+     998:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+     99c:	a39ff0ef          	jal	ra,3d4 <lcd_write>
+     9a0:	80000537          	lui	a0,0x80000
+     9a4:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     9a8:	a2dff0ef          	jal	ra,3d4 <lcd_write>
+     9ac:	80000537          	lui	a0,0x80000
+     9b0:	25550513          	addi	a0,a0,597 # 80000255 <APP_CPU_HZ+0x7fb3b715>
+     9b4:	a21ff0ef          	jal	ra,3d4 <lcd_write>
+     9b8:	80000537          	lui	a0,0x80000
+     9bc:	25050513          	addi	a0,a0,592 # 80000250 <APP_CPU_HZ+0x7fb3b710>
+     9c0:	a15ff0ef          	jal	ra,3d4 <lcd_write>
+     9c4:	7d00006f          	jal	zero,1194 <page_done>
+
+000009c8 <page2>:
+     9c8:	80000537          	lui	a0,0x80000
+     9cc:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+     9d0:	a05ff0ef          	jal	ra,3d4 <lcd_write>
+     9d4:	80000537          	lui	a0,0x80000
+     9d8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     9dc:	9f9ff0ef          	jal	ra,3d4 <lcd_write>
+     9e0:	80000537          	lui	a0,0x80000
+     9e4:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     9e8:	9edff0ef          	jal	ra,3d4 <lcd_write>
+     9ec:	80000537          	lui	a0,0x80000
+     9f0:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     9f4:	9e1ff0ef          	jal	ra,3d4 <lcd_write>
+     9f8:	80000537          	lui	a0,0x80000
+     9fc:	25950513          	addi	a0,a0,601 # 80000259 <APP_CPU_HZ+0x7fb3b719>
+     a00:	9d5ff0ef          	jal	ra,3d4 <lcd_write>
+     a04:	80000537          	lui	a0,0x80000
+     a08:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+     a0c:	9c9ff0ef          	jal	ra,3d4 <lcd_write>
+     a10:	80000537          	lui	a0,0x80000
+     a14:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     a18:	9bdff0ef          	jal	ra,3d4 <lcd_write>
+     a1c:	80000537          	lui	a0,0x80000
+     a20:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     a24:	9b1ff0ef          	jal	ra,3d4 <lcd_write>
+     a28:	80000537          	lui	a0,0x80000
+     a2c:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     a30:	9a5ff0ef          	jal	ra,3d4 <lcd_write>
+     a34:	80000537          	lui	a0,0x80000
+     a38:	25950513          	addi	a0,a0,601 # 80000259 <APP_CPU_HZ+0x7fb3b719>
+     a3c:	999ff0ef          	jal	ra,3d4 <lcd_write>
+     a40:	80000537          	lui	a0,0x80000
+     a44:	23150513          	addi	a0,a0,561 # 80000231 <APP_CPU_HZ+0x7fb3b6f1>
+     a48:	98dff0ef          	jal	ra,3d4 <lcd_write>
+     a4c:	80000537          	lui	a0,0x80000
+     a50:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     a54:	981ff0ef          	jal	ra,3d4 <lcd_write>
+     a58:	80000537          	lui	a0,0x80000
+     a5c:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     a60:	975ff0ef          	jal	ra,3d4 <lcd_write>
+     a64:	80000537          	lui	a0,0x80000
+     a68:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     a6c:	969ff0ef          	jal	ra,3d4 <lcd_write>
+     a70:	80000537          	lui	a0,0x80000
+     a74:	25950513          	addi	a0,a0,601 # 80000259 <APP_CPU_HZ+0x7fb3b719>
+     a78:	95dff0ef          	jal	ra,3d4 <lcd_write>
+     a7c:	80000537          	lui	a0,0x80000
+     a80:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+     a84:	951ff0ef          	jal	ra,3d4 <lcd_write>
+     a88:	80000537          	lui	a0,0x80000
+     a8c:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+     a90:	945ff0ef          	jal	ra,3d4 <lcd_write>
+     a94:	80000537          	lui	a0,0x80000
+     a98:	24850513          	addi	a0,a0,584 # 80000248 <APP_CPU_HZ+0x7fb3b708>
+     a9c:	939ff0ef          	jal	ra,3d4 <lcd_write>
+     aa0:	80000537          	lui	a0,0x80000
+     aa4:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     aa8:	92dff0ef          	jal	ra,3d4 <lcd_write>
+     aac:	80000537          	lui	a0,0x80000
+     ab0:	25850513          	addi	a0,a0,600 # 80000258 <APP_CPU_HZ+0x7fb3b718>
+     ab4:	921ff0ef          	jal	ra,3d4 <lcd_write>
+     ab8:	80000537          	lui	a0,0x80000
+     abc:	23a50513          	addi	a0,a0,570 # 8000023a <APP_CPU_HZ+0x7fb3b6fa>
+     ac0:	915ff0ef          	jal	ra,3d4 <lcd_write>
+     ac4:	80000537          	lui	a0,0x80000
+     ac8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     acc:	909ff0ef          	jal	ra,3d4 <lcd_write>
+     ad0:	80000537          	lui	a0,0x80000
+     ad4:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     ad8:	8fdff0ef          	jal	ra,3d4 <lcd_write>
+     adc:	80000537          	lui	a0,0x80000
+     ae0:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+     ae4:	8f1ff0ef          	jal	ra,3d4 <lcd_write>
+     ae8:	80000537          	lui	a0,0x80000
+     aec:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     af0:	8e5ff0ef          	jal	ra,3d4 <lcd_write>
+     af4:	80000537          	lui	a0,0x80000
+     af8:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     afc:	8d9ff0ef          	jal	ra,3d4 <lcd_write>
+     b00:	80000537          	lui	a0,0x80000
+     b04:	23150513          	addi	a0,a0,561 # 80000231 <APP_CPU_HZ+0x7fb3b6f1>
+     b08:	8cdff0ef          	jal	ra,3d4 <lcd_write>
+     b0c:	80000537          	lui	a0,0x80000
+     b10:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     b14:	8c1ff0ef          	jal	ra,3d4 <lcd_write>
+     b18:	80000537          	lui	a0,0x80000
+     b1c:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     b20:	8b5ff0ef          	jal	ra,3d4 <lcd_write>
+     b24:	80000537          	lui	a0,0x80000
+     b28:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+     b2c:	8a9ff0ef          	jal	ra,3d4 <lcd_write>
+     b30:	80000537          	lui	a0,0x80000
+     b34:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     b38:	89dff0ef          	jal	ra,3d4 <lcd_write>
+     b3c:	80000537          	lui	a0,0x80000
+     b40:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     b44:	891ff0ef          	jal	ra,3d4 <lcd_write>
+     b48:	80000537          	lui	a0,0x80000
+     b4c:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     b50:	885ff0ef          	jal	ra,3d4 <lcd_write>
+     b54:	6400006f          	jal	zero,1194 <page_done>
+
+00000b58 <page3>:
+     b58:	80000537          	lui	a0,0x80000
+     b5c:	23350513          	addi	a0,a0,563 # 80000233 <APP_CPU_HZ+0x7fb3b6f3>
+     b60:	875ff0ef          	jal	ra,3d4 <lcd_write>
+     b64:	80000537          	lui	a0,0x80000
+     b68:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     b6c:	869ff0ef          	jal	ra,3d4 <lcd_write>
+     b70:	80000537          	lui	a0,0x80000
+     b74:	24850513          	addi	a0,a0,584 # 80000248 <APP_CPU_HZ+0x7fb3b708>
+     b78:	85dff0ef          	jal	ra,3d4 <lcd_write>
+     b7c:	80000537          	lui	a0,0x80000
+     b80:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     b84:	851ff0ef          	jal	ra,3d4 <lcd_write>
+     b88:	80000537          	lui	a0,0x80000
+     b8c:	25850513          	addi	a0,a0,600 # 80000258 <APP_CPU_HZ+0x7fb3b718>
+     b90:	845ff0ef          	jal	ra,3d4 <lcd_write>
+     b94:	80000537          	lui	a0,0x80000
+     b98:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     b9c:	839ff0ef          	jal	ra,3d4 <lcd_write>
+     ba0:	80000537          	lui	a0,0x80000
+     ba4:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+     ba8:	82dff0ef          	jal	ra,3d4 <lcd_write>
+     bac:	80000537          	lui	a0,0x80000
+     bb0:	22e50513          	addi	a0,a0,558 # 8000022e <APP_CPU_HZ+0x7fb3b6ee>
+     bb4:	821ff0ef          	jal	ra,3d4 <lcd_write>
+     bb8:	80000537          	lui	a0,0x80000
+     bbc:	22e50513          	addi	a0,a0,558 # 8000022e <APP_CPU_HZ+0x7fb3b6ee>
+     bc0:	815ff0ef          	jal	ra,3d4 <lcd_write>
+     bc4:	80000537          	lui	a0,0x80000
+     bc8:	24650513          	addi	a0,a0,582 # 80000246 <APP_CPU_HZ+0x7fb3b706>
+     bcc:	809ff0ef          	jal	ra,3d4 <lcd_write>
+     bd0:	80000537          	lui	a0,0x80000
+     bd4:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     bd8:	ffcff0ef          	jal	ra,3d4 <lcd_write>
+     bdc:	80000537          	lui	a0,0x80000
+     be0:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     be4:	ff0ff0ef          	jal	ra,3d4 <lcd_write>
+     be8:	80000537          	lui	a0,0x80000
+     bec:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     bf0:	fe4ff0ef          	jal	ra,3d4 <lcd_write>
+     bf4:	80000537          	lui	a0,0x80000
+     bf8:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     bfc:	fd8ff0ef          	jal	ra,3d4 <lcd_write>
+     c00:	80000537          	lui	a0,0x80000
+     c04:	25050513          	addi	a0,a0,592 # 80000250 <APP_CPU_HZ+0x7fb3b710>
+     c08:	fccff0ef          	jal	ra,3d4 <lcd_write>
+     c0c:	80000537          	lui	a0,0x80000
+     c10:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     c14:	fc0ff0ef          	jal	ra,3d4 <lcd_write>
+     c18:	80000537          	lui	a0,0x80000
+     c1c:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+     c20:	fb4ff0ef          	jal	ra,3d4 <lcd_write>
+     c24:	80000537          	lui	a0,0x80000
+     c28:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     c2c:	fa8ff0ef          	jal	ra,3d4 <lcd_write>
+     c30:	80000537          	lui	a0,0x80000
+     c34:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     c38:	f9cff0ef          	jal	ra,3d4 <lcd_write>
+     c3c:	80000537          	lui	a0,0x80000
+     c40:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     c44:	f90ff0ef          	jal	ra,3d4 <lcd_write>
+     c48:	80000537          	lui	a0,0x80000
+     c4c:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     c50:	f84ff0ef          	jal	ra,3d4 <lcd_write>
+     c54:	80000537          	lui	a0,0x80000
+     c58:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     c5c:	f78ff0ef          	jal	ra,3d4 <lcd_write>
+     c60:	80000537          	lui	a0,0x80000
+     c64:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     c68:	f6cff0ef          	jal	ra,3d4 <lcd_write>
+     c6c:	80000537          	lui	a0,0x80000
+     c70:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     c74:	f60ff0ef          	jal	ra,3d4 <lcd_write>
+     c78:	80000537          	lui	a0,0x80000
+     c7c:	23f50513          	addi	a0,a0,575 # 8000023f <APP_CPU_HZ+0x7fb3b6ff>
+     c80:	f54ff0ef          	jal	ra,3d4 <lcd_write>
+     c84:	80000537          	lui	a0,0x80000
+     c88:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     c8c:	f48ff0ef          	jal	ra,3d4 <lcd_write>
+     c90:	80000537          	lui	a0,0x80000
+     c94:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     c98:	f3cff0ef          	jal	ra,3d4 <lcd_write>
+     c9c:	80000537          	lui	a0,0x80000
+     ca0:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     ca4:	f30ff0ef          	jal	ra,3d4 <lcd_write>
+     ca8:	80000537          	lui	a0,0x80000
+     cac:	25950513          	addi	a0,a0,601 # 80000259 <APP_CPU_HZ+0x7fb3b719>
+     cb0:	f24ff0ef          	jal	ra,3d4 <lcd_write>
+     cb4:	80000537          	lui	a0,0x80000
+     cb8:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+     cbc:	f18ff0ef          	jal	ra,3d4 <lcd_write>
+     cc0:	80000537          	lui	a0,0x80000
+     cc4:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     cc8:	f0cff0ef          	jal	ra,3d4 <lcd_write>
+     ccc:	80000537          	lui	a0,0x80000
+     cd0:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     cd4:	f00ff0ef          	jal	ra,3d4 <lcd_write>
+     cd8:	80000537          	lui	a0,0x80000
+     cdc:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     ce0:	ef4ff0ef          	jal	ra,3d4 <lcd_write>
+     ce4:	4b00006f          	jal	zero,1194 <page_done>
+
+00000ce8 <page4>:
+     ce8:	80000537          	lui	a0,0x80000
+     cec:	23450513          	addi	a0,a0,564 # 80000234 <APP_CPU_HZ+0x7fb3b6f4>
+     cf0:	ee4ff0ef          	jal	ra,3d4 <lcd_write>
+     cf4:	80000537          	lui	a0,0x80000
+     cf8:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     cfc:	ed8ff0ef          	jal	ra,3d4 <lcd_write>
+     d00:	80000537          	lui	a0,0x80000
+     d04:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     d08:	eccff0ef          	jal	ra,3d4 <lcd_write>
+     d0c:	80000537          	lui	a0,0x80000
+     d10:	24950513          	addi	a0,a0,585 # 80000249 <APP_CPU_HZ+0x7fb3b709>
+     d14:	ec0ff0ef          	jal	ra,3d4 <lcd_write>
+     d18:	80000537          	lui	a0,0x80000
+     d1c:	24d50513          	addi	a0,a0,589 # 8000024d <APP_CPU_HZ+0x7fb3b70d>
+     d20:	eb4ff0ef          	jal	ra,3d4 <lcd_write>
+     d24:	80000537          	lui	a0,0x80000
+     d28:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     d2c:	ea8ff0ef          	jal	ra,3d4 <lcd_write>
+     d30:	80000537          	lui	a0,0x80000
+     d34:	25250513          	addi	a0,a0,594 # 80000252 <APP_CPU_HZ+0x7fb3b712>
+     d38:	e9cff0ef          	jal	ra,3d4 <lcd_write>
+     d3c:	80000537          	lui	a0,0x80000
+     d40:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     d44:	e90ff0ef          	jal	ra,3d4 <lcd_write>
+     d48:	80000537          	lui	a0,0x80000
+     d4c:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     d50:	e84ff0ef          	jal	ra,3d4 <lcd_write>
+     d54:	80000537          	lui	a0,0x80000
+     d58:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     d5c:	e78ff0ef          	jal	ra,3d4 <lcd_write>
+     d60:	80000537          	lui	a0,0x80000
+     d64:	24350513          	addi	a0,a0,579 # 80000243 <APP_CPU_HZ+0x7fb3b703>
+     d68:	e6cff0ef          	jal	ra,3d4 <lcd_write>
+     d6c:	80000537          	lui	a0,0x80000
+     d70:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     d74:	e60ff0ef          	jal	ra,3d4 <lcd_write>
+     d78:	80000537          	lui	a0,0x80000
+     d7c:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+     d80:	e54ff0ef          	jal	ra,3d4 <lcd_write>
+     d84:	80000537          	lui	a0,0x80000
+     d88:	24450513          	addi	a0,a0,580 # 80000244 <APP_CPU_HZ+0x7fb3b704>
+     d8c:	e48ff0ef          	jal	ra,3d4 <lcd_write>
+     d90:	80000537          	lui	a0,0x80000
+     d94:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     d98:	e3cff0ef          	jal	ra,3d4 <lcd_write>
+     d9c:	80000537          	lui	a0,0x80000
+     da0:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     da4:	e30ff0ef          	jal	ra,3d4 <lcd_write>
+     da8:	80000537          	lui	a0,0x80000
+     dac:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+     db0:	e24ff0ef          	jal	ra,3d4 <lcd_write>
+     db4:	80000537          	lui	a0,0x80000
+     db8:	24350513          	addi	a0,a0,579 # 80000243 <APP_CPU_HZ+0x7fb3b703>
+     dbc:	e18ff0ef          	jal	ra,3d4 <lcd_write>
+     dc0:	80000537          	lui	a0,0x80000
+     dc4:	24850513          	addi	a0,a0,584 # 80000248 <APP_CPU_HZ+0x7fb3b708>
+     dc8:	e0cff0ef          	jal	ra,3d4 <lcd_write>
+     dcc:	80000537          	lui	a0,0x80000
+     dd0:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     dd4:	e00ff0ef          	jal	ra,3d4 <lcd_write>
+     dd8:	80000537          	lui	a0,0x80000
+     ddc:	24350513          	addi	a0,a0,579 # 80000243 <APP_CPU_HZ+0x7fb3b703>
+     de0:	df4ff0ef          	jal	ra,3d4 <lcd_write>
+     de4:	80000537          	lui	a0,0x80000
+     de8:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     dec:	de8ff0ef          	jal	ra,3d4 <lcd_write>
+     df0:	80000537          	lui	a0,0x80000
+     df4:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     df8:	ddcff0ef          	jal	ra,3d4 <lcd_write>
+     dfc:	80000537          	lui	a0,0x80000
+     e00:	23150513          	addi	a0,a0,561 # 80000231 <APP_CPU_HZ+0x7fb3b6f1>
+     e04:	dd0ff0ef          	jal	ra,3d4 <lcd_write>
+     e08:	80000537          	lui	a0,0x80000
+     e0c:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+     e10:	dc4ff0ef          	jal	ra,3d4 <lcd_write>
+     e14:	80000537          	lui	a0,0x80000
+     e18:	27350513          	addi	a0,a0,627 # 80000273 <APP_CPU_HZ+0x7fb3b733>
+     e1c:	db8ff0ef          	jal	ra,3d4 <lcd_write>
+     e20:	80000537          	lui	a0,0x80000
+     e24:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     e28:	dacff0ef          	jal	ra,3d4 <lcd_write>
+     e2c:	80000537          	lui	a0,0x80000
+     e30:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+     e34:	da0ff0ef          	jal	ra,3d4 <lcd_write>
+     e38:	80000537          	lui	a0,0x80000
+     e3c:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     e40:	d94ff0ef          	jal	ra,3d4 <lcd_write>
+     e44:	80000537          	lui	a0,0x80000
+     e48:	25950513          	addi	a0,a0,601 # 80000259 <APP_CPU_HZ+0x7fb3b719>
+     e4c:	d88ff0ef          	jal	ra,3d4 <lcd_write>
+     e50:	80000537          	lui	a0,0x80000
+     e54:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+     e58:	d7cff0ef          	jal	ra,3d4 <lcd_write>
+     e5c:	80000537          	lui	a0,0x80000
+     e60:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     e64:	d70ff0ef          	jal	ra,3d4 <lcd_write>
+     e68:	80000537          	lui	a0,0x80000
+     e6c:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     e70:	d64ff0ef          	jal	ra,3d4 <lcd_write>
+     e74:	3200006f          	jal	zero,1194 <page_done>
+
+00000e78 <page5>:
+     e78:	80000537          	lui	a0,0x80000
+     e7c:	23550513          	addi	a0,a0,565 # 80000235 <APP_CPU_HZ+0x7fb3b6f5>
+     e80:	d54ff0ef          	jal	ra,3d4 <lcd_write>
+     e84:	80000537          	lui	a0,0x80000
+     e88:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     e8c:	d48ff0ef          	jal	ra,3d4 <lcd_write>
+     e90:	80000537          	lui	a0,0x80000
+     e94:	24950513          	addi	a0,a0,585 # 80000249 <APP_CPU_HZ+0x7fb3b709>
+     e98:	d3cff0ef          	jal	ra,3d4 <lcd_write>
+     e9c:	80000537          	lui	a0,0x80000
+     ea0:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+     ea4:	d30ff0ef          	jal	ra,3d4 <lcd_write>
+     ea8:	80000537          	lui	a0,0x80000
+     eac:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     eb0:	d24ff0ef          	jal	ra,3d4 <lcd_write>
+     eb4:	80000537          	lui	a0,0x80000
+     eb8:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     ebc:	d18ff0ef          	jal	ra,3d4 <lcd_write>
+     ec0:	80000537          	lui	a0,0x80000
+     ec4:	25250513          	addi	a0,a0,594 # 80000252 <APP_CPU_HZ+0x7fb3b712>
+     ec8:	d0cff0ef          	jal	ra,3d4 <lcd_write>
+     ecc:	80000537          	lui	a0,0x80000
+     ed0:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+     ed4:	d00ff0ef          	jal	ra,3d4 <lcd_write>
+     ed8:	80000537          	lui	a0,0x80000
+     edc:	24150513          	addi	a0,a0,577 # 80000241 <APP_CPU_HZ+0x7fb3b701>
+     ee0:	cf4ff0ef          	jal	ra,3d4 <lcd_write>
+     ee4:	80000537          	lui	a0,0x80000
+     ee8:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     eec:	ce8ff0ef          	jal	ra,3d4 <lcd_write>
+     ef0:	80000537          	lui	a0,0x80000
+     ef4:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     ef8:	cdcff0ef          	jal	ra,3d4 <lcd_write>
+     efc:	80000537          	lui	a0,0x80000
+     f00:	25250513          	addi	a0,a0,594 # 80000252 <APP_CPU_HZ+0x7fb3b712>
+     f04:	cd0ff0ef          	jal	ra,3d4 <lcd_write>
+     f08:	80000537          	lui	a0,0x80000
+     f0c:	24150513          	addi	a0,a0,577 # 80000241 <APP_CPU_HZ+0x7fb3b701>
+     f10:	cc4ff0ef          	jal	ra,3d4 <lcd_write>
+     f14:	80000537          	lui	a0,0x80000
+     f18:	24d50513          	addi	a0,a0,589 # 8000024d <APP_CPU_HZ+0x7fb3b70d>
+     f1c:	cb8ff0ef          	jal	ra,3d4 <lcd_write>
+     f20:	80000537          	lui	a0,0x80000
+     f24:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     f28:	cacff0ef          	jal	ra,3d4 <lcd_write>
+     f2c:	80000537          	lui	a0,0x80000
+     f30:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     f34:	ca0ff0ef          	jal	ra,3d4 <lcd_write>
+     f38:	80000537          	lui	a0,0x80000
+     f3c:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+     f40:	c94ff0ef          	jal	ra,3d4 <lcd_write>
+     f44:	80000537          	lui	a0,0x80000
+     f48:	24150513          	addi	a0,a0,577 # 80000241 <APP_CPU_HZ+0x7fb3b701>
+     f4c:	c88ff0ef          	jal	ra,3d4 <lcd_write>
+     f50:	80000537          	lui	a0,0x80000
+     f54:	25550513          	addi	a0,a0,597 # 80000255 <APP_CPU_HZ+0x7fb3b715>
+     f58:	c7cff0ef          	jal	ra,3d4 <lcd_write>
+     f5c:	80000537          	lui	a0,0x80000
+     f60:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     f64:	c70ff0ef          	jal	ra,3d4 <lcd_write>
+     f68:	80000537          	lui	a0,0x80000
+     f6c:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+     f70:	c64ff0ef          	jal	ra,3d4 <lcd_write>
+     f74:	80000537          	lui	a0,0x80000
+     f78:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+     f7c:	c58ff0ef          	jal	ra,3d4 <lcd_write>
+     f80:	80000537          	lui	a0,0x80000
+     f84:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     f88:	c4cff0ef          	jal	ra,3d4 <lcd_write>
+     f8c:	80000537          	lui	a0,0x80000
+     f90:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     f94:	c40ff0ef          	jal	ra,3d4 <lcd_write>
+     f98:	80000537          	lui	a0,0x80000
+     f9c:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     fa0:	c34ff0ef          	jal	ra,3d4 <lcd_write>
+     fa4:	80000537          	lui	a0,0x80000
+     fa8:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+     fac:	c28ff0ef          	jal	ra,3d4 <lcd_write>
+     fb0:	80000537          	lui	a0,0x80000
+     fb4:	22f50513          	addi	a0,a0,559 # 8000022f <APP_CPU_HZ+0x7fb3b6ef>
+     fb8:	c1cff0ef          	jal	ra,3d4 <lcd_write>
+     fbc:	80000537          	lui	a0,0x80000
+     fc0:	25250513          	addi	a0,a0,594 # 80000252 <APP_CPU_HZ+0x7fb3b712>
+     fc4:	c10ff0ef          	jal	ra,3d4 <lcd_write>
+     fc8:	80000537          	lui	a0,0x80000
+     fcc:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+     fd0:	c04ff0ef          	jal	ra,3d4 <lcd_write>
+     fd4:	80000537          	lui	a0,0x80000
+     fd8:	25350513          	addi	a0,a0,595 # 80000253 <APP_CPU_HZ+0x7fb3b713>
+     fdc:	bf8ff0ef          	jal	ra,3d4 <lcd_write>
+     fe0:	80000537          	lui	a0,0x80000
+     fe4:	25550513          	addi	a0,a0,597 # 80000255 <APP_CPU_HZ+0x7fb3b715>
+     fe8:	becff0ef          	jal	ra,3d4 <lcd_write>
+     fec:	80000537          	lui	a0,0x80000
+     ff0:	24c50513          	addi	a0,a0,588 # 8000024c <APP_CPU_HZ+0x7fb3b70c>
+     ff4:	be0ff0ef          	jal	ra,3d4 <lcd_write>
+     ff8:	80000537          	lui	a0,0x80000
+     ffc:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+    1000:	bd4ff0ef          	jal	ra,3d4 <lcd_write>
+    1004:	1900006f          	jal	zero,1194 <page_done>
+
+00001008 <page6>:
+    1008:	80000537          	lui	a0,0x80000
+    100c:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+    1010:	bc4ff0ef          	jal	ra,3d4 <lcd_write>
+    1014:	80000537          	lui	a0,0x80000
+    1018:	23150513          	addi	a0,a0,561 # 80000231 <APP_CPU_HZ+0x7fb3b6f1>
+    101c:	bb8ff0ef          	jal	ra,3d4 <lcd_write>
+    1020:	80000537          	lui	a0,0x80000
+    1024:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+    1028:	bacff0ef          	jal	ra,3d4 <lcd_write>
+    102c:	80000537          	lui	a0,0x80000
+    1030:	23350513          	addi	a0,a0,563 # 80000233 <APP_CPU_HZ+0x7fb3b6f3>
+    1034:	ba0ff0ef          	jal	ra,3d4 <lcd_write>
+    1038:	80000537          	lui	a0,0x80000
+    103c:	23450513          	addi	a0,a0,564 # 80000234 <APP_CPU_HZ+0x7fb3b6f4>
+    1040:	b94ff0ef          	jal	ra,3d4 <lcd_write>
+    1044:	80000537          	lui	a0,0x80000
+    1048:	23550513          	addi	a0,a0,565 # 80000235 <APP_CPU_HZ+0x7fb3b6f5>
+    104c:	b88ff0ef          	jal	ra,3d4 <lcd_write>
+    1050:	80000537          	lui	a0,0x80000
+    1054:	23650513          	addi	a0,a0,566 # 80000236 <APP_CPU_HZ+0x7fb3b6f6>
+    1058:	b7cff0ef          	jal	ra,3d4 <lcd_write>
+    105c:	80000537          	lui	a0,0x80000
+    1060:	23750513          	addi	a0,a0,567 # 80000237 <APP_CPU_HZ+0x7fb3b6f7>
+    1064:	b70ff0ef          	jal	ra,3d4 <lcd_write>
+    1068:	80000537          	lui	a0,0x80000
+    106c:	23850513          	addi	a0,a0,568 # 80000238 <APP_CPU_HZ+0x7fb3b6f8>
+    1070:	b64ff0ef          	jal	ra,3d4 <lcd_write>
+    1074:	80000537          	lui	a0,0x80000
+    1078:	23950513          	addi	a0,a0,569 # 80000239 <APP_CPU_HZ+0x7fb3b6f9>
+    107c:	b58ff0ef          	jal	ra,3d4 <lcd_write>
+    1080:	80000537          	lui	a0,0x80000
+    1084:	24150513          	addi	a0,a0,577 # 80000241 <APP_CPU_HZ+0x7fb3b701>
+    1088:	b4cff0ef          	jal	ra,3d4 <lcd_write>
+    108c:	80000537          	lui	a0,0x80000
+    1090:	24250513          	addi	a0,a0,578 # 80000242 <APP_CPU_HZ+0x7fb3b702>
+    1094:	b40ff0ef          	jal	ra,3d4 <lcd_write>
+    1098:	80000537          	lui	a0,0x80000
+    109c:	24350513          	addi	a0,a0,579 # 80000243 <APP_CPU_HZ+0x7fb3b703>
+    10a0:	b34ff0ef          	jal	ra,3d4 <lcd_write>
+    10a4:	80000537          	lui	a0,0x80000
+    10a8:	24450513          	addi	a0,a0,580 # 80000244 <APP_CPU_HZ+0x7fb3b704>
+    10ac:	b28ff0ef          	jal	ra,3d4 <lcd_write>
+    10b0:	80000537          	lui	a0,0x80000
+    10b4:	24550513          	addi	a0,a0,581 # 80000245 <APP_CPU_HZ+0x7fb3b705>
+    10b8:	b1cff0ef          	jal	ra,3d4 <lcd_write>
+    10bc:	80000537          	lui	a0,0x80000
+    10c0:	24650513          	addi	a0,a0,582 # 80000246 <APP_CPU_HZ+0x7fb3b706>
+    10c4:	b10ff0ef          	jal	ra,3d4 <lcd_write>
+    10c8:	80000537          	lui	a0,0x80000
+    10cc:	0c050513          	addi	a0,a0,192 # 800000c0 <APP_CPU_HZ+0x7fb3b580>
+    10d0:	b04ff0ef          	jal	ra,3d4 <lcd_write>
+    10d4:	80000537          	lui	a0,0x80000
+    10d8:	24350513          	addi	a0,a0,579 # 80000243 <APP_CPU_HZ+0x7fb3b703>
+    10dc:	af8ff0ef          	jal	ra,3d4 <lcd_write>
+    10e0:	80000537          	lui	a0,0x80000
+    10e4:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+    10e8:	aecff0ef          	jal	ra,3d4 <lcd_write>
+    10ec:	80000537          	lui	a0,0x80000
+    10f0:	25550513          	addi	a0,a0,597 # 80000255 <APP_CPU_HZ+0x7fb3b715>
+    10f4:	ae0ff0ef          	jal	ra,3d4 <lcd_write>
+    10f8:	80000537          	lui	a0,0x80000
+    10fc:	24e50513          	addi	a0,a0,590 # 8000024e <APP_CPU_HZ+0x7fb3b70e>
+    1100:	ad4ff0ef          	jal	ra,3d4 <lcd_write>
+    1104:	80000537          	lui	a0,0x80000
+    1108:	25450513          	addi	a0,a0,596 # 80000254 <APP_CPU_HZ+0x7fb3b714>
+    110c:	ac8ff0ef          	jal	ra,3d4 <lcd_write>
+    1110:	80000537          	lui	a0,0x80000
+    1114:	23a50513          	addi	a0,a0,570 # 8000023a <APP_CPU_HZ+0x7fb3b6fa>
+    1118:	abcff0ef          	jal	ra,3d4 <lcd_write>
+    111c:	80000537          	lui	a0,0x80000
+    1120:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+    1124:	ab0ff0ef          	jal	ra,3d4 <lcd_write>
+    1128:	80000537          	lui	a0,0x80000
+    112c:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+    1130:	aa4ff0ef          	jal	ra,3d4 <lcd_write>
+    1134:	80000537          	lui	a0,0x80000
+    1138:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+    113c:	a98ff0ef          	jal	ra,3d4 <lcd_write>
+    1140:	80000537          	lui	a0,0x80000
+    1144:	23050513          	addi	a0,a0,560 # 80000230 <APP_CPU_HZ+0x7fb3b6f0>
+    1148:	a8cff0ef          	jal	ra,3d4 <lcd_write>
+    114c:	80000537          	lui	a0,0x80000
+    1150:	22050513          	addi	a0,a0,544 # 80000220 <APP_CPU_HZ+0x7fb3b6e0>
+    1154:	a80ff0ef          	jal	ra,3d4 <lcd_write>
+    1158:	80000537          	lui	a0,0x80000
+    115c:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+    1160:	a74ff0ef          	jal	ra,3d4 <lcd_write>
+    1164:	80000537          	lui	a0,0x80000
+    1168:	23250513          	addi	a0,a0,562 # 80000232 <APP_CPU_HZ+0x7fb3b6f2>
+    116c:	a68ff0ef          	jal	ra,3d4 <lcd_write>
+    1170:	80000537          	lui	a0,0x80000
+    1174:	23d50513          	addi	a0,a0,573 # 8000023d <APP_CPU_HZ+0x7fb3b6fd>
+    1178:	a5cff0ef          	jal	ra,3d4 <lcd_write>
+    117c:	80000537          	lui	a0,0x80000
+    1180:	24f50513          	addi	a0,a0,591 # 8000024f <APP_CPU_HZ+0x7fb3b70f>
+    1184:	a50ff0ef          	jal	ra,3d4 <lcd_write>
+    1188:	80000537          	lui	a0,0x80000
+    118c:	24b50513          	addi	a0,a0,587 # 8000024b <APP_CPU_HZ+0x7fb3b70b>
+    1190:	a44ff0ef          	jal	ra,3d4 <lcd_write>
+
+00001194 <page_done>:
+    1194:	00012083          	lw	ra,0(sp)
+    1198:	01010113          	addi	sp,sp,16
+    119c:	00008067          	jalr	zero,0(ra)
+
+000011a0 <ram_test>:
+    11a0:	00000713          	addi	a4,zero,0
+
+000011a4 <ram_pattern>:
+    11a4:	00000613          	addi	a2,zero,0
+    11a8:	02070463          	beq	a4,zero,11d0 <ram_fill_setup>
+    11ac:	00100293          	addi	t0,zero,1
+    11b0:	fff00613          	addi	a2,zero,-1
+    11b4:	00570e63          	beq	a4,t0,11d0 <ram_fill_setup>
+    11b8:	00200293          	addi	t0,zero,2
+    11bc:	aaaab637          	lui	a2,0xaaaab
+    11c0:	aaa60613          	addi	a2,a2,-1366 # aaaaaaaa <APP_CPU_HZ+0xaa5e5f6a>
+    11c4:	00570663          	beq	a4,t0,11d0 <ram_fill_setup>
+    11c8:	55555637          	lui	a2,0x55555
+    11cc:	55560613          	addi	a2,a2,1365 # 55555555 <APP_CPU_HZ+0x55090a15>
+
+000011d0 <ram_fill_setup>:
+    11d0:	000026b7          	lui	a3,0x2
+    11d4:	00004837          	lui	a6,0x4
+    11d8:	f0080813          	addi	a6,a6,-256 # 3f00 <__global_pointer$+0x1434>
+
+000011dc <ram_fill>:
+    11dc:	00400293          	addi	t0,zero,4
+    11e0:	00576863          	bltu	a4,t0,11f0 <ram_store>
+    11e4:	00068613          	addi	a2,a3,0 # 2000 <ram_fail+0xd54>
+    11e8:	00570463          	beq	a4,t0,11f0 <ram_store>
+    11ec:	fff64613          	xori	a2,a2,-1
+
+000011f0 <ram_store>:
+    11f0:	00c6a023          	sw	a2,0(a3)
+    11f4:	00468693          	addi	a3,a3,4
+    11f8:	ff06e2e3          	bltu	a3,a6,11dc <ram_fill>
+    11fc:	000026b7          	lui	a3,0x2
+
+00001200 <ram_verify>:
+    1200:	00400293          	addi	t0,zero,4
+    1204:	00576863          	bltu	a4,t0,1214 <ram_load>
+    1208:	00068613          	addi	a2,a3,0 # 2000 <ram_fail+0xd54>
+    120c:	00570463          	beq	a4,t0,1214 <ram_load>
+    1210:	fff64613          	xori	a2,a2,-1
+
+00001214 <ram_load>:
+    1214:	0006a883          	lw	a7,0(a3)
+    1218:	08c89a63          	bne	a7,a2,12ac <ram_fail>
+    121c:	00468693          	addi	a3,a3,4
+    1220:	ff06e0e3          	bltu	a3,a6,1200 <ram_verify>
+    1224:	00170713          	addi	a4,a4,1
+    1228:	00600293          	addi	t0,zero,6
+    122c:	f6576ce3          	bltu	a4,t0,11a4 <ram_pattern>
+    1230:	000026b7          	lui	a3,0x2
+    1234:	0006a023          	sw	zero,0(a3) # 2000 <ram_fail+0xd54>
+    1238:	08000293          	addi	t0,zero,128
+    123c:	00568023          	sb	t0,0(a3)
+    1240:	01200293          	addi	t0,zero,18
+    1244:	005680a3          	sb	t0,1(a3)
+    1248:	000102b7          	lui	t0,0x10
+    124c:	edc28293          	addi	t0,t0,-292 # fedc <__global_pointer$+0xd410>
+    1250:	00569123          	sh	t0,2(a3)
+    1254:	fedc1637          	lui	a2,0xfedc1
+    1258:	28060613          	addi	a2,a2,640 # fedc1280 <APP_CPU_HZ+0xfe8fc740>
+    125c:	0006a883          	lw	a7,0(a3)
+    1260:	04c89663          	bne	a7,a2,12ac <ram_fail>
+    1264:	f8000613          	addi	a2,zero,-128
+    1268:	00068883          	lb	a7,0(a3)
+    126c:	04c89063          	bne	a7,a2,12ac <ram_fail>
+    1270:	08000613          	addi	a2,zero,128
+    1274:	0006c883          	lbu	a7,0(a3)
+    1278:	02c89a63          	bne	a7,a2,12ac <ram_fail>
+    127c:	edc00613          	addi	a2,zero,-292
+    1280:	00269883          	lh	a7,2(a3)
+    1284:	02c89463          	bne	a7,a2,12ac <ram_fail>
+    1288:	00010637          	lui	a2,0x10
+    128c:	edc60613          	addi	a2,a2,-292 # fedc <__global_pointer$+0xd410>
+    1290:	0026d883          	lhu	a7,2(a3)
+    1294:	00c89c63          	bne	a7,a2,12ac <ram_fail>
+    1298:	00200993          	addi	s3,zero,2
+    129c:	00002d37          	lui	s10,0x2
+    12a0:	f00d0d13          	addi	s10,s10,-256 # 1f00 <ram_fail+0xc54>
+    12a4:	8e8ff0ef          	jal	ra,38c <record_pass>
+    12a8:	84cff06f          	jal	zero,2f4 <show>
+
+000012ac <ram_fail>:
+    12ac:	00300993          	addi	s3,zero,3
+    12b0:	00068d13          	addi	s10,a3,0
+    12b4:	000042b7          	lui	t0,0x4
+    12b8:	f0028293          	addi	t0,t0,-256 # 3f00 <__global_pointer$+0x1434>
+    12bc:	00d2a023          	sw	a3,0(t0)
+    12c0:	00c2a223          	sw	a2,4(t0)
+    12c4:	0112a423          	sw	a7,8(t0)
+    12c8:	82cff06f          	jal	zero,2f4 <show>

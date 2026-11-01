@@ -1,0 +1,1 @@
+All WF*.png files are unmodified screenshots of GTKWave. Files with _p2/_p3 show additional time intervals for the same testcase. LOG01.png is an unmodified xterm screenshot while actually running the Verilator test script. See ../gtkwave_capture_manifest.json for provenance.

@@ -1,0 +1,15 @@
+[
+  {
+    "app": "all_suit",
+    "core": 0,
+    "status": "PASS",
+    "cycles": 84475,
+    "ledr": 16383,
+    "expected_ledr": 16383,
+    "ledg": 24589,
+    "pc": 788,
+    "configuration": "async",
+    "cycle_delta": null,
+    "matches_baseline": null
+  }
+]

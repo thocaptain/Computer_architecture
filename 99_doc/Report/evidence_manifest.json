@@ -1,0 +1,146 @@
+{
+  "report_date": "2026-10-25",
+  "report_timezone": "Asia/Saigon",
+  "status": "SIMULATION_AND_CAPTURE_CHECKS_PASS",
+  "checks": 46369,
+  "source": "standalone Milestone1 bench",
+  "files": {
+    "99_doc/milestone-1.pdf": {
+      "bytes": 811194,
+      "sha256": "5d0d791b404f93b84b7249e9801a2a86075739bdefc154539790287bb5668845",
+      "modified_utc": "2026-10-15T13:53:12.458755+00:00"
+    },
+    "01_bench/Milestone1/tbench.sv": {
+      "bytes": 12622,
+      "sha256": "45e78baf7aea2bf05087fbe3447745cffeaacb3ffef81cca532078f006bd744c",
+      "modified_utc": "2026-10-18T03:19:43.588353+00:00"
+    },
+    "01_bench/Milestone1/run.sh": {
+      "bytes": 631,
+      "sha256": "d6f89cdc51d6e979eafd41224f06d8e3531fa7b75108c4aca499e8e4231d1d46",
+      "modified_utc": "2026-10-17T08:06:03.950264+00:00"
+    },
+    "10_sim/flist": {
+      "bytes": 531,
+      "sha256": "bf77c80d703bd02188252856b54d19591bd522efcc07d47f49d82c13fb07d4c9",
+      "modified_utc": "2026-10-18T03:19:43.579631+00:00"
+    },
+    "10_sim/run_milestone1.sh": {
+      "bytes": 226,
+      "sha256": "ccdcb49cf3b44c4658a26fdddda811d5a0f87bea1807d40b6388a5773701150e",
+      "modified_utc": "2026-10-17T08:16:52.277434+00:00"
+    },
+    "00_src/Milestone1/adder.sv": {
+      "bytes": 1214,
+      "sha256": "e1be24a7b60636a162ca83d9c0ed46ddabee9e00e9764425dd53da79495554df",
+      "modified_utc": "2026-10-17T08:05:20.795095+00:00"
+    },
+    "00_src/Milestone1/alu.sv": {
+      "bytes": 1523,
+      "sha256": "965b7859542ca93b85b9b62d1d67238178d69b9aa107e4b03fc4284280198875",
+      "modified_utc": "2026-10-18T03:19:43.579631+00:00"
+    },
+    "00_src/Milestone1/cpu_pkg.sv": {
+      "bytes": 1410,
+      "sha256": "003f7baa5c4b3965021a3f92b6e34aafdfc2503d88c5d0d5f81b0ed291df5b2c",
+      "modified_utc": "2026-10-18T03:19:43.588353+00:00"
+    },
+    "00_src/Milestone1/data_mem_async.sv": {
+      "bytes": 1251,
+      "sha256": "ee537eae1e0d8021d683bde989512726d46db2769ad70dba10fbf9ee39dcc52e",
+      "modified_utc": "2026-10-17T08:05:20.795095+00:00"
+    },
+    "00_src/Milestone1/data_mem_sync.sv": {
+      "bytes": 1375,
+      "sha256": "5313a5ffd367e5eeb5a13860d3fad379ec0b7c51f0bca497f4a34e22b3585015",
+      "modified_utc": "2026-10-17T08:05:20.795095+00:00"
+    },
+    "00_src/Milestone1/magnitude_comparator.sv": {
+      "bytes": 445,
+      "sha256": "f70e0b7f12c42cb1295e4f2fb8bd6db11725508368c188b69414f0af8a38a90c",
+      "modified_utc": "2026-10-18T03:19:43.588353+00:00"
+    },
+    "00_src/Milestone1/regfile.sv": {
+      "bytes": 808,
+      "sha256": "30c3bbda0b210cfc7e47e26a6560bfd9357f652eb2e90d8759c92f66d40c72c6",
+      "modified_utc": "2026-10-17T08:05:20.800030+00:00"
+    },
+    "00_src/Milestone1/shifter.sv": {
+      "bytes": 1483,
+      "sha256": "aa4cf9fde85cac290e7752fc314d25e58240bb80b3aed9b4bd9f0ffd6f17c78a",
+      "modified_utc": "2026-10-17T08:05:20.801639+00:00"
+    },
+    "02_test/Milestone1/datapath_vectors.txt": {
+      "bytes": 288,
+      "sha256": "c0a9a8b1b4691a0265dc30e56ab2e00a915fdec8d375b489dd7fb4f6a699d718",
+      "modified_utc": "2026-10-17T08:04:34.272012+00:00"
+    },
+    "02_test/Milestone1/results.log": {
+      "bytes": 209,
+      "sha256": "f5e1b3d7b263a5a9aa177069671278032a3d3dff2219e13ce79ecc35f5edc0b7",
+      "modified_utc": "2026-10-25T02:58:51.256888+00:00"
+    },
+    "02_test/Milestone1/tool_version.log": {
+      "bytes": 48,
+      "sha256": "26daf9ad1ba36ee1c20cab9a869d0a1fbb8117230c80c78ec2d8cf597f64c4a5",
+      "modified_utc": "2026-10-25T02:58:49.294218+00:00"
+    },
+    "02_test/Milestone1/lint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified_utc": "2026-10-25T02:58:49.304303+00:00"
+    },
+    "02_test/Milestone1/build.log": {
+      "bytes": 273,
+      "sha256": "bab13d8bbf47763f8d600f322727e1ee21986866cb08796e21ff6f3957fc1e76",
+      "modified_utc": "2026-10-25T02:58:51.000101+00:00"
+    },
+    "02_test/Milestone1/wave.vcd": {
+      "bytes": 4922245,
+      "sha256": "a106892b8cef6f07479414fef499fe3282b4549b349c2f1a58c890fa452fcc3d",
+      "modified_utc": "2026-10-25T02:58:51.251542+00:00"
+    }
+  },
+  "capture_cases": 15,
+  "capture_sample_checks": 62,
+  "images": {
+    "images/WF01.png": "28c5f0c83c527db70de0e4f1e06d74e2a35b9973031168f1e92812bdd7016a90",
+    "images/WF01_p2.png": "67b1618f0591e9917b67a5961b5a78e8029a60c41b96de392cdc10285e041a9d",
+    "images/WF02.png": "28c5f0c83c527db70de0e4f1e06d74e2a35b9973031168f1e92812bdd7016a90",
+    "images/WF02_p2.png": "90736484c17b8810055a9e866f7d18f5479068a2a85621c77c8b277bd3e18e0a",
+    "images/WF03.png": "20cb6abac4399ee74d9d234252320c96f0a862753b8d28e07de4f77d37db1ecb",
+    "images/WF03_p2.png": "14aa4c1b47970bbcb841cb4cd9eaae6b59f249e8b81ada8dce79e9e05edbae48",
+    "images/WF04.png": "b5d8d5af8de4fa6ccc64ac5ed05c84ca89bd6607da494d030999f53673390cba",
+    "images/WF04_p2.png": "707f36b5ec0a27b1e9276a9a47b70d1bdb8119f2dd1a778536daa17a4e20c7fd",
+    "images/WF05.png": "39a6de501809fc4e6dfb5897bdc448d28dfd66ae572bb84d6acd733c21cb42d8",
+    "images/WF05_p2.png": "9132e8c6bdb5fbea676f7fd20ae7921c81b5cdc9d61154103d3ea7f8aea71819",
+    "images/WF05_p3.png": "f7ad667f98c99aa1ba4b1afe75a402903fc8cff59e83feac6a368fd8eb1e0676",
+    "images/WF06.png": "b62d52137f8c0158fa4292066ee5f2c59e257111c519ae4effa97a6342ed33b5",
+    "images/WF06_p2.png": "362c1afa3f5cb0d01b2b85aa77d9b5808f7e010fe1654dac259af6ff7cd58b0c",
+    "images/WF06_p3.png": "35fc4ee377db68ac89d4eaa1d51f0a2fc60902fe432a6733382a1fa629979995",
+    "images/WF07.png": "b8fa2b041137603e706909eb515c6e2e55722fd2e649b00e4f416793236b664c",
+    "images/WF07_p2.png": "65cc454efaf5d8d3d794f275c9fbbee0e7513f4b34a381848df41e4619fbe749",
+    "images/WF08.png": "a6e2ee681adc7027484645e14638a7ec960c31dc81c8abb73ebcb10f5f56c0d5",
+    "images/WF08_p2.png": "0ae690f02899c2b0940b9a629438bfcc691a588d6e44648e3286a1a69bc023f1",
+    "images/WF08_p3.png": "153787790e3ae17ad82417a9097cada3eebd978c8eb44d6d34cf5b4978996524",
+    "images/WF09.png": "0bbdb60a6b027ce04ce93f17b42694f591345ff0a05df03fbf2298fa0c4711de",
+    "images/WF09_p2.png": "d7aa1563dc903aea8c03053e0174d4545d917f1a71c9a504e20dfdfdac1dca2c",
+    "images/WF10.png": "48efd0519f826cf10d3c7fea513080fd0b263ad60af6fba8f1a61a27eab5e1ef",
+    "images/WF10_p2.png": "05dda9fc9e3248d81ebb407d0a9eb7f28b8d4dfd05d9e5215f6e533d2c25914d",
+    "images/WF11.png": "ddd35d002ebbf0027c842268969cbb3dddc3540983a81cb49f545dd6646956cf",
+    "images/WF11_p2.png": "0921684407b3da773ae7a3c53fa2de4feb512fd2a8a1fd9ebd06f326c123e00c",
+    "images/WF11_p3.png": "4162dfdb878d34891f2545b28ae1901585d47fba63bf482a1e6295e4bd74b314",
+    "images/WF12.png": "5da5d9e8a6f37b5a83f862d768ff0fa9dcfca7be1f08103463272c4ff4900633",
+    "images/WF12_p2.png": "58c24b1b5f690abb6502c74961a840382d31b071b057cbb778d7a16b712664e5",
+    "images/WF13.png": "640dd98a5956fd701bf24affb4978e3794316fd001b36665a2a28e40f07a1a3d",
+    "images/WF13_p2.png": "2e52855d5f211debac0f8bf8e313d537f480eaf5daf7372590d108c24cec3c3f",
+    "images/WF14.png": "35ac3045a1a9fffa51ad93efe65e09b05cd09145910ab4f666a7c8dcb16cd403",
+    "images/WF15.png": "8f5c26e9934159b0109b575759adf096e416fb9ffc251506f04606bd5decba3a",
+    "images/WF15_p2.png": "b965855f011a66426858a86deaa02d750eaa6d93d7aa9602d684e387fa45fa1f",
+    "images/LOG01.png": "51c218d31475733286586431ad1d29b3a5cc110acb892800491326884b1b1116"
+  },
+  "capture_vcd_sha256": "a106892b8cef6f07479414fef499fe3282b4549b349c2f1a58c890fa452fcc3d",
+  "capture_method": "Unmodified GTKWave X11 window screenshots on dedicated virtual display",
+  "waveform_screenshots": 33,
+  "terminal_screenshots": 1
+}

@@ -1,0 +1,421 @@
+% Concise student report, visually adapted from 99_doc/milestone-1.pdf.
+% Compile twice with XeLaTeX (Unicode Vietnamese names). Screenshot files replace the blank panels.
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+\usepackage[a4paper,left=25mm,right=25mm,top=24mm,bottom=24mm,headheight=15pt]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{array,longtable}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\definecolor{reportblue}{HTML}{073A91}
+\definecolor{noteblue}{HTML}{EEF4FA}
+\definecolor{tablegray}{HTML}{CCCCCC}
+\definecolor{muted}{HTML}{536477}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\arraystretch}{1.15}
+\newlength{\ReportTableWidth}
+\newcommand{\KeepTableStart}{\par\ifdim\dimexpr\pagegoal-\pagetotal\relax<140pt\newpage\fi}
+\raggedbottom
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}{2.0ex plus 1ex minus .2ex}{.8ex}{\Large\bfseries\color{reportblue}}}
+\makeatother
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\bfseries Computer Architecture Laboratory -- Milestone 1: Warm-up}
+\fancyfoot[L]{\footnotesize\nouppercase{\leftmark}}
+\fancyfoot[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\footrulewidth}{0.6pt}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\hypersetup{pdftitle={Milestone 1: Warm-up - Design and Verification Report},plainpages=false}
+
+% Student information: edit here.
+\newcommand{\StudentName}{Lương Quý Hậu}
+\newcommand{\StudentID}{2570099}
+\newcommand{\SecondStudentName}{Võ Ngọc Nhất Huy}
+\newcommand{\SecondStudentID}{2570206}
+% Names copied from the handout's Author field, used here as requested.
+\newcommand{\Instructor}{Khai Pham / Vy Luong}
+
+% Blue information panels follow the visual language of the lab guideline.
+\newcommand{\ReportNote}[2]{%
+  \par\smallskip\noindent
+  {\setlength{\fboxsep}{9pt}\colorbox{noteblue}{%
+    \begin{minipage}{\dimexpr\linewidth-18pt\relax}
+    {\color{reportblue}\bfseries #1}\par\smallskip #2
+    \end{minipage}}}\par\smallskip
+}
+\newcommand{\EvidenceImage}[2]{%
+  \par\smallskip\begin{center}
+  \IfFileExists{#2}{%
+    \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{#2}%
+  }{%
+    {\color{muted}\fbox{\begin{minipage}[c][40mm][c]{0.94\linewidth}
+      \centering\textbf{#1 -- Waveform screenshot}\par\smallskip
+      \texttt{\detokenize{#2}}\par\smallskip
+      Reserved space for captured evidence
+    \end{minipage}}}%
+  }
+  \end{center}
+}
+\begin{document}
+\hypersetup{pageanchor=false}
+\newgeometry{left=25mm,right=25mm,top=8mm,bottom=8mm}
+\begin{titlepage}
+\thispagestyle{empty}
+\noindent\includegraphics[width=\linewidth]{assets/university_header.pdf}
+\vspace*{73mm}
+\begin{center}
+{\fontsize{24}{29}\selectfont\bfseries Computer Architecture Laboratory\par}
+\vspace{4mm}
+{\fontsize{20}{24}\selectfont Milestone 1: Warm-up\par}
+\vspace{13mm}
+{\large\begin{tabular}{@{}ll@{}}
+\textbf{Members:} & \StudentName\ --- \StudentID \\
+ & \SecondStudentName\ --- \SecondStudentID \\
+\textbf{Instructor:} & \Instructor \\
+\textbf{Date:} & 2026-Oct-25 \\
+\end{tabular}}
+\end{center}
+\vfill
+\noindent\includegraphics[width=\linewidth]{assets/department_footer.pdf}
+\end{titlepage}
+\restoregeometry
+\hypersetup{pageanchor=true}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+
+
+\section{Overview}
+
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{longtable}{|>{\raggedright\arraybackslash}p{\dimexpr 0.25\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.63\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.12\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.25\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Block}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.63\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Tested behavior}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.12\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Result}\strut}} \\ \hline
+\endfirsthead
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.25\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Block}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.63\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Tested behavior}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.12\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Result}\strut}} \\ \hline
+\endhead
+Adder & Add/\allowbreak{}subtract; signed/\allowbreak{}unsigned; carry/\allowbreak{}borrow; zero and signed extrema. & PASS \\ \hline
+Magnitude Comparator & Equality; signed/\allowbreak{}unsigned ordering; sign boundaries; one-hot outputs. & PASS \\ \hline
+Shifter & SRL/\allowbreak{}SLL/\allowbreak{}SRA; amounts 0-31; zero/\allowbreak{}sign fill; reserved mode. & PASS \\ \hline
+Arithmetic Logic Unit & Ten operations; unused encodings; SLT/\allowbreak{}SLTU; shift-amount masking. & PASS \\ \hline
+Register File & All register addresses; x0; edge write; dual asynchronous reads; reset; write disable. & PASS \\ \hline
+Asynchronous-read Memory & All byte masks and offsets; little-endian lanes; valid/\allowbreak{}invalid addresses; readback. & PASS \\ \hline
+Synchronous-read Memory (Optional) & Enabled reads; disabled-read hold; read-before-write; minimum size and no address wrap. & PASS \\ \hline
+\end{longtable}
+}
+
+\clearpage
+
+\section{Adder}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF01 | Basic arithmetic}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & a/\allowbreak{}b = 0/\allowbreak{}1 and 1/\allowbreak{}0; sub=0/\allowbreak{}1; signed/\allowbreak{}unsigned modes. \\ \hline
+Output & 0+1=1; 0-1=FFFFFFFF; 1-0=1. \\ \hline
+Test & Basic addition,\allowbreak{} subtraction and zero identity. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF01 / 1}{images/WF01.png}
+\EvidenceImage{WF01 / 2}{images/WF01_p2.png}
+{\small\centering Figure WF01. Basic arithmetic.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF02 | Carry /\allowbreak{} borrow}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & a/\allowbreak{}b = FFFFFFFF/\allowbreak{}1 and 0/\allowbreak{}1; unsigned mode; add/\allowbreak{}sub. \\ \hline
+Output & FFFFFFFF+1=00000000 with carry=1; 0-1=FFFFFFFF with unsigned cout=0. \\ \hline
+Test & Unsigned carry-out and borrow convention. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF02 / 1}{images/WF02.png}
+\EvidenceImage{WF02 / 2}{images/WF02_p2.png}
+{\small\centering Figure WF02. Carry /\allowbreak{} borrow.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF03 | Signed boundaries}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & a/\allowbreak{}b = 7FFFFFFF/\allowbreak{}1 and 80000000/\allowbreak{}1; signed mode. \\ \hline
+Output & 7FFFFFFF+1=80000000; 80000000-1=7FFFFFFF. \\ \hline
+Test & Signed boundary wrap and status output. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF03 / 1}{images/WF03.png}
+\EvidenceImage{WF03 / 2}{images/WF03_p2.png}
+{\small\centering Figure WF03. Signed boundaries.\par}
+\end{minipage}\par\medskip
+
+\clearpage
+
+\section{Magnitude Comparator}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF04 | Comparison /\allowbreak{} one-hot}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & a/\allowbreak{}b = 7FFFFFFF/\allowbreak{}80000000; toggle signedness; include equal operands. \\ \hline
+Output & For 7FFFFFFF versus 80000000: signed gt=1,\allowbreak{} unsigned lt=1. Equal operands assert eq only. \\ \hline
+Test & Ordering changes with signedness; exactly one comparison output asserted. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF04 / 1}{images/WF04.png}
+\EvidenceImage{WF04 / 2}{images/WF04_p2.png}
+{\small\centering Figure WF04. Comparison /\allowbreak{} one-hot.\par}
+\end{minipage}\par\medskip
+
+\clearpage
+
+\section{Shifter}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF05 | Logical shifts}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & data=12345678; SRL/\allowbreak{}SLL; shift amounts 0,\allowbreak{}1 and 31. \\ \hline
+Output & Shift 0 preserves 12345678; SRL1=091A2B3C; SLL1=2468ACF0; SLL31=0. \\ \hline
+Test & Zero shift,\allowbreak{} logical direction and maximum amount. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF05 / 1}{images/WF05.png}
+\EvidenceImage{WF05 / 2}{images/WF05_p2.png}
+\EvidenceImage{WF05 / 3}{images/WF05_p3.png}
+{\small\centering Figure WF05. Logical shifts.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF06 | Sign fill /\allowbreak{} reserved mode}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & data=FEDCBA98; SRL/\allowbreak{}SRA; amounts 1,\allowbreak{}31; reserved mode=11. \\ \hline
+Output & FEDCBA98: SRL1=7F6E5D4C; SRA1=FF6E5D4C; SRA31=FFFFFFFF. Reserved mode=0. \\ \hline
+Test & Zero fill versus sign fill; reserved-mode safe output. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF06 / 1}{images/WF06.png}
+\EvidenceImage{WF06 / 2}{images/WF06_p2.png}
+\EvidenceImage{WF06 / 3}{images/WF06_p3.png}
+{\small\centering Figure WF06. Sign fill /\allowbreak{} reserved mode.\par}
+\end{minipage}\par\medskip
+
+\clearpage
+
+\section{Arithmetic Logic Unit}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF07 | ALU selection}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & a=AAAAAAAA,\allowbreak{} b=55555555; sweep ALU opcodes 0-F. \\ \hline
+Output & AAAAAAAA/\allowbreak{}55555555: XOR=FFFFFFFF,\allowbreak{} OR=FFFFFFFF,\allowbreak{} AND=0. Unused opcodes return zero. \\ \hline
+Test & Operation selection,\allowbreak{} bitwise patterns and unused encodings. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF07 / 1}{images/WF07.png}
+\EvidenceImage{WF07 / 2}{images/WF07_p2.png}
+{\small\centering Figure WF07. ALU selection.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF08 | Compare /\allowbreak{} shift masking}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & a/\allowbreak{}b=7FFFFFFF/\allowbreak{}80000000; shift b=20 or 3F hex. \\ \hline
+Output & SLT=0 and SLTU=1 at the sign boundary. b=20 hex selects shift 0; b=3F hex selects shift 31. \\ \hline
+Test & SLT versus SLTU; only b[4:0] selects shift amount. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF08 / 1}{images/WF08.png}
+\EvidenceImage{WF08 / 2}{images/WF08_p2.png}
+\EvidenceImage{WF08 / 3}{images/WF08_p3.png}
+{\small\centering Figure WF08. Compare /\allowbreak{} shift masking.\par}
+\end{minipage}\par\medskip
+
+\clearpage
+
+\section{Register File}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF09 | Asynchronous reset}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & Nonzero register contents; rstn changes 1 to 0 between rising edges. \\ \hline
+Output & Reset asserted between rising edges clears the selected read outputs immediately; register scan returns zero. \\ \hline
+Test & Asynchronous clearing without waiting for a clock edge. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF09 / 1}{images/WF09.png}
+\EvidenceImage{WF09 / 2}{images/WF09_p2.png}
+{\small\centering Figure WF09. Asynchronous reset.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF10 | Register write /\allowbreak{} preservation}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & rd=x0-x31; write data=CAFE0000 OR index; enable then disable writes. \\ \hline
+Output & x0 stays zero; x1 becomes CAFE0001 after the edge. Disabled write preserves x7=CAFE0007. \\ \hline
+Test & Clock-edge update,\allowbreak{} no bypass,\allowbreak{} x0 protection and disabled-write retention. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF10 / 1}{images/WF10.png}
+\EvidenceImage{WF10 / 2}{images/WF10_p2.png}
+{\small\centering Figure WF10. Register write /\allowbreak{} preservation.\par}
+\end{minipage}\par\medskip
+
+\clearpage
+
+\section{Asynchronous-read Memory}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF11 | Byte lanes /\allowbreak{} endianness}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & addr=2040-2043 and 207F; masks 0-F; full/\allowbreak{}partial word writes. \\ \hline
+Output & Mask 0001 changes 1234AB00 to 1234ABEE. Full-word write returns 01020304; other masks preserve disabled lanes. \\ \hline
+Test & Byte-lane preservation and little-endian data layout. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF11 / 1}{images/WF11.png}
+\EvidenceImage{WF11 / 2}{images/WF11_p2.png}
+\EvidenceImage{WF11 / 3}{images/WF11_p3.png}
+{\small\centering Figure WF11. Byte lanes /\allowbreak{} endianness.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF12 | Address boundaries}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & Valid addr=207F; invalid addr=203F,\allowbreak{}2080,\allowbreak{}20C0,\allowbreak{}0,\allowbreak{}FFFFFFFF. \\ \hline
+Output & Invalid reads return zero. Valid readback DEADBEE0 is unchanged after invalid writes. \\ \hline
+Test & Upper/\allowbreak{}lower boundaries,\allowbreak{} zero invalid reads and ignored invalid writes. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF12 / 1}{images/WF12.png}
+\EvidenceImage{WF12 / 2}{images/WF12_p2.png}
+{\small\centering Figure WF12. Address boundaries.\par}
+\end{minipage}\par\medskip
+
+\clearpage
+
+\section{Synchronous-read Memory (Optional)}
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF13 | Registered read /\allowbreak{} hold}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & Read enable=0/\allowbreak{}1; change address and write enable; stored data is nonzero. \\ \hline
+Output & Read-disable holds 01020304. Enabled read updates to 1234AB09 after the edge; enabled invalid reads return zero. \\ \hline
+Test & Registered read timing,\allowbreak{} disabled-read hold and invalid read handling. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF13 / 1}{images/WF13.png}
+\EvidenceImage{WF13 / 2}{images/WF13_p2.png}
+{\small\centering Figure WF13. Registered read /\allowbreak{} hold.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF14 | Read-before-write}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & addr=2040; old=1234AB00; write=DEADBEEE; mask=0001; both enables=1. \\ \hline
+Output & At the write edge: async=1234ABEE,\allowbreak{} sync=1234AB00. The next enabled sync read returns 1234ABEE. \\ \hline
+Test & Simultaneous read/\allowbreak{}write uses read-before-write. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF14 / 1}{images/WF14.png}
+{\small\centering Figure WF14. Read-before-write.\par}
+\end{minipage}\par\medskip
+
+\par\medskip\noindent\begin{minipage}{\linewidth}
+{\color{reportblue}\bfseries WF15 | Minimum size /\allowbreak{} no wrap}\par
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{tabular}{|>{\raggedright\arraybackslash}p{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.16\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Item}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.84\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Testcase details}\strut}} \\ \hline
+Input & One word at FFFFFFFC; write 89ABCDEF through FFFFFFFF; attempt write at 0. \\ \hline
+Output & The top-address word retains 89ABCDEF after an invalid write at address zero; enabled invalid reads return zero. \\ \hline
+Test & Minimum memory size and top-address no-wrap protection. \\ \hline
+Result & PASS \\ \hline
+\end{tabular}
+}
+\EvidenceImage{WF15 / 1}{images/WF15.png}
+\EvidenceImage{WF15 / 2}{images/WF15_p2.png}
+{\small\centering Figure WF15. Minimum size /\allowbreak{} no wrap.\par}
+\end{minipage}\par\medskip
+
+\clearpage
+
+\section{Overall Result}
+
+{\small\setlength{\tabcolsep}{4pt}\setlength{\ReportTableWidth}{\linewidth}
+\noindent\begin{longtable}{|>{\raggedright\arraybackslash}p{\dimexpr 0.38\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|>{\raggedright\arraybackslash}p{\dimexpr 0.62\ReportTableWidth-2\tabcolsep-2\arrayrulewidth\relax}|}
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.38\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Verification}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.62\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Result}\strut}} \\ \hline
+\endfirsthead
+\hline
+\colorbox{tablegray}{\parbox[t]{\dimexpr 0.38\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Verification}\strut}} & \colorbox{tablegray}{\parbox[t]{\dimexpr 0.62\ReportTableWidth-2\tabcolsep-2\arrayrulewidth-2\fboxsep\relax}{\strut\textbf{Result}\strut}} \\ \hline
+\endhead
+Standalone block tests & PASS - 46,\allowbreak{}369 checks; no mismatches. \\ \hline
+Waveform sample checks & PASS - 15 cases,\allowbreak{} 62 checked signal values. \\ \hline
+Waveform evidence & 33 direct GTKWave screenshots. \\ \hline
+Coverage scope & Directed and fixed-seed generated tests; not exhaustive over all 32-bit operands. \\ \hline
+\end{longtable}
+}
+
+\end{document}

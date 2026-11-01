@@ -1,0 +1,2 @@
+configuration	core	app	status	cycles	cycle_delta	ledr	expected_ledr	ledg	matches_baseline
+async	0	all_suit	PASS	84475		16383	16383	24589	

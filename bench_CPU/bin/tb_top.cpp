@@ -10,7 +10,7 @@
 // Usage (from bench_CPU/):
 //   ./obj_dir_all/Vtop                      run all tests
 //   ./obj_dir_all/Vtop gcd fibonacci        run only the named tests
-//   ./obj_dir_all/Vtop +trace               also dump wave_<name>.fst per test
+//   ./obj_dir_all/Vtop +trace               also dump wave_<name>.vcd per test
 //   ./obj_dir_all/Vtop +verbose             print LEDR/LEDG changes while running
 #include <stdio.h>
 #include <string.h>
@@ -18,7 +18,7 @@
 #include <vector>
 #include <chrono>
 #include <verilated.h>
-#include <verilated_fst_c.h>
+#include <verilated_vcd_c.h>
 #include "Vtop.h"
 
 static const unsigned int STATUS_PASS = 0x600D;
@@ -95,11 +95,11 @@ static Result run_test(const TestCase &tc, const char *argv0, bool trace, bool v
   ctx->traceEverOn(trace);
   Vtop *dut = new Vtop(ctx);
 
-  VerilatedFstC *vtrace = nullptr;
+  VerilatedVcdC *vtrace = nullptr;
   if (trace) {
-    vtrace = new VerilatedFstC;
+    vtrace = new VerilatedVcdC;
     dut->trace(vtrace, 2);
-    vtrace->open((std::string("wave_") + tc.name + ".fst").c_str());
+    vtrace->open((std::string("wave_") + tc.name + ".vcd").c_str());
   }
 
   auto t0 = std::chrono::steady_clock::now();

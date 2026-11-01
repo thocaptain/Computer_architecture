@@ -1,0 +1,14 @@
+{
+  "app06": {
+    "cpu_hz": 5000000,
+    "code_bytes": 4812,
+    "rom_bytes": 8192,
+    "sha256": "99e0470f6746f5e61f9c3f78814ce598190bf134f8232ab38e0d2ea218d780f1"
+  },
+  "app06_sim": {
+    "cpu_hz": 1000,
+    "code_bytes": 4796,
+    "rom_bytes": 8192,
+    "sha256": "2ea85f9012f582bb06051d100c61363ae293028ab3861fa3f464a60c9df6267d"
+  }
+}

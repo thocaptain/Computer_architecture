@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "assembler": "GNU assembler (GNU Binutils for Ubuntu) 2.42",
+  "isa": "rv32i",
+  "abi": "ilp32",
+  "text_address": 0,
+  "compressed_instructions": false,
+  "linker_relaxation": false,
+  "instruction_words": 530151,
+  "mem_bytes": 2120604,
+  "gnu_bytes": 2120604,
+  "mismatching_bytes": 0,
+  "mem_sha256": "16f98a1d92f003189cc5b969755c40a74534e323ef126683da976754c5ab8b6a",
+  "gnu_sha256": "16f98a1d92f003189cc5b969755c40a74534e323ef126683da976754c5ab8b6a",
+  "assembly_sha256": "18494c2f0f4ecd04341774f918651327a9a714a44c833afef41549dc65077a29",
+  "rom_text_sha256": "65eac406f3c1639a212c53792b2015e02f874e930bba057a46b54ba888bdc0d2"
+}

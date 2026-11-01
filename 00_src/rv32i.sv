@@ -193,7 +193,8 @@ always_ff @( posedge i_clk ) begin
             case (pc_sel)
                 PC_IF_PRED: pc <= next_pred_pc;        // br, predict branch, if not a br inst -> no hit -> PC+4
                 PC_ID_JAL : pc <= ID_pc_imm;           // jal, jump address
-                PC_EX_ALU : pc <= EX_alu_res;          // jalr, actual branch
+                // JALR clears target bit 0; branch targets retain the ALU result.
+                PC_EX_ALU : pc <= EX_is_jalr_inst ? {EX_alu_res[31:1], 1'b0} : EX_alu_res;
                 PC_EX_4   : pc <= ID_EX_dreg_q.pc + 4; // jalr, actual branch
                 default   : pc <= pc;
             endcase

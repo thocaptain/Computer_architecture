@@ -6,15 +6,16 @@ SEED=1
 SIM_CXX ?= g++-10
 
 ## Do NOT change the content below unless you know what you're doing
-FLAGS =  --binary -Wall --trace --sv --timing --trace-structs --trace-fst --trace-max-array 512 --trace-max-width 64
+FLAGS =  --binary -Wall --trace --sv --timing --trace-structs --trace-max-array 512 --trace-max-width 64
 FLAGS += -O3 --compiler gcc -CFLAGS -std=gnu++20
+FLAGS += -Wno-EOFNEWLINE
+FLAGS += -Wno-PINCONNECTEMPTY
 FLAGS += -x-initial unique
 FLAGS += -x-assign unique
 FLAGS += --assert
-FLAGS += --build -j 0 --quiet
-LFLAGS = --lint-only --sv --timing --quiet
+FLAGS += --build -j 0
+LFLAGS = --lint-only --sv --timing
 RFLAGS =  +verilator+seed+$(SEED)
-RFLAGS += +verilator+quiet
 
 TARGET = -f ./flist
 

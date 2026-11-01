@@ -1,0 +1,42 @@
+APP05 INSTRUCTIONS core=2 blocks=async app=PASS
+Results follow ordered fail-fast case IDs; later checks are not counted as PASS.
+INSTRUCTION STATUS        PLANNED    PASS    FAIL NOT_RUN UNCONFIRMED
+ADD         PASS              354     354       0       0           0
+ADDI        PASS             4096    4096       0       0           0
+AND         PASS              258     258       0       0           0
+ANDI        PASS             4096    4096       0       0           0
+AUIPC       PASS               25      25       0       0           0
+BEQ         PASS              257     257       0       0           0
+BGE         PASS              257     257       0       0           0
+BGEU        PASS              257     257       0       0           0
+BLT         PASS              257     257       0       0           0
+BLTU        PASS              257     257       0       0           0
+BNE         PASS              257     257       0       0           0
+JAL         PASS               63      63       0       0           0
+JALR        PASS             8193    8193       0       0           0
+LB          PASS             4096    4096       0       0           0
+LBU         PASS             4096    4096       0       0           0
+LH          PASS             2048    2048       0       0           0
+LHU         PASS             2048    2048       0       0           0
+LUI         PASS               25      25       0       0           0
+LW          PASS             1024    1024       0       0           0
+OR          PASS              258     258       0       0           0
+ORI         PASS             4096    4096       0       0           0
+SB          PASS             4096    4096       0       0           0
+SH          PASS             2048    2048       0       0           0
+SLL         PASS             1794    1794       0       0           0
+SLLI        PASS              512     512       0       0           0
+SLT         PASS              258     258       0       0           0
+SLTI        PASS             4096    4096       0       0           0
+SLTIU       PASS             4096    4096       0       0           0
+SLTU        PASS              258     258       0       0           0
+SRA         PASS             1794    1794       0       0           0
+SRAI        PASS              512     512       0       0           0
+SRL         PASS             1794    1794       0       0           0
+SRLI        PASS              512     512       0       0           0
+SUB         PASS              258     258       0       0           0
+SW          PASS             1024    1024       0       0           0
+XOR         PASS              258     258       0       0           0
+XORI        PASS             4096    4096       0       0           0
+TOTAL                       63724   63724       0       0       0
+INSTRUCTION SUMMARY: 37 PASS, 0 FAIL, 0 incomplete

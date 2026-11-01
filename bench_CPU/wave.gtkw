@@ -1,7 +1,7 @@
 [*]
 [*] GTKWave Analyzer save file
 [*]
-[dumpfile] "wave_all_suit.fst"
+[dumpfile] "wave_all_suit.vcd"
 [savefile] "wave.gtkw"
 [timestart] 844700
 [size] 1280 800

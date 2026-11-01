@@ -1,0 +1,47 @@
+
+/mnt/c/Users/ADMIN/Desktop/CTMT/Projects/Computer_architecture/02_test/Milestone1/apps/encoding_check/app05_instruction.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+       0:	00206f37          	lui	x30,0x206
+       4:	b80f0f13          	addi	x30,x30,-1152 # 205b80 <FAIL>
+       8:	00000093          	addi	x1,x0,0
+       c:	00000113          	addi	x2,x0,0
+      10:	002081b3          	add	x3,x1,x2
+      14:	00100e13          	addi	x28,x0,1
+      18:	00000213          	addi	x4,x0,0
+      1c:	00418463          	beq	x3,x4,24 <check_ok_1>
+      20:	000f0067          	jalr	x0,0(x30)
+
+00000024 <check_ok_1>:
+      24:	00000093          	addi	x1,x0,0
+      28:	00100113          	addi	x2,x0,1
+      2c:	002081b3          	add	x3,x1,x2
+      30:	00200e13          	addi	x28,x0,2
+      34:	00100213          	addi	x4,x0,1
+      38:	00418463          	beq	x3,x4,40 <check_ok_2>
+      3c:	000f0067          	jalr	x0,0(x30)
+
+00000040 <check_ok_2>:
+      40:	00000093          	addi	x1,x0,0
+      44:	00200113          	addi	x2,x0,2
+      48:	002081b3          	add	x3,x1,x2
+      4c:	00300e13          	addi	x28,x0,3
+      50:	00200213          	addi	x4,x0,2
+      54:	00418463          	beq	x3,x4,5c <check_ok_3>
+      58:	000f0067          	jalr	x0,0(x30)
+
+0000005c <check_ok_3>:
+      5c:	00000093          	addi	x1,x0,0
+      60:	01f00113          	addi	x2,x0,31
+      64:	002081b3          	add	x3,x1,x2
+      68:	00400e13          	addi	x28,x0,4
+      6c:	01f00213          	addi	x4,x0,31
+      70:	00418463          	beq	x3,x4,78 <check_ok_4>
+      74:	000f0067          	jalr	x0,0(x30)
+
+00000078 <check_ok_4>:
+      78:	00000093          	addi	x1,x0,0
+      7c:	02000113          	addi	x2,x0,32

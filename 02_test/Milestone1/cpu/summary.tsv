@@ -1,0 +1,13 @@
+configuration	core_mode	status
+baseline	0	PASS
+async	0	PASS
+sync	0	PASS
+baseline	1	PASS
+async	1	PASS
+sync	1	PASS
+baseline	2	PASS
+async	2	PASS
+sync	2	PASS
+baseline	3	PASS
+async	3	PASS
+sync	3	PASS

@@ -1,0 +1,559 @@
+{
+  "vcd_sha256": "a106892b8cef6f07479414fef499fe3282b4549b349c2f1a58c890fa452fcc3d",
+  "cases": [
+    {
+      "id": "WF01",
+      "title": "Adder: basic add/subtract",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 148.5,
+          "signal": "sum",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        },
+        {
+          "time_ns": 149.5,
+          "signal": "sum",
+          "expected_hex": "FFFFFFFF",
+          "actual_hex": "FFFFFFFF",
+          "pass": true
+        },
+        {
+          "time_ns": 296.5,
+          "signal": "sum",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        }
+      ],
+      "image": "images/WF01.png"
+    },
+    {
+      "id": "WF02",
+      "title": "Adder: unsigned carry and borrow",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 151.5,
+          "signal": "sum",
+          "expected_hex": "FFFFFFFF",
+          "actual_hex": "FFFFFFFF",
+          "pass": true
+        },
+        {
+          "time_ns": 151.5,
+          "signal": "cout",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 446.5,
+          "signal": "sum",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 446.5,
+          "signal": "cout",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        }
+      ],
+      "image": "images/WF02.png"
+    },
+    {
+      "id": "WF03",
+      "title": "Adder: signed boundary/status convention",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 740.5,
+          "signal": "sum",
+          "expected_hex": "80000000",
+          "actual_hex": "80000000",
+          "pass": true
+        },
+        {
+          "time_ns": 740.5,
+          "signal": "cout",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 889.5,
+          "signal": "sum",
+          "expected_hex": "7FFFFFFF",
+          "actual_hex": "7FFFFFFF",
+          "pass": true
+        },
+        {
+          "time_ns": 889.5,
+          "signal": "cout",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        }
+      ],
+      "image": "images/WF03.png"
+    },
+    {
+      "id": "WF04",
+      "title": "Comparator: signedness, equality and one-hot outputs",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 1184.5,
+          "signal": "gt",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        },
+        {
+          "time_ns": 1184.5,
+          "signal": "lt",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 1186.5,
+          "signal": "lt",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        },
+        {
+          "time_ns": 1186.5,
+          "signal": "gt",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 1480.5,
+          "signal": "eq",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        }
+      ],
+      "image": "images/WF04.png"
+    },
+    {
+      "id": "WF05",
+      "title": "Shifter: logical directions and shift boundaries",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 1796.5,
+          "signal": "shifted",
+          "expected_hex": "12345678",
+          "actual_hex": "12345678",
+          "pass": true
+        },
+        {
+          "time_ns": 1797.5,
+          "signal": "shifted",
+          "expected_hex": "91A2B3C",
+          "actual_hex": "91A2B3C",
+          "pass": true
+        },
+        {
+          "time_ns": 1829.5,
+          "signal": "shifted",
+          "expected_hex": "2468ACF0",
+          "actual_hex": "2468ACF0",
+          "pass": true
+        },
+        {
+          "time_ns": 1859.5,
+          "signal": "shifted",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        }
+      ],
+      "image": "images/WF05.png"
+    },
+    {
+      "id": "WF06",
+      "title": "Shifter: arithmetic sign fill and reserved mode",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 1945.5,
+          "signal": "shifted",
+          "expected_hex": "7F6E5D4C",
+          "actual_hex": "7F6E5D4C",
+          "pass": true
+        },
+        {
+          "time_ns": 2009.5,
+          "signal": "shifted",
+          "expected_hex": "FF6E5D4C",
+          "actual_hex": "FF6E5D4C",
+          "pass": true
+        },
+        {
+          "time_ns": 2039.5,
+          "signal": "shifted",
+          "expected_hex": "FFFFFFFF",
+          "actual_hex": "FFFFFFFF",
+          "pass": true
+        },
+        {
+          "time_ns": 2040.5,
+          "signal": "shifted",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        }
+      ],
+      "image": "images/WF06.png"
+    },
+    {
+      "id": "WF07",
+      "title": "ALU: arithmetic, bitwise and unused encodings",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 1634.5,
+          "signal": "alu_data",
+          "expected_hex": "FFFFFFFF",
+          "actual_hex": "FFFFFFFF",
+          "pass": true
+        },
+        {
+          "time_ns": 1635.5,
+          "signal": "alu_data",
+          "expected_hex": "FFFFFFFF",
+          "actual_hex": "FFFFFFFF",
+          "pass": true
+        },
+        {
+          "time_ns": 1636.5,
+          "signal": "alu_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 1642.5,
+          "signal": "alu_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        }
+      ],
+      "image": "images/WF07.png"
+    },
+    {
+      "id": "WF08",
+      "title": "ALU: SLT/SLTU and low-five-bit shift masking",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 1196.5,
+          "signal": "alu_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 1197.5,
+          "signal": "alu_data",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        },
+        {
+          "time_ns": 1933.5,
+          "signal": "alu_data",
+          "expected_hex": "FEDCBA98",
+          "actual_hex": "FEDCBA98",
+          "pass": true
+        },
+        {
+          "time_ns": 2081.5,
+          "signal": "alu_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        }
+      ],
+      "image": "images/WF08.png"
+    },
+    {
+      "id": "WF09",
+      "title": "Register file: asynchronous reset after nonzero writes",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 23250.5,
+          "signal": "rstn",
+          "expected_hex": "1",
+          "actual_hex": "1",
+          "pass": true
+        },
+        {
+          "time_ns": 23250.5,
+          "signal": "rs1_data",
+          "expected_hex": "CAFE001F",
+          "actual_hex": "CAFE001F",
+          "pass": true
+        },
+        {
+          "time_ns": 23251.5,
+          "signal": "rstn",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 23251.5,
+          "signal": "rs1_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        }
+      ],
+      "image": "images/WF09.png"
+    },
+    {
+      "id": "WF10",
+      "title": "Register file: edge write, two read ports, x0 and write disable",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 22896.5,
+          "signal": "rs1_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 22901.5,
+          "signal": "rs1_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 22906.5,
+          "signal": "rs1_data",
+          "expected_hex": "CAFE0001",
+          "actual_hex": "CAFE0001",
+          "pass": true
+        },
+        {
+          "time_ns": 23223.5,
+          "signal": "rs1_data",
+          "expected_hex": "CAFE0007",
+          "actual_hex": "CAFE0007",
+          "pass": true
+        }
+      ],
+      "image": "images/WF10.png"
+    },
+    {
+      "id": "WF11",
+      "title": "Async memory: masks and little-endian byte lanes",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 23504.5,
+          "signal": "async_data",
+          "expected_hex": "1234AB00",
+          "actual_hex": "1234AB00",
+          "pass": true
+        },
+        {
+          "time_ns": 23506.5,
+          "signal": "async_data",
+          "expected_hex": "1234ABEE",
+          "actual_hex": "1234ABEE",
+          "pass": true
+        },
+        {
+          "time_ns": 24106.5,
+          "signal": "async_data",
+          "expected_hex": "1020304",
+          "actual_hex": "1020304",
+          "pass": true
+        }
+      ],
+      "image": "images/WF11.png"
+    },
+    {
+      "id": "WF12",
+      "title": "Async memory: range checks and unchanged data after invalid writes",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 24106.5,
+          "signal": "async_data",
+          "expected_hex": "1020304",
+          "actual_hex": "1020304",
+          "pass": true
+        },
+        {
+          "time_ns": 24111.5,
+          "signal": "async_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 24121.5,
+          "signal": "async_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 24161.5,
+          "signal": "async_data",
+          "expected_hex": "DEADBEE0",
+          "actual_hex": "DEADBEE0",
+          "pass": true
+        }
+      ],
+      "image": "images/WF12.png"
+    },
+    {
+      "id": "WF13",
+      "title": "Sync memory: enabled read and disabled-read hold",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 24131.5,
+          "signal": "rden",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 24131.5,
+          "signal": "sync_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 24141.5,
+          "signal": "sync_data",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 24334.5,
+          "signal": "rden",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 24334.5,
+          "signal": "sync_data",
+          "expected_hex": "1020304",
+          "actual_hex": "1020304",
+          "pass": true
+        },
+        {
+          "time_ns": 24354.5,
+          "signal": "sync_data",
+          "expected_hex": "1020304",
+          "actual_hex": "1020304",
+          "pass": true
+        },
+        {
+          "time_ns": 24356.5,
+          "signal": "sync_data",
+          "expected_hex": "1234AB09",
+          "actual_hex": "1234AB09",
+          "pass": true
+        }
+      ],
+      "image": "images/WF13.png"
+    },
+    {
+      "id": "WF14",
+      "title": "Sync memory: simultaneous read/write policy",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 23506.5,
+          "signal": "async_data",
+          "expected_hex": "1234ABEE",
+          "actual_hex": "1234ABEE",
+          "pass": true
+        },
+        {
+          "time_ns": 23506.5,
+          "signal": "sync_data",
+          "expected_hex": "1234AB00",
+          "actual_hex": "1234AB00",
+          "pass": true
+        },
+        {
+          "time_ns": 23516.5,
+          "signal": "sync_data",
+          "expected_hex": "1234ABEE",
+          "actual_hex": "1234ABEE",
+          "pass": true
+        }
+      ],
+      "image": "images/WF14.png"
+    },
+    {
+      "id": "WF15",
+      "title": "Both memories: minimum size and top-of-address-space boundary",
+      "pass": true,
+      "samples": [
+        {
+          "time_ns": 29606.5,
+          "signal": "tiny_async",
+          "expected_hex": "89ABCDEF",
+          "actual_hex": "89ABCDEF",
+          "pass": true
+        },
+        {
+          "time_ns": 29616.5,
+          "signal": "tiny_sync",
+          "expected_hex": "89ABCDEF",
+          "actual_hex": "89ABCDEF",
+          "pass": true
+        },
+        {
+          "time_ns": 29626.5,
+          "signal": "tiny_async",
+          "expected_hex": "0",
+          "actual_hex": "0",
+          "pass": true
+        },
+        {
+          "time_ns": 29636.5,
+          "signal": "tiny_async",
+          "expected_hex": "89ABCDEF",
+          "actual_hex": "89ABCDEF",
+          "pass": true
+        },
+        {
+          "time_ns": 29636.5,
+          "signal": "tiny_sync",
+          "expected_hex": "89ABCDEF",
+          "actual_hex": "89ABCDEF",
+          "pass": true
+        }
+      ],
+      "image": "images/WF15.png"
+    }
+  ]
+}

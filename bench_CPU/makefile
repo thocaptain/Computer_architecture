@@ -31,7 +31,7 @@ VERILATOR_FLAGS += -Wno-PINCONNECTEMPTY
 # Enable assertion
 VERILATOR_FLAGS += --assert
 # Make waveforms
-VERILATOR_FLAGS += --trace-fst
+VERILATOR_FLAGS += --trace
 VERILATOR_FLAGS += -GCORE_MODE=$(CORE_MODE)
 VERILATOR_FLAGS += -Mdir $(OBJ_DIR)
 
@@ -46,7 +46,7 @@ all:
 help:
 	@echo -e "make [option]"
 	@echo -e "\tbuild   verilate and build modules"
-	@echo -e "\ttest    run $(TEST) and dump its FST waveform"
+	@echo -e "\ttest    run $(TEST) and dump its VCD waveform"
 	@echo -e "\t        CORE_MODE=0 single-cycle, 1 stall-only, 2 hazard, 3 TOP_SYNTH"
 	@echo -e "\twave    run $(TEST) and open its waveform"
 	@echo -e "\tclean   clean the working folder"
@@ -64,10 +64,10 @@ test: $(OBJ_DIR)/Vtop
 
 .PHONY: wave
 wave: test
-	@gtkwave wave_$(TEST).fst wave.gtkw
+	@gtkwave wave_$(TEST).vcd wave.gtkw
 
 .PHONY: clean
 clean:
 	@rm -rf obj_dir obj_dir_mode*
-	@rm -f wave*.fst
+	@rm -f wave*.fst wave*.vcd
 	@rm -f *.log
