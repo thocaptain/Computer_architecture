@@ -1,0 +1,20 @@
+# DE2 Cyclone II EP2C35F672C6 only. Do not use for DE2-115 Cyclone IV.
+set_location_assignment PIN_J1 -to {LCD_DATA[0]}
+set_location_assignment PIN_J2 -to {LCD_DATA[1]}
+set_location_assignment PIN_H1 -to {LCD_DATA[2]}
+set_location_assignment PIN_H2 -to {LCD_DATA[3]}
+set_location_assignment PIN_J4 -to {LCD_DATA[4]}
+set_location_assignment PIN_J3 -to {LCD_DATA[5]}
+set_location_assignment PIN_H4 -to {LCD_DATA[6]}
+set_location_assignment PIN_H3 -to {LCD_DATA[7]}
+set_location_assignment PIN_K4 -to LCD_RW
+set_location_assignment PIN_K3 -to LCD_EN
+set_location_assignment PIN_K1 -to LCD_RS
+set_location_assignment PIN_L4 -to LCD_ON
+set_location_assignment PIN_K2 -to LCD_BLON
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to {LCD_DATA[*]}
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RW
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_EN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_ON
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_BLON

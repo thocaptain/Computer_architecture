@@ -1,0 +1,14 @@
+# Source this file from the project QSF after removing original 00_src entries.
+# Do not compile both variants: they define the same module names.
+set lcd_src_dir [file dirname [info script]]
+set_global_assignment -name TOP_LEVEL_ENTITY example_de2_wrapper
+set_global_assignment -name SEARCH_PATH $lcd_src_dir
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $lcd_src_dir rv32i_pkg.sv]
+foreach lcd_source [lsort [glob -directory $lcd_src_dir *.sv]] {
+    if {[file tail $lcd_source] ne "rv32i_pkg.sv"} {
+        set_global_assignment -name SYSTEMVERILOG_FILE $lcd_source
+    }
+}
+source [file join $lcd_src_dir de2_base_pins.qsf]
+source [file join $lcd_src_dir lcd_pins_de2.qsf]
+set_global_assignment -name SDC_FILE [file join $lcd_src_dir lcd_clock.sdc]
