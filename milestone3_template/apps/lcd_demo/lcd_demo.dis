@@ -1,0 +1,163 @@
+
+lcd_demo.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+80000000 <_start>:
+80000000:	84000137          	lui	sp,0x84000
+80000004:	40010113          	addi	sp,sp,1024 # 84000400 <__global_pointer$+0x3ffe9d0>
+80000008:	40006437          	lui	s0,0x40006
+8000000c:	400044b7          	lui	s1,0x40004
+80000010:	40000937          	lui	s2,0x40000
+80000014:	00300293          	addi	t0,zero,3
+80000018:	0054a023          	sw	t0,0(s1) # 40004000 <TIMER_BASE>
+8000001c:	00092223          	sw	zero,4(s2) # 40000004 <TIMER_BASE-0x3ffc>
+80000020:	104000ef          	jal	ra,80000124 <lcd_init>
+80000024:	08000513          	addi	a0,zero,128
+80000028:	198000ef          	jal	ra,800001c0 <lcd_command>
+8000002c:	04d00513          	addi	a0,zero,77
+80000030:	198000ef          	jal	ra,800001c8 <lcd_putchar>
+80000034:	04300513          	addi	a0,zero,67
+80000038:	190000ef          	jal	ra,800001c8 <lcd_putchar>
+8000003c:	05500513          	addi	a0,zero,85
+80000040:	188000ef          	jal	ra,800001c8 <lcd_putchar>
+80000044:	02000513          	addi	a0,zero,32
+80000048:	180000ef          	jal	ra,800001c8 <lcd_putchar>
+8000004c:	04c00513          	addi	a0,zero,76
+80000050:	178000ef          	jal	ra,800001c8 <lcd_putchar>
+80000054:	04300513          	addi	a0,zero,67
+80000058:	170000ef          	jal	ra,800001c8 <lcd_putchar>
+8000005c:	04400513          	addi	a0,zero,68
+80000060:	168000ef          	jal	ra,800001c8 <lcd_putchar>
+80000064:	02000513          	addi	a0,zero,32
+80000068:	160000ef          	jal	ra,800001c8 <lcd_putchar>
+8000006c:	05200513          	addi	a0,zero,82
+80000070:	158000ef          	jal	ra,800001c8 <lcd_putchar>
+80000074:	04500513          	addi	a0,zero,69
+80000078:	150000ef          	jal	ra,800001c8 <lcd_putchar>
+8000007c:	04100513          	addi	a0,zero,65
+80000080:	148000ef          	jal	ra,800001c8 <lcd_putchar>
+80000084:	04400513          	addi	a0,zero,68
+80000088:	140000ef          	jal	ra,800001c8 <lcd_putchar>
+8000008c:	05900513          	addi	a0,zero,89
+80000090:	138000ef          	jal	ra,800001c8 <lcd_putchar>
+80000094:	0c000513          	addi	a0,zero,192
+80000098:	128000ef          	jal	ra,800001c0 <lcd_command>
+8000009c:	05200513          	addi	a0,zero,82
+800000a0:	128000ef          	jal	ra,800001c8 <lcd_putchar>
+800000a4:	05600513          	addi	a0,zero,86
+800000a8:	120000ef          	jal	ra,800001c8 <lcd_putchar>
+800000ac:	03300513          	addi	a0,zero,51
+800000b0:	118000ef          	jal	ra,800001c8 <lcd_putchar>
+800000b4:	03200513          	addi	a0,zero,50
+800000b8:	110000ef          	jal	ra,800001c8 <lcd_putchar>
+800000bc:	04900513          	addi	a0,zero,73
+800000c0:	108000ef          	jal	ra,800001c8 <lcd_putchar>
+800000c4:	02000513          	addi	a0,zero,32
+800000c8:	100000ef          	jal	ra,800001c8 <lcd_putchar>
+800000cc:	04000513          	addi	a0,zero,64
+800000d0:	0f8000ef          	jal	ra,800001c8 <lcd_putchar>
+800000d4:	02000513          	addi	a0,zero,32
+800000d8:	0f0000ef          	jal	ra,800001c8 <lcd_putchar>
+800000dc:	03200513          	addi	a0,zero,50
+800000e0:	0e8000ef          	jal	ra,800001c8 <lcd_putchar>
+800000e4:	03500513          	addi	a0,zero,53
+800000e8:	0e0000ef          	jal	ra,800001c8 <lcd_putchar>
+800000ec:	02000513          	addi	a0,zero,32
+800000f0:	0d8000ef          	jal	ra,800001c8 <lcd_putchar>
+800000f4:	04d00513          	addi	a0,zero,77
+800000f8:	0d0000ef          	jal	ra,800001c8 <lcd_putchar>
+800000fc:	04800513          	addi	a0,zero,72
+80000100:	0c8000ef          	jal	ra,800001c8 <lcd_putchar>
+80000104:	07a00513          	addi	a0,zero,122
+80000108:	0c0000ef          	jal	ra,800001c8 <lcd_putchar>
+8000010c:	00100293          	addi	t0,zero,1
+80000110:	00592223          	sw	t0,4(s2)
+80000114:	40002337          	lui	t1,0x40002
+
+80000118 <idle>:
+80000118:	00032283          	lw	t0,0(t1) # 40002000 <TIMER_BASE-0x2000>
+8000011c:	00592023          	sw	t0,0(s2)
+80000120:	ff9ff06f          	jal	zero,80000118 <idle>
+
+80000124 <lcd_init>:
+80000124:	ff010113          	addi	sp,sp,-16
+80000128:	00112623          	sw	ra,12(sp)
+8000012c:	00c00293          	addi	t0,zero,12
+80000130:	00542223          	sw	t0,4(s0) # 40006004 <LCD_BASE+0x4>
+80000134:	00042023          	sw	zero,0(s0)
+80000138:	00131537          	lui	a0,0x131
+8000013c:	2d050513          	addi	a0,a0,720 # 1312d0 <TIMER_BASE-0x3fed2d30>
+80000140:	0dc000ef          	jal	ra,8000021c <lcd_delay_cycles>
+80000144:	03000513          	addi	a0,zero,48
+80000148:	078000ef          	jal	ra,800001c0 <lcd_command>
+8000014c:	0001f537          	lui	a0,0x1f
+80000150:	84850513          	addi	a0,a0,-1976 # 1e848 <TIMER_BASE-0x3ffe57b8>
+80000154:	0c8000ef          	jal	ra,8000021c <lcd_delay_cycles>
+80000158:	03000513          	addi	a0,zero,48
+8000015c:	064000ef          	jal	ra,800001c0 <lcd_command>
+80000160:	00006537          	lui	a0,0x6
+80000164:	1a850513          	addi	a0,a0,424 # 61a8 <TIMER_BASE-0x3fffde58>
+80000168:	0b4000ef          	jal	ra,8000021c <lcd_delay_cycles>
+8000016c:	03000513          	addi	a0,zero,48
+80000170:	050000ef          	jal	ra,800001c0 <lcd_command>
+80000174:	00006537          	lui	a0,0x6
+80000178:	1a850513          	addi	a0,a0,424 # 61a8 <TIMER_BASE-0x3fffde58>
+8000017c:	0a0000ef          	jal	ra,8000021c <lcd_delay_cycles>
+80000180:	03800513          	addi	a0,zero,56
+80000184:	03c000ef          	jal	ra,800001c0 <lcd_command>
+80000188:	00800513          	addi	a0,zero,8
+8000018c:	034000ef          	jal	ra,800001c0 <lcd_command>
+80000190:	00100513          	addi	a0,zero,1
+80000194:	02c000ef          	jal	ra,800001c0 <lcd_command>
+80000198:	0000c537          	lui	a0,0xc
+8000019c:	35050513          	addi	a0,a0,848 # c350 <TIMER_BASE-0x3fff7cb0>
+800001a0:	07c000ef          	jal	ra,8000021c <lcd_delay_cycles>
+800001a4:	00600513          	addi	a0,zero,6
+800001a8:	018000ef          	jal	ra,800001c0 <lcd_command>
+800001ac:	00c00513          	addi	a0,zero,12
+800001b0:	010000ef          	jal	ra,800001c0 <lcd_command>
+800001b4:	00c12083          	lw	ra,12(sp)
+800001b8:	01010113          	addi	sp,sp,16
+800001bc:	00008067          	jalr	zero,0(ra)
+
+800001c0 <lcd_command>:
+800001c0:	00000593          	addi	a1,zero,0
+800001c4:	0080006f          	jal	zero,800001cc <lcd_write>
+
+800001c8 <lcd_putchar>:
+800001c8:	00100593          	addi	a1,zero,1
+
+800001cc <lcd_write>:
+800001cc:	ff010113          	addi	sp,sp,-16
+800001d0:	00112623          	sw	ra,12(sp)
+800001d4:	0015f593          	andi	a1,a1,1
+800001d8:	00c5e593          	ori	a1,a1,12
+800001dc:	00b12423          	sw	a1,8(sp)
+800001e0:	02c000ef          	jal	ra,8000020c <lcd_wait_ready>
+800001e4:	00a42023          	sw	a0,0(s0)
+800001e8:	00812283          	lw	t0,8(sp)
+800001ec:	0022e293          	ori	t0,t0,2
+800001f0:	00542223          	sw	t0,4(s0)
+800001f4:	018000ef          	jal	ra,8000020c <lcd_wait_ready>
+800001f8:	4e200513          	addi	a0,zero,1250
+800001fc:	020000ef          	jal	ra,8000021c <lcd_delay_cycles>
+80000200:	00c12083          	lw	ra,12(sp)
+80000204:	01010113          	addi	sp,sp,16
+80000208:	00008067          	jalr	zero,0(ra)
+
+8000020c <lcd_wait_ready>:
+8000020c:	00842283          	lw	t0,8(s0)
+80000210:	0012f293          	andi	t0,t0,1
+80000214:	fe028ce3          	beq	t0,zero,8000020c <lcd_wait_ready>
+80000218:	00008067          	jalr	zero,0(ra)
+
+8000021c <lcd_delay_cycles>:
+8000021c:	0044a283          	lw	t0,4(s1)
+
+80000220 <delay_loop>:
+80000220:	0044a303          	lw	t1,4(s1)
+80000224:	405303b3          	sub	t2,t1,t0
+80000228:	fea3ece3          	bltu	t2,a0,80000220 <delay_loop>
+8000022c:	00008067          	jalr	zero,0(ra)
