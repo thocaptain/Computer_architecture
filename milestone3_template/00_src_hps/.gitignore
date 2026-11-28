@@ -1,0 +1,10 @@
+software/hps_demo
+software/hps_demo_lcd
+software/hps_calculator
+software/hps_calculator_lcd
+software/hps_scientific
+software/hps_scientific_lcd
+tests/obj_dir/
+tests/*.log
+tests/hps_mcu_check*
+tests/quartus/
